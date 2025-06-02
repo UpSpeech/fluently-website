@@ -120,19 +120,19 @@ const HeroSection = () => {
               
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-3 bg-accent/10 rounded-lg">
-                  <span className="font-nunito text-sm font-medium text-secondary">Articulation Practice</span>
+                  <span className="font-nunito text-sm font-medium text-secondary">Stuttering Modification</span>
                   <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">✓</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between p-3 bg-accent/10 rounded-lg">
-                  <span className="font-nunito text-sm font-medium text-secondary">Voice Exercises</span>
+                  <span className="font-nunito text-sm font-medium text-secondary">Fluency Shaping</span>
                   <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">✓</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <span className="font-nunito text-sm font-medium text-secondary/70">Fluency Training</span>
+                  <span className="font-nunito text-sm font-medium text-secondary/70">Cognitive Training</span>
                   <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
                 </div>
               </div>
