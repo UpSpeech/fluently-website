@@ -7,9 +7,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <div className="font-nunito font-bold text-2xl mb-2">
-              fluently
-            </div>
+            <img 
+              src="/lovable-uploads/d4d25aaf-89e1-4703-99a5-d7a40346cd18.png" 
+              alt="Fluently" 
+              className="h-8 w-auto mb-2 brightness-0 invert"
+            />
             <p className="font-nunito text-sm text-white/80">
               Helping therapy stick—one session at a time.
             </p>

@@ -1,8 +1,27 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
+  const waveRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (waveRef.current) {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        
+        const xPercent = (clientX / innerWidth) * 100;
+        const yPercent = (clientY / innerHeight) * 100;
+        
+        waveRef.current.style.transform = `translate(${xPercent * 0.1}px, ${yPercent * 0.1}px)`;
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const scrollToCTA = () => {
     const element = document.getElementById('cta');
     if (element) {
@@ -11,8 +30,49 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 overflow-hidden">
+      {/* Interactive Wave Background */}
+      <div 
+        ref={waveRef}
+        className="absolute inset-0 transition-transform duration-300 ease-out"
+      >
+        <svg 
+          className="absolute top-20 left-0 w-full h-full opacity-20"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,400 C300,300 400,500 800,400 C1000,350 1100,450 1200,400 L1200,800 L0,800 Z"
+            fill="url(#wave-gradient)"
+          />
+          <defs>
+            <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#293587" stopOpacity="0.1" />
+              <stop offset="50%" stopColor="#98A5FE" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#293587" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+        </svg>
+        
+        <svg 
+          className="absolute top-40 right-0 w-full h-full opacity-15"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M1200,200 C900,100 600,300 400,200 C200,150 100,250 0,200 L0,800 L1200,800 Z"
+            fill="url(#wave-gradient-2)"
+          />
+          <defs>
+            <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#98A5FE" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#293587" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="font-nunito font-bold text-4xl sm:text-5xl lg:text-6xl text-secondary leading-tight mb-6">
@@ -33,10 +93,6 @@ const HeroSection = () => {
               >
                 Join the Waitlist for Early Access
               </Button>
-              
-              <p className="font-nunito text-sm text-secondary/60">
-                No credit card required. Limited to 30 clinics in July 2025.
-              </p>
             </div>
           </div>
           

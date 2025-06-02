@@ -15,9 +15,11 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <div className="font-nunito font-bold text-2xl text-primary">
-              fluently
-            </div>
+            <img 
+              src="/lovable-uploads/d4d25aaf-89e1-4703-99a5-d7a40346cd18.png" 
+              alt="Fluently" 
+              className="h-8 w-auto"
+            />
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
@@ -32,12 +34,6 @@ const Header = () => {
               className="font-nunito text-secondary hover:text-primary transition-colors"
             >
               Features
-            </button>
-            <button 
-              onClick={() => scrollToSection('faq')}
-              className="font-nunito text-secondary hover:text-primary transition-colors"
-            >
-              FAQ
             </button>
           </nav>
 
