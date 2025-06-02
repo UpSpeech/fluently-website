@@ -3,8 +3,14 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-secondary text-white">
-      <div className="max-w-7xl mx-auto">
+    <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-secondary to-calm-stone text-white relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 right-10 w-20 h-20 bg-calm-mint/10 rounded-full blur-xl"></div>
+        <div className="absolute bottom-10 left-10 w-16 h-16 bg-calm-lavender/10 rounded-full blur-lg"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <img 
@@ -20,19 +26,19 @@ const Footer = () => {
           <div className="flex space-x-8">
             <a 
               href="#privacy" 
-              className="font-nunito text-sm text-white/80 hover:text-white transition-colors"
+              className="font-nunito text-sm text-white/80 hover:text-white transition-colors duration-200"
             >
               Privacy Policy
             </a>
             <a 
               href="#terms" 
-              className="font-nunito text-sm text-white/80 hover:text-white transition-colors"
+              className="font-nunito text-sm text-white/80 hover:text-white transition-colors duration-200"
             >
               Terms
             </a>
             <a 
               href="mailto:hello@fluently.app" 
-              className="font-nunito text-sm text-white/80 hover:text-white transition-colors"
+              className="font-nunito text-sm text-white/80 hover:text-white transition-colors duration-200"
             >
               Contact
             </a>

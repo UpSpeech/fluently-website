@@ -43,8 +43,15 @@ const CTASection = () => {
   };
 
   return (
-    <section id="cta" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 via-white to-accent/10">
-      <div className="max-w-4xl mx-auto text-center">
+    <section id="cta" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-mint/20 via-calm-sky/10 to-calm-lavender/20 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-20 w-32 h-32 bg-calm-peach/20 rounded-full blur-2xl animate-float"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-calm-sage/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-calm-lavender/15 rounded-full blur-xl animate-float" style={{ animationDelay: '4s' }}></div>
+      </div>
+
+      <div className="max-w-4xl mx-auto text-center relative z-10">
         <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-secondary mb-6">
           Start Offering Continuous Support Between Sessions—Without Extra Work
         </h2>
@@ -52,7 +59,7 @@ const CTASection = () => {
           Join our waitlist of pioneering clinics and therapists reimagining what happens between sessions.
         </p>
 
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 max-w-md mx-auto">
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-white/60 p-8 max-w-md mx-auto">
           <h3 className="font-nunito font-bold text-xl text-secondary mb-6">
             Request Early Access to Fluently
           </h3>
@@ -67,7 +74,7 @@ const CTASection = () => {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="mt-1 font-nunito"
+                className="mt-1 font-nunito rounded-2xl border-calm-stone/30 focus:border-primary"
                 placeholder="Dr. Sarah Johnson"
                 required
               />
@@ -82,7 +89,7 @@ const CTASection = () => {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="mt-1 font-nunito"
+                className="mt-1 font-nunito rounded-2xl border-calm-stone/30 focus:border-primary"
                 placeholder="sarah@speechclinic.com"
                 required
               />
@@ -93,7 +100,7 @@ const CTASection = () => {
                 Role *
               </Label>
               <Select onValueChange={(value) => setFormData({...formData, role: value})}>
-                <SelectTrigger className="mt-1 font-nunito">
+                <SelectTrigger className="mt-1 font-nunito rounded-2xl border-calm-stone/30">
                   <SelectValue placeholder="Select your role" />
                 </SelectTrigger>
                 <SelectContent>
@@ -110,7 +117,7 @@ const CTASection = () => {
                 Clinic Size (Optional)
               </Label>
               <Select onValueChange={(value) => setFormData({...formData, clinicSize: value})}>
-                <SelectTrigger className="mt-1 font-nunito">
+                <SelectTrigger className="mt-1 font-nunito rounded-2xl border-calm-stone/30">
                   <SelectValue placeholder="Select clinic size" />
                 </SelectTrigger>
                 <SelectContent>
@@ -124,7 +131,7 @@ const CTASection = () => {
 
             <Button 
               type="submit"
-              className="w-full bg-primary hover:bg-primary/90 text-white font-nunito font-bold py-3 text-lg rounded-lg transition-all duration-200 hover:shadow-lg mt-6"
+              className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-nunito font-bold py-3 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 mt-6"
             >
               Request Early Access
             </Button>

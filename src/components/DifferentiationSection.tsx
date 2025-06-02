@@ -30,21 +30,27 @@ const DifferentiationSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-cream/50 via-white to-calm-mint/10 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 right-20 w-20 h-20 bg-calm-sage/20 rounded-full blur-xl animate-float"></div>
+        <div className="absolute bottom-20 left-10 w-16 h-16 bg-calm-lavender/20 rounded-full blur-lg animate-float" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-secondary mb-6">
             Why Clinics Choose Fluently Over Worksheets and Apps
           </h2>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {features.map((feature, index) => (
-            <div key={index} className="bg-gradient-to-r from-white to-accent/5 rounded-xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+            <div key={index} className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="grid md:grid-cols-3 gap-6 items-center">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary/10 to-accent/20 rounded-xl flex items-center justify-center">
-                    <span className="text-2xl">{feature.icon}</span>
+                  <div className="w-16 h-16 bg-gradient-to-br from-calm-mint/30 to-calm-sky/30 rounded-2xl flex items-center justify-center border border-calm-mint/40">
+                    <span className="text-3xl">{feature.icon}</span>
                   </div>
                   <div>
                     <h3 className="font-nunito font-bold text-lg text-secondary">
