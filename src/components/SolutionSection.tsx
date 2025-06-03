@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 
 const SolutionSection = () => {
@@ -11,19 +12,19 @@ const SolutionSection = () => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-in');
             
-            // Animate progress bar
+            // Animate progress bar with better timing
             if (entry.target === progressRef.current) {
               setTimeout(() => {
                 const progressBar = entry.target.querySelector('.progress-bar') as HTMLElement;
                 if (progressBar) {
                   progressBar.style.width = '85%';
                 }
-              }, 300);
+              }, 800);
             }
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 }
     );
 
     const animatedElements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
@@ -57,14 +58,14 @@ const SolutionSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16 animate-on-scroll opacity-0" style={{ animationDelay: '100ms' }}>
-          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-calm-navy/20 to-calm-lavender/20 rounded-full mb-6 border border-calm-navy/30 backdrop-blur-sm">
+        <div className="text-center mb-16 animate-on-scroll opacity-0 transform translate-y-8 transition-all duration-1000 ease-out">
+          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-calm-navy/20 to-calm-lavender/20 rounded-full mb-6 border border-calm-navy/30 backdrop-blur-sm transform hover:scale-105 transition-transform duration-300">
             <span className="text-calm-charcoal text-sm font-medium">🚀 AI-Powered Innovation</span>
           </div>
           
-          <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6">
+          <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 transform hover:scale-105 transition-transform duration-300">
             Meet{' '}
-            <span className="bg-gradient-to-r from-calm-navy to-calm-lavender bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-calm-navy to-calm-lavender bg-clip-text text-transparent animate-glow">
               Fluently
             </span>
             : Your AI-Powered Training Companion for Better Carry-Over
@@ -104,46 +105,49 @@ const SolutionSection = () => {
           ].map((feature, index) => (
             <div
               key={index}
-              className="animate-on-scroll opacity-0 text-center group"
-              style={{ animationDelay: feature.delay }}
+              className="animate-on-scroll opacity-0 transform translate-y-12 transition-all duration-1000 ease-out text-center group hover:transform hover:-translate-y-2 hover:scale-105"
+              style={{ 
+                animationDelay: feature.delay,
+                transitionDelay: feature.delay 
+              }}
             >
-              <div className={`w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden`}>
-                {/* Pulse Effect */}
+              <div className={`w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all duration-700 shadow-lg relative overflow-hidden`}>
+                {/* Enhanced Pulse Effect */}
                 <div className="absolute inset-0 bg-white/20 rounded-3xl opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
                 
-                {/* Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-calm-lavender/30 to-calm-navy/30 rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500"></div>
+                {/* Enhanced Glow Effect */}
+                <div className="absolute -inset-2 bg-gradient-to-br from-calm-lavender/40 to-calm-navy/40 rounded-3xl opacity-0 group-hover:opacity-60 blur-xl transition-all duration-700"></div>
                 
-                <span className="text-white text-3xl relative z-10 group-hover:animate-bounce">{feature.icon}</span>
+                <span className="text-white text-3xl relative z-10 group-hover:animate-bounce group-hover:scale-110 transition-all duration-500">{feature.icon}</span>
               </div>
-              <h3 className="font-nunito font-bold text-xl text-calm-charcoal mb-4 group-hover:text-calm-navy transition-colors duration-300">
+              <h3 className="font-nunito font-bold text-xl text-calm-charcoal mb-4 group-hover:text-calm-navy transition-all duration-500 transform group-hover:scale-105">
                 {feature.title}
               </h3>
-              <p className="font-nunito text-calm-charcoal/70 mb-4 group-hover:text-calm-charcoal transition-colors duration-300">
+              <p className="font-nunito text-calm-charcoal/70 mb-4 group-hover:text-calm-charcoal transition-all duration-500">
                 {feature.description}
               </p>
-              <p className="font-nunito text-sm font-semibold text-calm-navy group-hover:scale-105 transition-transform duration-300">
+              <p className="font-nunito text-sm font-semibold text-calm-navy group-hover:scale-110 group-hover:font-bold transition-all duration-500 transform">
                 {feature.benefit}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="animate-on-scroll opacity-0 bg-gradient-to-r from-calm-lavender/20 to-calm-navy/10 rounded-3xl p-8 border border-calm-light backdrop-blur-sm shadow-lg relative overflow-hidden group" style={{ animationDelay: '800ms' }}>
-          {/* Tech Lines Background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-calm-navy to-transparent"></div>
-            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-calm-lavender to-transparent"></div>
-            <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-calm-charcoal to-transparent"></div>
-            <div className="absolute right-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-calm-navy to-transparent"></div>
+        <div className="animate-on-scroll opacity-0 transform translate-y-16 transition-all duration-1200 ease-out bg-gradient-to-r from-calm-lavender/20 to-calm-navy/10 rounded-3xl p-8 border border-calm-light backdrop-blur-sm shadow-lg relative overflow-hidden group hover:shadow-2xl hover:scale-[1.02] transition-all duration-700" style={{ animationDelay: '800ms' }}>
+          {/* Enhanced Tech Lines Background */}
+          <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-calm-navy to-transparent animate-pulse"></div>
+            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-calm-lavender to-transparent animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-calm-charcoal to-transparent animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute right-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-calm-navy to-transparent animate-pulse" style={{ animationDelay: '1.5s' }}></div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 items-center relative z-10">
-            <div>
-              <h3 className="font-nunito font-bold text-2xl text-calm-charcoal mb-4 group-hover:text-calm-navy transition-colors duration-300">
+            <div className="transform group-hover:translate-x-2 transition-transform duration-700">
+              <h3 className="font-nunito font-bold text-2xl text-calm-charcoal mb-4 group-hover:text-calm-navy transition-all duration-500 transform group-hover:scale-105">
                 See Fluently in Action
               </h3>
-              <p className="font-nunito text-calm-charcoal/80 mb-6">
+              <p className="font-nunito text-calm-charcoal/80 mb-6 group-hover:text-calm-charcoal transition-colors duration-500">
                 Watch how our platform creates personalized practice sessions and provides 
                 real-time feedback to keep your patients engaged between appointments.
               </p>
@@ -153,35 +157,35 @@ const SolutionSection = () => {
                   "AI-powered speech analysis", 
                   "Comprehensive progress tracking"
                 ].map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3 group/item">
-                    <div className="w-2 h-2 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full group-hover/item:scale-150 group-hover/item:animate-pulse transition-all duration-300"></div>
-                    <span className="font-nunito text-sm text-calm-charcoal group-hover/item:text-calm-navy transition-colors duration-300">{feature}</span>
+                  <div key={index} className="flex items-center space-x-3 group/item transform hover:translate-x-2 transition-all duration-500" style={{ transitionDelay: `${index * 100}ms` }}>
+                    <div className="w-2 h-2 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full group-hover/item:scale-150 group-hover/item:animate-pulse transition-all duration-500"></div>
+                    <span className="font-nunito text-sm text-calm-charcoal group-hover/item:text-calm-navy group-hover/item:font-semibold transition-all duration-500">{feature}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div ref={progressRef} className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-calm-light relative overflow-hidden">
-              {/* Animated Border */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-calm-navy/30 transition-all duration-500"></div>
+            <div ref={progressRef} className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-calm-light relative overflow-hidden transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-700">
+              {/* Enhanced Animated Border */}
+              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-calm-navy/40 transition-all duration-700 animate-pulse"></div>
               
-              {/* Glow Effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-calm-lavender/10 to-calm-navy/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Enhanced Glow Effect */}
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-calm-lavender/20 to-calm-navy/20 opacity-0 group-hover:opacity-100 transition-all duration-700 blur-lg"></div>
               
               <div className="space-y-4 relative z-10">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between transform group-hover:scale-105 transition-transform duration-500">
                   <span className="font-nunito font-semibold text-calm-charcoal">Weekly Progress</span>
-                  <span className="font-nunito text-sm text-calm-navy font-semibold">85% Complete</span>
+                  <span className="font-nunito text-sm text-calm-navy font-semibold animate-pulse">85% Complete</span>
                 </div>
-                <div className="w-full bg-calm-light rounded-full h-3 overflow-hidden">
-                  <div className="progress-bar bg-gradient-to-r from-calm-navy to-calm-lavender h-3 rounded-full transition-all duration-1000 ease-out" style={{ width: '0%' }}></div>
+                <div className="w-full bg-calm-light rounded-full h-3 overflow-hidden shadow-inner">
+                  <div className="progress-bar bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy h-3 rounded-full transition-all duration-2000 ease-out shadow-lg animate-glow" style={{ width: '0%', backgroundSize: '200% 100%', animation: 'glow 3s ease-in-out infinite' }}></div>
                 </div>
                 <div className="grid grid-cols-2 gap-4 mt-6">
-                  <div className="text-center p-3 bg-calm-lavender/20 rounded-2xl border border-calm-lavender/30 group-hover:scale-105 transition-transform duration-300">
-                    <div className="font-nunito font-bold text-xl text-calm-navy">47</div>
+                  <div className="text-center p-3 bg-calm-lavender/20 rounded-2xl border border-calm-lavender/30 group-hover:scale-110 group-hover:rotate-1 transition-all duration-500 hover:bg-calm-lavender/30">
+                    <div className="font-nunito font-bold text-xl text-calm-navy animate-pulse">47</div>
                     <div className="font-nunito text-xs text-calm-charcoal/70">Exercises Completed</div>
                   </div>
-                  <div className="text-center p-3 bg-calm-navy/10 rounded-2xl border border-calm-navy/20 group-hover:scale-105 transition-transform duration-300">
-                    <div className="font-nunito font-bold text-xl text-calm-navy">92%</div>
+                  <div className="text-center p-3 bg-calm-navy/10 rounded-2xl border border-calm-navy/20 group-hover:scale-110 group-hover:-rotate-1 transition-all duration-500 hover:bg-calm-navy/20">
+                    <div className="font-nunito font-bold text-xl text-calm-navy animate-pulse" style={{ animationDelay: '0.5s' }}>92%</div>
                     <div className="font-nunito text-xs text-calm-charcoal/70">Accuracy Score</div>
                   </div>
                 </div>
