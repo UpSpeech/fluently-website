@@ -1,27 +1,7 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 const ProblemSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const cards = sectionRef.current?.querySelectorAll('.problem-card');
-    cards?.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
-
   const problems = [
     {
       icon: "🧠",
@@ -54,7 +34,7 @@ const ProblemSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-light via-white to-calm-lavender/10 relative overflow-hidden">
+    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-light via-white to-calm-lavender/10 relative overflow-hidden">
       {/* Floating Orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-calm-navy/10 to-calm-lavender/10 rounded-full blur-2xl animate-float"></div>
@@ -87,15 +67,20 @@ const ProblemSection = () => {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className={`problem-card group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm border border-calm-light shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-3 hover:scale-105 opacity-0`}
-              style={{ animationDelay: `${index * 200}ms` }}
+              className="group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm border border-calm-light shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-6 hover:scale-110 cursor-pointer"
             >
               {/* Gradient Background */}
               <div className={`absolute inset-0 bg-gradient-to-br ${problem.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
               
+              {/* Animated Border */}
+              <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-calm-navy/40 transition-all duration-500"></div>
+              
+              {/* Glow Effect */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-calm-lavender/20 to-calm-navy/20 opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500"></div>
+              
               {/* Icon Container */}
-              <div className={`relative z-10 w-16 h-16 rounded-2xl ${problem.accentColor} flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300 shadow-sm m-6`}>
-                {problem.icon}
+              <div className={`relative z-10 w-16 h-16 rounded-2xl ${problem.accentColor} flex items-center justify-center text-2xl mb-4 group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 shadow-sm m-6`}>
+                <span className="group-hover:animate-bounce">{problem.icon}</span>
               </div>
               
               {/* Content */}
@@ -103,13 +88,15 @@ const ProblemSection = () => {
                 <h3 className="font-nunito font-bold text-lg text-calm-charcoal mb-3 group-hover:text-calm-navy transition-colors duration-300">
                   {problem.title}
                 </h3>
-                <p className="font-nunito text-sm text-calm-charcoal/70 leading-relaxed">
+                <p className="font-nunito text-sm text-calm-charcoal/70 leading-relaxed group-hover:text-calm-charcoal transition-colors duration-300">
                   {problem.description}
                 </p>
               </div>
 
-              {/* Hover Effect Border */}
-              <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-calm-navy/30 transition-all duration-300"></div>
+              {/* Ripple Effect */}
+              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute top-1/2 left-1/2 w-0 h-0 bg-calm-lavender/20 rounded-full group-hover:w-full group-hover:h-full group-hover:-translate-x-1/2 group-hover:-translate-y-1/2 transition-all duration-700 ease-out"></div>
+              </div>
             </div>
           ))}
         </div>
