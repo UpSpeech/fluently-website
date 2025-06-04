@@ -133,42 +133,62 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-calm-lavender/5 via-transparent to-calm-navy/5 rounded-3xl"></div>
               
               <div className="relative z-10">
-                <div className="bg-gradient-to-br from-calm-lavender/20 to-calm-navy/10 rounded-2xl p-6 mb-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-3 h-3 bg-calm-navy rounded-full animate-glow"></div>
-                    <div className="w-3 h-3 bg-calm-lavender rounded-full animate-glow" style={{ animationDelay: '1s' }}></div>
-                    <div className="w-3 h-3 bg-calm-charcoal rounded-full animate-glow" style={{ animationDelay: '2s' }}></div>
-                  </div>
-                  <h3 className="font-nunito font-semibold text-lg text-calm-charcoal mb-2">
-                    Patient Dashboard
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="font-nunito text-sm text-calm-charcoal/70">Today's Practice</span>
-                      <span className="font-nunito text-sm font-semibold text-calm-navy">3/5 Complete</span>
+                {/* Main Phone Mockup */}
+                <div className="flex justify-center items-center">
+                  <div className="w-64 h-[500px] bg-gray-900 rounded-[3rem] p-2 shadow-2xl">
+                    <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
+                      {/* Status Bar */}
+                      <div className="flex justify-between items-center px-6 py-2 bg-white">
+                        <span className="text-sm font-semibold">9:41</span>
+                        <div className="flex space-x-1">
+                          <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
+                          <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
+                          <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="px-6 py-4">
+                        <h4 className="text-2xl font-bold text-gray-800 mb-2">Good Morning, Sarah!</h4>
+                        <p className="text-gray-600 mb-6">How is your stuttering today?</p>
+                        
+                        {/* Mood Selection */}
+                        <div className="bg-calm-lavender/20 rounded-2xl p-4 mb-4">
+                          <div className="flex justify-between items-center mb-3">
+                            <span className="text-xs">😢</span>
+                            <span className="text-xs">😐</span>
+                            <span className="text-xs">😊</span>
+                            <div className="w-8 h-8 bg-calm-lavender rounded-full flex items-center justify-center">
+                              <span className="text-white">😊</span>
+                            </div>
+                            <span className="text-xs">😄</span>
+                          </div>
+                          <p className="text-xs text-gray-600 text-center">Feeling pretty good today!</p>
+                        </div>
+                        
+                        {/* Today's Session Card - moved to top */}
+                        <div className="bg-gray-800 rounded-xl p-4 text-white mb-4">
+                          <h5 className="text-sm font-semibold mb-1">Today's Session</h5>
+                          <p className="text-xs text-gray-300">Breathing exercises to help reduce anxiety</p>
+                        </div>
+                        
+                        {/* Action Cards - moved to bottom */}
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="bg-calm-lavender/30 rounded-xl p-3 text-center">
+                            <div className="w-8 h-8 bg-calm-lavender rounded-full mx-auto mb-2 flex items-center justify-center">
+                              <span className="text-white text-xs">📊</span>
+                            </div>
+                            <p className="text-xs font-semibold text-gray-700">Track Mood</p>
+                          </div>
+                          <div className="bg-calm-navy/20 rounded-xl p-3 text-center">
+                            <div className="w-8 h-8 bg-calm-navy rounded-full mx-auto mb-2 flex items-center justify-center">
+                              <span className="text-white text-xs">💬</span>
+                            </div>
+                            <p className="text-xs font-semibold text-gray-700">Get Support</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="w-full bg-calm-light rounded-full h-2">
-                      <div className="bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy h-2 rounded-full" style={{ width: '60%' }}></div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-gradient-to-r from-calm-lavender/20 to-calm-lavender/10 rounded-2xl border border-calm-lavender/30">
-                    <span className="font-nunito text-sm font-medium text-calm-charcoal">Stuttering Modification</span>
-                    <div className="w-6 h-6 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs">✓</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gradient-to-r from-calm-navy/10 to-calm-navy/5 rounded-2xl border border-calm-navy/20">
-                    <span className="font-nunito text-sm font-medium text-calm-charcoal">Fluency Shaping</span>
-                    <div className="w-6 h-6 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs">✓</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gradient-to-r from-calm-light/80 to-calm-charcoal/5 rounded-2xl border border-calm-charcoal/10">
-                    <span className="font-nunito text-sm font-medium text-calm-charcoal/70">Cognitive Training</span>
-                    <div className="w-6 h-6 bg-calm-charcoal/30 rounded-full"></div>
                   </div>
                 </div>
               </div>
