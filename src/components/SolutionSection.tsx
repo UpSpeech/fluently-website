@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 
 const SolutionSection = () => {
@@ -15,7 +14,7 @@ const SolutionSection = () => {
             // Animate progress bar
             if (entry.target === progressRef.current) {
               setTimeout(() => {
-                const progressBar = entry.target.querySelector('.progress-bar');
+                const progressBar = entry.target.querySelector('.progress-bar') as HTMLElement;
                 if (progressBar) {
                   progressBar.style.width = '85%';
                 }
