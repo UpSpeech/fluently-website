@@ -102,7 +102,7 @@ const SolutionSection = () => {
           ))}
         </div>
 
-        {/* Content Section */}
+        {/* Mobile App Mockups Section */}
         <div className="animate-on-scroll opacity-0 transform translate-y-8 transition-all duration-1200 ease-out bg-gradient-to-r from-calm-lavender/20 to-calm-navy/10 rounded-3xl p-8 border border-calm-light backdrop-blur-sm shadow-lg relative overflow-hidden" style={{ animationDelay: '800ms' }}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -129,17 +129,95 @@ const SolutionSection = () => {
               </div>
             </div>
             
-            {/* Illustration Area */}
+            {/* Mobile Mockups */}
             <div className="relative">
-              <div className="flex justify-center items-center">
-                <div className="bg-white rounded-xl p-8 shadow-lg border border-calm-light w-80 h-64 flex flex-col justify-center items-center">
-                  <div className="w-16 h-16 bg-calm-lavender/20 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-2xl">📱</span>
+              <div className="flex justify-center items-center space-x-4">
+                {/* Main Phone Mockup */}
+                <div className="relative transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                  <div className="w-64 h-[500px] bg-gray-900 rounded-[3rem] p-2 shadow-2xl">
+                    <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
+                      {/* Status Bar */}
+                      <div className="flex justify-between items-center px-6 py-2 bg-white">
+                        <span className="text-sm font-semibold">9:41</span>
+                        <div className="flex space-x-1">
+                          <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
+                          <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
+                          <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="px-6 py-4">
+                        <h4 className="text-2xl font-bold text-gray-800 mb-2">Good Morning, Sarah!</h4>
+                        <p className="text-gray-600 mb-6">How are you feeling today?</p>
+                        
+                        {/* Mood Selection */}
+                        <div className="bg-calm-lavender/20 rounded-2xl p-4 mb-4">
+                          <div className="flex justify-between items-center mb-3">
+                            <span className="text-xs">😢</span>
+                            <span className="text-xs">😐</span>
+                            <span className="text-xs">😊</span>
+                            <div className="w-8 h-8 bg-calm-lavender rounded-full flex items-center justify-center">
+                              <span className="text-white">😊</span>
+                            </div>
+                            <span className="text-xs">😄</span>
+                          </div>
+                          <p className="text-xs text-gray-600 text-center">Feeling pretty good today!</p>
+                        </div>
+                        
+                        {/* Action Cards */}
+                        <div className="grid grid-cols-2 gap-3 mb-4">
+                          <div className="bg-calm-lavender/30 rounded-xl p-3 text-center">
+                            <div className="w-8 h-8 bg-calm-lavender rounded-full mx-auto mb-2 flex items-center justify-center">
+                              <span className="text-white text-xs">📊</span>
+                            </div>
+                            <p className="text-xs font-semibold text-gray-700">Track Mood</p>
+                          </div>
+                          <div className="bg-calm-navy/20 rounded-xl p-3 text-center">
+                            <div className="w-8 h-8 bg-calm-navy rounded-full mx-auto mb-2 flex items-center justify-center">
+                              <span className="text-white text-xs">💬</span>
+                            </div>
+                            <p className="text-xs font-semibold text-gray-700">Get Support</p>
+                          </div>
+                        </div>
+                        
+                        {/* Exercise Card */}
+                        <div className="bg-gray-800 rounded-xl p-4 text-white">
+                          <h5 className="text-sm font-semibold mb-1">Today's Session</h5>
+                          <p className="text-xs text-gray-300">Breathing exercises to help reduce anxiety</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <h4 className="font-semibold text-lg text-gray-800 mb-2">Mobile App Coming Soon</h4>
-                  <p className="text-sm text-gray-600 text-center">
-                    Experience Fluently on any device with our responsive design
-                  </p>
+                </div>
+                
+                {/* Floating Cards */}
+                <div className="absolute -top-4 -right-8 transform rotate-12">
+                  <div className="bg-white rounded-xl p-4 shadow-lg border border-calm-light w-48">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="w-8 h-8 bg-calm-lavender/20 rounded-full flex items-center justify-center">
+                        <span className="text-sm">📈</span>
+                      </div>
+                      <div>
+                        <h6 className="font-semibold text-sm text-gray-800">Mood Trends</h6>
+                        <p className="text-xs text-gray-600">Weekly emotional patterns</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="absolute -bottom-8 -left-8 transform -rotate-12">
+                  <div className="bg-white rounded-xl p-4 shadow-lg border border-calm-light w-44">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="w-8 h-8 bg-calm-navy/20 rounded-full flex items-center justify-center">
+                        <span className="text-sm">🧘</span>
+                      </div>
+                      <div>
+                        <h6 className="font-semibold text-sm text-gray-800">Coping Tools</h6>
+                        <p className="text-xs text-gray-600">Personalized strategies</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
