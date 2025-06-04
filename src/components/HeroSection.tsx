@@ -82,7 +82,7 @@ const HeroSection = () => {
             </h1>
             
             <p className="font-nunito text-lg sm:text-xl text-calm-charcoal/70 mb-4 leading-relaxed">
-              Transform the way your patients practice at home
+              Therapy happens once a week
             </p>
             
             <p className="font-nunito text-lg sm:text-xl text-calm-charcoal/70 mb-8 leading-relaxed">
