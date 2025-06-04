@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -35,6 +36,21 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-calm-charcoal/5 via-transparent to-calm-lavender/10"></div>
       <div className="absolute inset-0 bg-gradient-to-bl from-calm-navy/10 via-transparent to-calm-lavender/20"></div>
       <div className="absolute inset-0 bg-gradient-to-tr from-calm-charcoal/5 via-calm-lavender/5 to-calm-navy/10"></div>
+      
+      {/* Background Images */}
+      <div className="absolute inset-0 overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
+          alt="Woman using laptop for therapy session"
+          className="absolute top-10 right-10 w-32 h-24 object-cover rounded-2xl opacity-20 blur-sm animate-float"
+        />
+        <img 
+          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
+          alt="Healthcare professional with laptop"
+          className="absolute bottom-20 left-10 w-24 h-32 object-cover rounded-2xl opacity-15 blur-sm animate-float"
+          style={{ animationDelay: '2s' }}
+        />
+      </div>
       
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -76,8 +92,8 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="font-nunito font-bold text-4xl sm:text-5xl lg:text-6xl text-calm-charcoal leading-tight mb-6">
-              Therapy Happens Once a Week.{' '}
-              <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">Practice Happens Every Day</span>
+              Therapy happens once a week.{' '}
+              <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">Practice happens every day</span>
               —with Fluently.
             </h1>
             
@@ -92,11 +108,20 @@ const HeroSection = () => {
                 className="bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy hover:from-calm-navy/90 hover:via-calm-lavender/90 hover:to-calm-navy/90 text-white font-nunito font-bold px-8 py-4 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 shadow-md"
               >
                 Join the Waitlist for Early Access
-              </Button>
+              </button>
             </div>
           </div>
           
           <div className="relative animate-fade-in">
+            {/* Background Image for Card */}
+            <div className="absolute inset-0 rounded-3xl overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
+                alt="Laptop computer showing therapy dashboard"
+                className="w-full h-full object-cover opacity-10"
+              />
+            </div>
+
             {/* Online Status Card */}
             <div className="absolute -top-4 -right-4 z-20 bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-calm-light p-3 flex items-center space-x-2">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
