@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 
 const SolutionSection = () => {
@@ -148,9 +149,9 @@ const SolutionSection = () => {
                       {/* Content */}
                       <div className="px-6 py-4">
                         <h4 className="text-2xl font-bold text-gray-800 mb-2">Good Morning, Sarah!</h4>
-                        <p className="text-gray-600 mb-6">How is your stuttering today?</p>
+                        <p className="text-gray-600 mb-6">How are you feeling today?</p>
                         
-                        {/* Mood Selection - moved to top */}
+                        {/* Mood Selection */}
                         <div className="bg-calm-lavender/20 rounded-2xl p-4 mb-4">
                           <div className="flex justify-between items-center mb-3">
                             <span className="text-xs">😢</span>
@@ -164,14 +165,8 @@ const SolutionSection = () => {
                           <p className="text-xs text-gray-600 text-center">Feeling pretty good today!</p>
                         </div>
                         
-                        {/* Exercise Card */}
-                        <div className="bg-gray-800 rounded-xl p-4 text-white mb-4">
-                          <h5 className="text-sm font-semibold mb-1">Today's Session</h5>
-                          <p className="text-xs text-gray-300">Breathing exercises to help reduce anxiety</p>
-                        </div>
-                        
                         {/* Action Cards */}
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-2 gap-3 mb-4">
                           <div className="bg-calm-lavender/30 rounded-xl p-3 text-center">
                             <div className="w-8 h-8 bg-calm-lavender rounded-full mx-auto mb-2 flex items-center justify-center">
                               <span className="text-white text-xs">📊</span>
@@ -184,6 +179,12 @@ const SolutionSection = () => {
                             </div>
                             <p className="text-xs font-semibold text-gray-700">Get Support</p>
                           </div>
+                        </div>
+                        
+                        {/* Exercise Card */}
+                        <div className="bg-gray-800 rounded-xl p-4 text-white">
+                          <h5 className="text-sm font-semibold mb-1">Today's Session</h5>
+                          <p className="text-xs text-gray-300">Breathing exercises to help reduce anxiety</p>
                         </div>
                       </div>
                     </div>
