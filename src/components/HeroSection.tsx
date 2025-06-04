@@ -77,13 +77,10 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="font-nunito font-bold text-4xl sm:text-5xl lg:text-6xl text-calm-charcoal leading-tight mb-6">
-              AI-Powered Speech Therapy{' '}
-              <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">Between Sessions</span>
+              Therapy Happens Once a Week.{' '}
+              <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">Practice Happens Every Day</span>
+              —with Fluently.
             </h1>
-            
-            <p className="font-nunito text-lg sm:text-xl text-calm-charcoal/70 mb-4 leading-relaxed">
-              Therapy happens once a week
-            </p>
             
             <p className="font-nunito text-lg sm:text-xl text-calm-charcoal/70 mb-8 leading-relaxed">
               AI-powered, structured training between sessions—so your patients stay motivated, and your results stick.
