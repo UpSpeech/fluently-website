@@ -149,7 +149,7 @@ const SolutionSection = () => {
                       {/* Content */}
                       <div className="px-6 py-4">
                         <h4 className="text-2xl font-bold text-gray-800 mb-2">Good Morning, Sarah!</h4>
-                        <p className="text-gray-600 mb-6">How are you feeling today?</p>
+                        <p className="text-gray-600 mb-6">How is your stuttering for today?</p>
                         
                         {/* Mood Selection */}
                         <div className="bg-calm-lavender/20 rounded-2xl p-4 mb-4">
