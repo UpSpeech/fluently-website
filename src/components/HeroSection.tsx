@@ -108,7 +108,7 @@ const HeroSection = () => {
                 className="bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy hover:from-calm-navy/90 hover:via-calm-lavender/90 hover:to-calm-navy/90 text-white font-nunito font-bold px-8 py-4 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 shadow-md"
               >
                 Join the Waitlist for Early Access
-              </button>
+              </Button>
             </div>
           </div>
           
