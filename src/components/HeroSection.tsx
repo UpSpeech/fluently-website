@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -133,6 +132,12 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-calm-lavender/5 via-transparent to-calm-navy/5 rounded-3xl"></div>
               
               <div className="relative z-10">
+                {/* Today's Session - moved to top */}
+                <div className="bg-gray-800 rounded-xl p-4 text-white mb-6">
+                  <h5 className="text-sm font-semibold mb-1">Today's Session</h5>
+                  <p className="text-xs text-gray-300">Breathing exercises to help reduce anxiety</p>
+                </div>
+
                 <div className="bg-gradient-to-br from-calm-lavender/20 to-calm-navy/10 rounded-2xl p-6 mb-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-3 h-3 bg-calm-navy rounded-full animate-glow"></div>
@@ -169,6 +174,22 @@ const HeroSection = () => {
                   <div className="flex items-center justify-between p-3 bg-gradient-to-r from-calm-light/80 to-calm-charcoal/5 rounded-2xl border border-calm-charcoal/10">
                     <span className="font-nunito text-sm font-medium text-calm-charcoal/70">Cognitive Training</span>
                     <div className="w-6 h-6 bg-calm-charcoal/30 rounded-full"></div>
+                  </div>
+                </div>
+
+                {/* Progress Dashboard and Get Support - moved to bottom */}
+                <div className="grid grid-cols-2 gap-3 mt-4">
+                  <div className="bg-calm-lavender/30 rounded-xl p-3 text-center">
+                    <div className="w-8 h-8 bg-calm-lavender rounded-full mx-auto mb-2 flex items-center justify-center">
+                      <span className="text-white text-xs">📊</span>
+                    </div>
+                    <p className="text-xs font-semibold text-gray-700">Progress Dashboard</p>
+                  </div>
+                  <div className="bg-calm-navy/20 rounded-xl p-3 text-center">
+                    <div className="w-8 h-8 bg-calm-navy rounded-full mx-auto mb-2 flex items-center justify-center">
+                      <span className="text-white text-xs">💬</span>
+                    </div>
+                    <p className="text-xs font-semibold text-gray-700">Get Support</p>
                   </div>
                 </div>
               </div>
