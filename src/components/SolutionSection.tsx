@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 
 const SolutionSection = () => {
@@ -151,13 +150,7 @@ const SolutionSection = () => {
                         <h4 className="text-2xl font-bold text-gray-800 mb-2">Good Morning, Sarah!</h4>
                         <p className="text-gray-600 mb-6">How is your stuttering today?</p>
                         
-                        {/* Exercise Card at top */}
-                        <div className="bg-gray-800 rounded-xl p-4 text-white mb-4">
-                          <h5 className="text-sm font-semibold mb-1">Today's Session</h5>
-                          <p className="text-xs text-gray-300">Breathing exercises to help reduce anxiety</p>
-                        </div>
-                        
-                        {/* Mood Selection */}
+                        {/* Mood Selection - moved to top */}
                         <div className="bg-calm-lavender/20 rounded-2xl p-4 mb-4">
                           <div className="flex justify-between items-center mb-3">
                             <span className="text-xs">😢</span>
@@ -169,6 +162,12 @@ const SolutionSection = () => {
                             <span className="text-xs">😄</span>
                           </div>
                           <p className="text-xs text-gray-600 text-center">Feeling pretty good today!</p>
+                        </div>
+                        
+                        {/* Exercise Card */}
+                        <div className="bg-gray-800 rounded-xl p-4 text-white mb-4">
+                          <h5 className="text-sm font-semibold mb-1">Today's Session</h5>
+                          <p className="text-xs text-gray-300">Breathing exercises to help reduce anxiety</p>
                         </div>
                         
                         {/* Action Cards */}
