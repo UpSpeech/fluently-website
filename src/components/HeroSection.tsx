@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -30,7 +29,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-light via-white via-calm-lavender/10 to-calm-navy/5 overflow-hidden">
+    <section className="relative h-screen px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-light via-white via-calm-lavender/10 to-calm-navy/5 overflow-hidden flex items-center">
       {/* Enhanced Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-calm-lavender/20 via-transparent to-calm-navy/15"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-calm-charcoal/5 via-transparent to-calm-lavender/10"></div>
@@ -73,7 +72,7 @@ const HeroSection = () => {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="font-nunito font-bold text-4xl sm:text-5xl lg:text-6xl text-calm-charcoal leading-tight mb-6">
