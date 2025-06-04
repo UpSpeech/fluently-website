@@ -34,6 +34,8 @@ const HeroSection = () => {
       {/* Enhanced Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-calm-lavender/20 via-transparent to-calm-navy/15"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-calm-charcoal/5 via-transparent to-calm-lavender/10"></div>
+      <div className="absolute inset-0 bg-gradient-to-bl from-calm-navy/10 via-transparent to-calm-lavender/20"></div>
+      <div className="absolute inset-0 bg-gradient-to-tr from-calm-charcoal/5 via-calm-lavender/5 to-calm-navy/10"></div>
       
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -75,13 +77,12 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="font-nunito font-bold text-4xl sm:text-5xl lg:text-6xl text-calm-charcoal leading-tight mb-6">
-              The{' '}
-              <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">6-Day Problem</span>
-              {' '}in Speech Therapy
+              AI-Powered Speech Therapy{' '}
+              <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">Between Sessions</span>
             </h1>
             
             <p className="font-nunito text-lg sm:text-xl text-calm-charcoal/70 mb-4 leading-relaxed">
-              Structured therapy sessions vs. unstructured practice periods
+              Transform the way your patients practice at home
             </p>
             
             <p className="font-nunito text-lg sm:text-xl text-calm-charcoal/70 mb-8 leading-relaxed">
@@ -153,6 +154,56 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Vocal Cord Wave Animation at Bottom */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+        <svg 
+          className="w-full h-24" 
+          viewBox="0 0 1200 100" 
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,50 Q150,20 300,50 T600,50 T900,50 T1200,50 V100 H0 Z"
+            fill="url(#vocal-wave-gradient)"
+            className="animate-pulse"
+          >
+            <animate
+              attributeName="d"
+              values="M0,50 Q150,20 300,50 T600,50 T900,50 T1200,50 V100 H0 Z;
+                      M0,50 Q150,80 300,50 T600,50 T900,50 T1200,50 V100 H0 Z;
+                      M0,50 Q150,20 300,50 T600,50 T900,50 T1200,50 V100 H0 Z"
+              dur="3s"
+              repeatCount="indefinite"
+            />
+          </path>
+          <path
+            d="M0,60 Q200,30 400,60 T800,60 T1200,60 V100 H0 Z"
+            fill="url(#vocal-wave-gradient-2)"
+            opacity="0.7"
+          >
+            <animate
+              attributeName="d"
+              values="M0,60 Q200,30 400,60 T800,60 T1200,60 V100 H0 Z;
+                      M0,60 Q200,90 400,60 T800,60 T1200,60 V100 H0 Z;
+                      M0,60 Q200,30 400,60 T800,60 T1200,60 V100 H0 Z"
+              dur="2.5s"
+              repeatCount="indefinite"
+            />
+          </path>
+          <defs>
+            <linearGradient id="vocal-wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#293587" stopOpacity="0.15" />
+              <stop offset="50%" stopColor="#98A5FE" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#293587" stopOpacity="0.15" />
+            </linearGradient>
+            <linearGradient id="vocal-wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#98A5FE" stopOpacity="0.1" />
+              <stop offset="50%" stopColor="#4B4E4E" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#98A5FE" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
     </section>
   );
