@@ -30,13 +30,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-screen px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-light via-white via-calm-lavender/10 to-calm-navy/5 overflow-hidden flex items-center">
-      {/* Enhanced Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-calm-lavender/20 via-transparent to-calm-navy/15"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-calm-charcoal/5 via-transparent to-calm-lavender/10"></div>
-      <div className="absolute inset-0 bg-gradient-to-bl from-calm-navy/10 via-transparent to-calm-lavender/20"></div>
-      <div className="absolute inset-0 bg-gradient-to-tr from-calm-charcoal/5 via-calm-lavender/5 to-calm-navy/10"></div>
-      
+    <section className="relative h-screen px-4 sm:px-6 lg:px-8 bg-white overflow-hidden flex items-center">
       {/* Background Images */}
       <div className="absolute inset-0 overflow-hidden">
         <img 
