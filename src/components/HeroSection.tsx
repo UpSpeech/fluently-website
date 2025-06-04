@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -132,7 +133,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-calm-lavender/5 via-transparent to-calm-navy/5 rounded-3xl"></div>
               
               <div className="relative z-10">
-                {/* Today's Session - moved to top */}
+                {/* Today's Session - at the top */}
                 <div className="bg-gray-800 rounded-xl p-4 text-white mb-6">
                   <h5 className="text-sm font-semibold mb-1">Today's Session</h5>
                   <p className="text-xs text-gray-300">Breathing exercises to help reduce anxiety</p>
@@ -145,20 +146,26 @@ const HeroSection = () => {
                     <div className="w-3 h-3 bg-calm-charcoal rounded-full animate-glow" style={{ animationDelay: '2s' }}></div>
                   </div>
                   <h3 className="font-nunito font-semibold text-lg text-calm-charcoal mb-2">
-                    Patient Dashboard
+                    Good Morning, Sarah!
                   </h3>
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="font-nunito text-sm text-calm-charcoal/70">Today's Practice</span>
-                      <span className="font-nunito text-sm font-semibold text-calm-navy">3/5 Complete</span>
+                  <p className="font-nunito text-calm-charcoal/70 mb-4">How is your stuttering for today?</p>
+                  
+                  {/* Mood Selection */}
+                  <div className="bg-calm-lavender/20 rounded-2xl p-4 mb-4">
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="text-xs">😢</span>
+                      <span className="text-xs">😐</span>
+                      <span className="text-xs">😊</span>
+                      <div className="w-8 h-8 bg-calm-lavender rounded-full flex items-center justify-center">
+                        <span className="text-white">😊</span>
+                      </div>
+                      <span className="text-xs">😄</span>
                     </div>
-                    <div className="w-full bg-calm-light rounded-full h-2">
-                      <div className="bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy h-2 rounded-full" style={{ width: '60%' }}></div>
-                    </div>
+                    <p className="text-xs text-gray-600 text-center">Feeling pretty good today!</p>
                   </div>
                 </div>
                 
-                <div className="space-y-3">
+                <div className="space-y-3 mb-4">
                   <div className="flex items-center justify-between p-3 bg-gradient-to-r from-calm-lavender/20 to-calm-lavender/10 rounded-2xl border border-calm-lavender/30">
                     <span className="font-nunito text-sm font-medium text-calm-charcoal">Stuttering Modification</span>
                     <div className="w-6 h-6 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full flex items-center justify-center">
@@ -177,8 +184,8 @@ const HeroSection = () => {
                   </div>
                 </div>
 
-                {/* Progress Dashboard and Get Support - moved to bottom */}
-                <div className="grid grid-cols-2 gap-3 mt-4">
+                {/* Progress Dashboard and Get Support - at the bottom */}
+                <div className="grid grid-cols-2 gap-3">
                   <div className="bg-calm-lavender/30 rounded-xl p-3 text-center">
                     <div className="w-8 h-8 bg-calm-lavender rounded-full mx-auto mb-2 flex items-center justify-center">
                       <span className="text-white text-xs">📊</span>
