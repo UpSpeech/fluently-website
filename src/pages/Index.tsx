@@ -5,7 +5,6 @@ import HeroSection from '@/components/HeroSection';
 import ProblemSection from '@/components/ProblemSection';
 import SolutionSection from '@/components/SolutionSection';
 import DifferentiationSection from '@/components/DifferentiationSection';
-import FeaturesVariantSection from '@/components/FeaturesVariantSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 
@@ -17,7 +16,6 @@ const Index = () => {
       <ProblemSection />
       <SolutionSection />
       <DifferentiationSection />
-      <FeaturesVariantSection />
       <CTASection />
       <Footer />
     </div>
