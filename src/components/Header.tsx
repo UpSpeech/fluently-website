@@ -44,7 +44,7 @@ const Header = () => {
 
           <Button
             onClick={() => scrollToSection("cta")}
-            className="bg-gradient-to-r from-calm-navy to-calm-lavender hover:from-calm-navy/90 hover:to-calm-lavender/90 text-white font-nunito font-bold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 animate-fade-in"
+            className="bg-calm-lavender hover:from-calm-navy/90 hover:to-calm-lavender/90 text-white font-nunito font-bold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 animate-fade-in"
             style={{ animationDelay: "0.6s" }}
           >
             Join the Waitlist

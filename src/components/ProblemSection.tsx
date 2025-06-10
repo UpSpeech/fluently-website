@@ -3,36 +3,31 @@ import React from "react";
 const ProblemSection = () => {
   const problems = [
     {
-      icon: "🧠",
-      title: "Memory Fade",
+      icon: "🧠", // spinning stars representing confusion/forgetfulness
+      title: "Patients forget techniques",
       description:
-        "Skills deteriorate rapidly between sessions without continuous reinforcement",
-      gradient: "from-calm-navy/20 to-calm-lavender/20",
-      accentColor: "border-calm-navy/30 bg-calm-navy/10",
+        "<strong>Real-life practice is hard</strong> — Without support, structure, or feedback between sessions, clients lose confidence, get emotionally drained and isolated",
+      gradient: "from-calm-navy/20 via-calm-lavender/15 to-calm-navy/5",
+      accentColor:
+        "border-calm-navy/20 bg-gradient-to-br from-calm-navy/10 to-calm-lavender/10",
     },
     {
-      icon: "📉",
-      title: "Motivation Drop",
+      icon: "🔍", // magnifying glass representing limited visibility/insight
+      title: "Limited visibility into what clients do between sessions",
       description:
-        "Patients lose engagement and momentum without ongoing support structure",
-      gradient: "from-calm-charcoal/20 to-calm-light",
-      accentColor: "border-calm-charcoal/30 bg-calm-charcoal/10",
+        "Therapists often don't know if or how clients practice, making it hard to adjust treatment",
+      gradient: "from-calm-lavender/20 via-calm-navy/10 to-calm-lavender/5",
+      accentColor:
+        "border-calm-lavender/20 bg-gradient-to-br from-calm-lavender/10 to-calm-navy/10",
     },
     {
-      icon: "🔄",
-      title: "Transfer Gap",
+      icon: "📈", // chart going up representing progress tracking
+      title: "Progress tracking is manual and time-consuming",
       description:
-        "Clinical skills fail to generalize to real-world communication contexts",
-      gradient: "from-calm-lavender/20 to-calm-navy/10",
-      accentColor: "border-calm-lavender/40 bg-calm-lavender/10",
-    },
-    {
-      icon: "⏰",
-      title: "Regression Cycle",
-      description:
-        "Time wasted re-teaching concepts instead of progressing forward",
-      gradient: "from-calm-light to-calm-lavender/20",
-      accentColor: "border-calm-light bg-calm-light/50",
+        "Therapists spend hours creating reports instead of focusing on personalized care",
+      gradient: "from-calm-navy/15 via-calm-charcoal/10 to-calm-navy/5",
+      accentColor:
+        "border-calm-navy/20 bg-gradient-to-br from-calm-navy/10 to-calm-charcoal/10",
     },
   ];
 
@@ -57,54 +52,56 @@ const ProblemSection = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
         <div className="text-center mb-20 animate-fade-in-up">
-          <div className="inline-flex items-center px-4 py-2 bg-white/80 rounded-full mb-6 shadow-sm border border-calm-light/50 backdrop-blur-sm">
-            <span className="w-5 h-5 rounded-full bg-gradient-to-br from-calm-navy/10 to-calm-lavender/10 flex items-center justify-center mr-2">
-              <span className="text-xs">⚠</span>
-            </span>
-            <span className="text-calm-charcoal/80 text-sm font-medium">
-              Critical Problem
-            </span>
-          </div>
-
           <h2 className="font-nunito font-bold text-4xl sm:text-5xl text-calm-charcoal mb-6 leading-tight">
             The{" "}
-            <span className="bg-gradient-to-r from-calm-navy to-calm-lavender bg-clip-text text-transparent">
-              6-Day Problem
-            </span>{" "}
-            in Speech Therapy
+            <span className="text-transparent bg-calm-lavender bg-clip-text">
+              Hardest{" "}
+            </span>
+            Part of Speech Therapy
+            <br />
+            Happens Between Sessions
           </h2>
 
           <p className="font-nunito text-xl text-calm-charcoal/70 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-            Structured therapy sessions vs. unstructured practice periods
+            Your sessions are structured, engaging, and tailored to each
+            patient.
+            <br />
+            <span className="font-bold text-transparent bg-calm-navy bg-clip-text">
+              But what happens between appointments?
+            </span>
           </p>
         </div>
 
         {/* Problems Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 gap-8 mb-16 max-w-5xl mx-auto">
           {problems.map((problem, index) => (
             <div
               key={index}
               className="group animate-fade-in-up"
               style={{ animationDelay: `${0.2 + index * 0.2}s` }}
             >
-              <div
-                className={`bg-gradient-to-br ${problem.gradient} rounded-2xl p-8 border border-gray-200/50 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full relative overflow-hidden`}
-              >
+              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full relative overflow-hidden">
+                {/* Gradient Background */}
+                <div
+                  className={`absolute inset-0 opacity-50 mix-blend-multiply bg-gradient-to-br ${problem.gradient}`}
+                />
+
                 {/* Icon Container */}
                 <div
-                  className={`relative z-10 w-16 h-16 rounded-xl ${problem.accentColor} flex items-center justify-center text-2xl mb-6 transition-transform duration-300 group-hover:scale-110`}
+                  className={`relative z-10 w-16 h-16 rounded-xl ${problem.accentColor} flex items-center justify-center text-2xl mb-6 transition-transform duration-300 group-hover:scale-110 shadow-sm`}
                 >
                   {problem.icon}
                 </div>
 
                 {/* Content */}
                 <div className="relative z-10">
-                  <h3 className="font-nunito font-bold text-lg text-calm-charcoal mb-3 transition-colors duration-300 group-hover:text-calm-navy">
+                  <h3 className="font-nunito font-bold text-xl text-calm-charcoal mb-4 transition-colors duration-300 group-hover:text-calm-navy">
                     {problem.title}
                   </h3>
-                  <p className="font-nunito text-sm text-calm-charcoal/70 leading-relaxed">
-                    {problem.description}
-                  </p>
+                  <p
+                    className="font-nunito text-base text-calm-charcoal/80 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: problem.description }}
+                  />
                 </div>
               </div>
             </div>

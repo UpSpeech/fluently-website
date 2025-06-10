@@ -44,7 +44,7 @@ const HeroSection = () => {
           style={{ animationDelay: "1s" }}
         ></div>
         <div
-          className="absolute bottom-20 left-20 w-5 h-5 bg-calm-charcoal/20 rounded-full animate-float-slow"
+          className="absolute bottom-20 left-20 w-5 h-5 bg-calm-navy/20 rounded-full animate-float-slow blur-sm"
           style={{ animationDelay: "2s" }}
         ></div>
         <div
@@ -67,10 +67,6 @@ const HeroSection = () => {
           viewBox="0 0 1200 800"
           preserveAspectRatio="none"
         >
-          <path
-            d="M0,400 C300,300 400,500 800,400 C1000,350 1100,450 1200,400 L1200,800 L0,800 Z"
-            fill="url(#enhanced-wave-gradient)"
-          />
           <defs>
             <linearGradient
               id="enhanced-wave-gradient"
@@ -95,21 +91,21 @@ const HeroSection = () => {
             <h1 className="font-nunito font-bold text-4xl sm:text-5xl lg:text-6xl text-calm-charcoal leading-tight mb-6">
               Therapy happens once a week.{" "}
               <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">
-                Practice happens every day
+                Practice happens every day{" "}
               </span>
-              —with Fluently.
+              — with Fluently.
             </h1>
 
             <p className="font-nunito text-lg sm:text-xl text-calm-charcoal/70 mb-8 leading-relaxed">
-              AI-powered, structured training between sessions—so your patients
-              stay motivated, and your results stick.
+              With Fluently, clinics empower people who stutter to practice
+              smarter, stay engaged, and accelerate real-life improvements.
             </p>
 
             <div className="space-y-4">
               <Button
                 onClick={scrollToCTA}
                 size="lg"
-                className="bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy hover:from-calm-navy/90 hover:via-calm-lavender/90 hover:to-calm-navy/90 text-white font-nunito font-bold px-8 py-4 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 shadow-md"
+                className="bg-calm-lavender hover:from-calm-navy/90 hover:via-calm-lavender/90 hover:to-calm-navy/90 text-white font-nunito font-bold px-8 py-4 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 shadow-md"
               >
                 Join the Waitlist for Early Access
               </Button>
@@ -156,7 +152,7 @@ const HeroSection = () => {
                     </div>
                     <div className="w-full bg-calm-light rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy h-2 rounded-full"
+                        className="bg-calm-lavender h-2 rounded-full"
                         style={{ width: "60%" }}
                       ></div>
                     </div>
@@ -168,7 +164,7 @@ const HeroSection = () => {
                     <span className="font-nunito text-sm font-medium text-calm-charcoal">
                       Stuttering Modification
                     </span>
-                    <div className="w-6 h-6 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full flex items-center justify-center">
+                    <div className="w-6 h-6 bg-calm-lavender rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">✓</span>
                     </div>
                   </div>
@@ -176,7 +172,7 @@ const HeroSection = () => {
                     <span className="font-nunito text-sm font-medium text-calm-charcoal">
                       Fluency Shaping
                     </span>
-                    <div className="w-6 h-6 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full flex items-center justify-center">
+                    <div className="w-6 h-6 bg-calm-lavender rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">✓</span>
                     </div>
                   </div>
