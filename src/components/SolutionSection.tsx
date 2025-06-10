@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SolutionSection = () => {
+  const [selectedMood, setSelectedMood] = useState<number>(3); // Default to the happy face (index 3)
   return (
     <section
       id="features"
@@ -158,6 +159,20 @@ const SolutionSection = () => {
                               John Smith - Week 12
                             </p>
                           </div>
+                          <div className="relative group">
+                            <div className="w-8 h-8 bg-calm-lavender rounded-full flex items-center justify-center animate-notification-pop cursor-pointer animate-notification-pulse">
+                              <span className="text-white text-sm">🔔</span>
+                            </div>
+                            <div className="absolute right-0 w-48 p-2 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 border border-gray-100">
+                              <div className="flex items-center space-x-2">
+                                <span className="text-lg">👋</span>
+                                <p className="text-xs text-gray-700">
+                                  Hey, this is your accountability buddy! Let's
+                                  practice!
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
                         {/* Progress Card */}
@@ -184,13 +199,19 @@ const SolutionSection = () => {
                             How is your stuttering today?
                           </p>
                           <div className="flex justify-between items-center">
-                            <span className="text-xs">😢</span>
-                            <span className="text-xs">😐</span>
-                            <span className="text-xs">😊</span>
-                            <div className="w-8 h-8 bg-calm-lavender rounded-full flex items-center justify-center">
-                              <span className="text-white">😊</span>
-                            </div>
-                            <span className="text-xs">😄</span>
+                            {['😢', '😐', '😊', '😊', '😄'].map((emoji, index) => (
+                              <div
+                                key={index}
+                                onClick={() => setSelectedMood(index)}
+                                className={`w-8 h-8 cursor-pointer transition-colors duration-200 ${
+                                  selectedMood === index ? 'bg-calm-lavender' : 'hover:bg-calm-lavender/50'
+                                } rounded-full flex items-center justify-center`}
+                              >
+                                <span className={`text-xs ${selectedMood === index ? 'text-white' : 'text-gray-600'}`}>
+                                  {emoji}
+                                </span>
+                              </div>
+                            ))}
                           </div>
                         </div>
 
