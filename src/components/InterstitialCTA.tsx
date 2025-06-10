@@ -13,11 +13,11 @@ const InterstitialCTA = () => {
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-calm-lavender/10 to-calm-navy/10">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="font-nunito font-bold text-2xl sm:text-3xl text-calm-charcoal mb-6 animate-fade-in">
-          Ready to Transform Your Speech Therapy Practice?
+          Start Offering Continuous Support Between Sessions
         </h2>
         <p className="font-nunito text-lg text-calm-charcoal/80 mb-8 animate-fade-in">
-          Join forward-thinking clinics already revolutionizing their approach
-          to stuttering therapy.
+          Join our waitlist of pioneering clinics and therapists reimagining
+          what happens between therapy.
         </p>
         <Button
           onClick={scrollToCTA}
