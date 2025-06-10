@@ -117,15 +117,6 @@ const HeroSection = () => {
           </div>
 
           <div className="relative animate-fade-in">
-            {/* Background Image for Card */}
-            <div className="absolute inset-0 rounded-3xl overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
-                alt="Laptop computer showing therapy dashboard"
-                className="w-full h-full object-cover opacity-10"
-              />
-            </div>
-
             {/* Online Status Card */}
             <div className="absolute -top-4 -right-4 z-20 bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-calm-light p-3 flex items-center space-x-2">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>

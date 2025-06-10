@@ -113,43 +113,45 @@ const ProblemSection = () => {
 
         {/* Solution Teaser */}
         <div className="relative">
-          <div className="bg-gradient-to-r from-calm-navy/10 via-calm-lavender/20 to-calm-light rounded-2xl p-8 border border-calm-light backdrop-blur-sm shadow-lg transition-all duration-300 hover:shadow-xl">
+          <div className="bg-gradient-to-r from-calm-navy/10 via-calm-lavender/20 to-calm-light rounded-2xl p-8 border border-calm-light backdrop-blur-sm shadow-lg transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
             <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-calm-lavender/20 to-calm-navy/20 rounded-full mb-6 border border-calm-lavender/30 backdrop-blur-sm">
-                <span className="text-calm-navy text-sm font-medium">
-                  ✨ AI-Powered Solution
-                </span>
-              </div>
-
-              <h3 className="font-nunito font-bold text-3xl text-calm-navy mb-4">
+              <h3 className="font-nunito font-bold text-3xl text-calm-navy mb-4 transition-colors duration-300">
                 What if practice was as structured as therapy?
               </h3>
 
-              <p className="font-nunito text-lg text-calm-charcoal/80 mb-6">
+              <p className="font-nunito text-lg text-calm-charcoal/80 mb-8">
                 Intelligent daily practice sessions that adapt to each patient's
                 progress, bridging the gap between weekly appointments.
               </p>
 
-              {/* Animated Progress Indicator */}
-              <div className="flex items-center justify-center space-x-3">
-                <div className="w-3 h-3 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full animate-glow"></div>
+              {/* Improved Progress Indicator */}
+              <div className="flex items-center justify-center space-x-4">
+                <div className="w-4 h-4 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full animate-pulse"></div>
                 <div
-                  className="w-3 h-3 bg-gradient-to-r from-calm-lavender to-calm-charcoal rounded-full animate-glow"
+                  className="w-4 h-4 bg-gradient-to-r from-calm-lavender to-calm-charcoal rounded-full animate-pulse"
                   style={{ animationDelay: "0.5s" }}
                 ></div>
                 <div
-                  className="w-3 h-3 bg-gradient-to-r from-calm-charcoal to-calm-navy rounded-full animate-glow"
+                  className="w-4 h-4 bg-gradient-to-r from-calm-charcoal to-calm-navy rounded-full animate-pulse"
                   style={{ animationDelay: "1s" }}
                 ></div>
               </div>
             </div>
           </div>
 
-          {/* Decorative Elements */}
-          <div className="absolute -top-4 -left-4 w-8 h-8 bg-calm-lavender/30 rounded-full blur-sm animate-float"></div>
+          {/* Enhanced Decorative Elements */}
+          <div className="absolute -top-4 -left-4 w-12 h-12 bg-calm-lavender/30 rounded-full blur-lg animate-float transform transition-transform duration-500 hover:scale-110"></div>
           <div
-            className="absolute -bottom-4 -right-4 w-8 h-8 bg-calm-navy/30 rounded-full blur-sm animate-float"
-            style={{ animationDelay: "1s" }}
+            className="absolute top-1/2 left-0 w-8 h-8 bg-calm-navy/20 rounded-full blur-md animate-float"
+            style={{ animationDelay: "0.7s" }}
+          ></div>
+          <div
+            className="absolute -bottom-4 -right-4 w-12 h-12 bg-calm-navy/30 rounded-full blur-lg animate-float"
+            style={{ animationDelay: "1.4s" }}
+          ></div>
+          <div
+            className="absolute bottom-1/2 right-0 w-8 h-8 bg-calm-lavender/20 rounded-full blur-md animate-float"
+            style={{ animationDelay: "2.1s" }}
           ></div>
         </div>
       </div>

@@ -62,35 +62,37 @@ const DifferentiationSection = () => {
           </h2>
         </div>
 
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-calm-light shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-fade-in-up"
+              className="group bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-calm-light shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-fade-in-up relative overflow-hidden"
               style={{ animationDelay: `${0.2 + index * 0.2}s` }}
             >
-              <div className="grid md:grid-cols-3 gap-6 items-center">
-                <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-calm-lavender/30 to-calm-navy/20 rounded-2xl flex items-center justify-center border border-calm-lavender/40 transition-transform duration-300 group-hover:scale-110">
-                    <span className="text-3xl">{feature.icon}</span>
+              {/* Background gradient blob */}
+              <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-gradient-to-br from-calm-lavender/10 to-calm-navy/5 rounded-full blur-xl transform transition-transform duration-500 group-hover:scale-150"></div>
+
+              <div className="relative z-10">
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="w-14 h-14 bg-gradient-to-br from-calm-lavender/30 to-calm-navy/20 rounded-2xl flex items-center justify-center border border-calm-lavender/40 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                    <span className="text-2xl">{feature.icon}</span>
                   </div>
-                  <div>
-                    <h3 className="font-nunito font-bold text-lg text-calm-charcoal">
-                      {feature.title}
-                    </h3>
-                  </div>
+                  <h3 className="font-nunito font-bold text-xl text-calm-charcoal group-hover:text-calm-navy transition-colors duration-300">
+                    {feature.title}
+                  </h3>
                 </div>
 
-                <div className="md:text-center">
-                  <p className="font-nunito text-calm-charcoal/80">
+                <div className="space-y-3">
+                  <p className="font-nunito text-calm-charcoal/80 text-lg">
                     {feature.description}
                   </p>
-                </div>
-
-                <div className="md:text-right">
-                  <p className="font-nunito font-semibold text-calm-navy">
-                    {feature.benefit}
-                  </p>
+                  <div className="pt-2">
+                    <div className="inline-flex items-center px-4 py-2 bg-calm-navy/5 rounded-full">
+                      <span className="font-nunito font-semibold text-calm-navy">
+                        {feature.benefit}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
