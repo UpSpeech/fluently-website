@@ -30,6 +30,7 @@ const SolutionSection = () => {
           </p>
         </div>
 
+        {/* Features Grid */}
         <div className="grid md:grid-cols-4 gap-8 mb-16">
           {[
             {
@@ -95,25 +96,26 @@ const SolutionSection = () => {
             </div>
           ))}
         </div>
+
+        {/* Main Content with Mockups */}
         <div className="animate-fade-in-up bg-gradient-to-r from-calm-lavender/20 to-calm-navy/10 rounded-2xl p-8 border border-calm-light backdrop-blur-sm shadow-lg relative overflow-hidden hover:shadow-xl transition-all duration-300">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side content */}
             <div className="animate-fade-in" style={{ animationDelay: "1s" }}>
               <h3 className="font-nunito font-bold text-2xl text-calm-charcoal mb-4">
-                See Fluently in Action
+                Designed with Therapists. Built for Real Life.
               </h3>
               <p className="font-nunito text-calm-charcoal/80 mb-6">
-                Watch how our platform creates personalized practice sessions
-                and provides real-time feedback to keep your patients engaged
-                between appointments.
+                We work alongside therapists to provide structured plans,
+                real-time feedback, and motivational support — tailored to each
+                user’s progress.
               </p>
               <div className="space-y-4">
                 {[
-                  "Custom exercise creation with AI assistance",
-                  "Real-time speech analysis and feedback",
-                  "Comprehensive progress tracking dashboards",
-                  "Mood and emotional wellness monitoring",
-                  "Personalized coping strategies and tools",
+                  "Assign custom plans in minutes",
+                  "Track practice consistency and difficulty",
+                  "Reports compliant with ICD-11 and DSM-5-TR",
+                  "Motivate patients with daily micro-successes",
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full"></div>
