@@ -57,7 +57,7 @@ const DifferentiationSection = () => {
           <div className="relative">
             <img
               src="/images/hero-bg-2.1.webp"
-              alt="Happy patient and therapist looking at results"
+              alt="Two happy people after a therapy session"
               className="rounded-2xl shadow-xl w-full object-cover h-[350px] object-center md:object-right"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-calm-lavender/10 to-transparent rounded-2xl"></div>

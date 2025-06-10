@@ -53,8 +53,8 @@ const ProblemSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div className="order-2 lg:order-1">
             <img
-              src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&auto=format&fit=crop&q=80"
-              alt="Person looking frustrated with practice materials"
+              src="/images/therapy.jpg"
+              alt="People in a therapy session"
               className="rounded-2xl shadow-xl w-full object-cover h-[400px]"
             />
           </div>
