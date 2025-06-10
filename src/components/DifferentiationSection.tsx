@@ -44,13 +44,24 @@ const DifferentiationSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2
-            className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 animate-fade-in"
-            style={{ animationDelay: "0.2s" }}
-          >
-            Why Clinics Choose Fluently Over Worksheets and Apps
-          </h2>
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div>
+            <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 animate-fade-in">
+              Why Clinics Choose Fluently Over Worksheets and Apps
+            </h2>
+            <p className="font-nunito text-xl text-calm-charcoal/80 mb-8">
+              Transform your practice with tools that enhance engagement and
+              improve outcomes.
+            </p>
+          </div>
+          <div className="relative">
+            <img
+              src="/images/hero-bg-2.1.webp"
+              alt="Happy patient and therapist looking at results"
+              className="rounded-2xl shadow-xl w-full object-cover h-[350px] object-center md:object-right"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-calm-lavender/10 to-transparent rounded-2xl"></div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

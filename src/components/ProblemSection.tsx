@@ -50,30 +50,31 @@ const ProblemSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header Section */}
-        <div className="text-center mb-20 animate-fade-in-up">
-          <h2 className="font-nunito font-bold text-4xl sm:text-5xl text-calm-charcoal mb-6 leading-tight">
-            The{" "}
-            <span className="text-transparent bg-calm-lavender bg-clip-text">
-              Hardest{" "}
-            </span>
-            Part of Speech Therapy
-            <br />
-            Happens Between Sessions
-          </h2>
-
-          <p className="font-nunito text-xl text-calm-charcoal/70 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-            Your sessions are structured, engaging, and tailored to each
-            patient.
-            <br />
-            <span className="font-bold text-transparent bg-calm-navy bg-clip-text">
-              But what happens between appointments?
-            </span>
-          </p>
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="order-2 lg:order-1">
+            <img
+              src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&auto=format&fit=crop&q=80"
+              alt="Person looking frustrated with practice materials"
+              className="rounded-2xl shadow-xl w-full object-cover h-[400px]"
+            />
+          </div>
+          <div className="order-1 lg:order-2">
+            <h2 className="font-nunito font-bold text-4xl sm:text-5xl text-calm-charcoal mb-6 leading-tight">
+              The <span className="text-calm-navy">Hardest</span> Part of Speech
+              Therapy
+              <br />
+              Happens Between Sessions
+            </h2>
+            <p className="font-nunito text-xl text-calm-charcoal/70 max-w-3xl leading-relaxed animate-fade-in">
+              Your sessions are structured, engaging, and tailored to each
+              patient. But maintaining that quality of practice between visits
+              has always been a challenge.
+            </p>
+          </div>
         </div>
 
         {/* Problems Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-7xl mx-auto">
           {problems.map((problem, index) => (
             <div
               key={index}
@@ -106,50 +107,6 @@ const ProblemSection = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Solution Teaser */}
-        <div className="relative">
-          <div className="bg-gradient-to-r from-calm-navy/10 via-calm-lavender/20 to-calm-light rounded-2xl p-8 border border-calm-light backdrop-blur-sm shadow-lg transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
-            <div className="text-center max-w-4xl mx-auto">
-              <h3 className="font-nunito font-bold text-3xl text-calm-navy mb-4 transition-colors duration-300">
-                What if practice was as structured as therapy?
-              </h3>
-
-              <p className="font-nunito text-lg text-calm-charcoal/80 mb-8">
-                Intelligent daily practice sessions that adapt to each patient's
-                progress, bridging the gap between weekly appointments.
-              </p>
-
-              {/* Improved Progress Indicator */}
-              <div className="flex items-center justify-center space-x-4">
-                <div className="w-4 h-4 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full animate-pulse"></div>
-                <div
-                  className="w-4 h-4 bg-gradient-to-r from-calm-lavender to-calm-charcoal rounded-full animate-pulse"
-                  style={{ animationDelay: "0.5s" }}
-                ></div>
-                <div
-                  className="w-4 h-4 bg-gradient-to-r from-calm-charcoal to-calm-navy rounded-full animate-pulse"
-                  style={{ animationDelay: "1s" }}
-                ></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Enhanced Decorative Elements */}
-          <div className="absolute -top-4 -left-4 w-12 h-12 bg-calm-lavender/30 rounded-full blur-lg animate-float transform transition-transform duration-500 hover:scale-110"></div>
-          <div
-            className="absolute top-1/2 left-0 w-8 h-8 bg-calm-navy/20 rounded-full blur-md animate-float"
-            style={{ animationDelay: "0.7s" }}
-          ></div>
-          <div
-            className="absolute -bottom-4 -right-4 w-12 h-12 bg-calm-navy/30 rounded-full blur-lg animate-float"
-            style={{ animationDelay: "1.4s" }}
-          ></div>
-          <div
-            className="absolute bottom-1/2 right-0 w-8 h-8 bg-calm-lavender/20 rounded-full blur-md animate-float"
-            style={{ animationDelay: "2.1s" }}
-          ></div>
         </div>
       </div>
     </section>

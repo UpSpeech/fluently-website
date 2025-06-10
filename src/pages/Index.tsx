@@ -2,6 +2,7 @@ import React from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
+import InterstitialCTA from "@/components/InterstitialCTA";
 import SolutionSection from "@/components/SolutionSection";
 import DifferentiationSection from "@/components/DifferentiationSection";
 import CTASection from "@/components/CTASection";
@@ -14,6 +15,7 @@ const Index = () => {
       <Header />
       <HeroSection />
       <ProblemSection />
+      <InterstitialCTA />
       <SolutionSection />
       <DifferentiationSection />
       <FAQSection />
