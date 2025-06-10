@@ -1,7 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const SolutionSection = () => {
   const [selectedMood, setSelectedMood] = useState<number>(3); // Default to the happy face (index 3)
+  const [showNotificationDot, setShowNotificationDot] = useState(false);
+  const phoneRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // When phone comes into view, wait 1s then show the notification dot
+          setTimeout(() => setShowNotificationDot(true), 1000);
+        } else {
+          // When phone leaves view, reset the notification dot
+          setShowNotificationDot(false);
+        }
+      },
+      { threshold: 0.5 } // Trigger when 50% of the phone is visible
+    );
+
+    if (phoneRef.current) {
+      observer.observe(phoneRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <section
       id="features"
@@ -135,7 +158,10 @@ const SolutionSection = () => {
             >
               <div className="flex justify-center items-center space-x-4">
                 {/* Main Phone Mockup */}
-                <div className="relative transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                <div
+                  ref={phoneRef}
+                  className="relative transform rotate-3 hover:rotate-0 transition-transform duration-300"
+                >
                   <div className="w-64 h-[500px] bg-gray-900 rounded-[3rem] p-2 shadow-2xl">
                     <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
                       {/* Status Bar */}
@@ -160,8 +186,15 @@ const SolutionSection = () => {
                             </p>
                           </div>
                           <div className="relative group">
-                            <div className="w-8 h-8 bg-calm-lavender rounded-full flex items-center justify-center animate-notification-pop cursor-pointer animate-notification-pulse">
+                            <div className="relative w-8 h-8 bg-calm-lavender rounded-full flex items-center justify-center cursor-pointer">
                               <span className="text-white text-sm">🔔</span>
+                              {showNotificationDot && (
+                                <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-red-500 rounded-full animate-notification-pulse">
+                                  <span className="absolute inset-0 flex items-center justify-center text-white text-[8px] font-semibold">
+                                    1
+                                  </span>
+                                </div>
+                              )}
                             </div>
                             <div className="absolute right-0 w-48 p-2 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 border border-gray-100">
                               <div className="flex items-center space-x-2">
@@ -199,19 +232,29 @@ const SolutionSection = () => {
                             How is your stuttering today?
                           </p>
                           <div className="flex justify-between items-center">
-                            {['😢', '😐', '😊', '😊', '😄'].map((emoji, index) => (
-                              <div
-                                key={index}
-                                onClick={() => setSelectedMood(index)}
-                                className={`w-8 h-8 cursor-pointer transition-colors duration-200 ${
-                                  selectedMood === index ? 'bg-calm-lavender' : 'hover:bg-calm-lavender/50'
-                                } rounded-full flex items-center justify-center`}
-                              >
-                                <span className={`text-xs ${selectedMood === index ? 'text-white' : 'text-gray-600'}`}>
-                                  {emoji}
-                                </span>
-                              </div>
-                            ))}
+                            {["😢", "😐", "😊", "😊", "😄"].map(
+                              (emoji, index) => (
+                                <div
+                                  key={index}
+                                  onClick={() => setSelectedMood(index)}
+                                  className={`w-8 h-8 cursor-pointer transition-colors duration-200 ${
+                                    selectedMood === index
+                                      ? "bg-calm-lavender"
+                                      : "hover:bg-calm-lavender/50"
+                                  } rounded-full flex items-center justify-center`}
+                                >
+                                  <span
+                                    className={`text-xs ${
+                                      selectedMood === index
+                                        ? "text-white"
+                                        : "text-gray-600"
+                                    }`}
+                                  >
+                                    {emoji}
+                                  </span>
+                                </div>
+                              )
+                            )}
                           </div>
                         </div>
 
