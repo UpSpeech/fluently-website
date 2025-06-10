@@ -22,39 +22,53 @@ const SolutionSection = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 animate-fade-in">
-            Meet Fluently: Your AI-Powered Training Companion for Better
-            Carry-Over
+            Meet Fluently: Your Smart, Daily Training Companion
           </h2>
           <p className="font-nunito text-xl text-calm-charcoal/80 max-w-4xl mx-auto animate-fade-in">
-            Fluently helps patients practice effectively between sessions, with
-            structured plans, real-time feedback, and tracked progress—all
-            designed to fit into your current workflow.
+            Fluently helps people who stutter build fluency and confidence — one
+            day at a time.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-4 gap-8 mb-16">
           {[
             {
               icon: "📋",
               title: "Structured Weekly Plans",
-              description: "Tailored exercises based on patient goals",
+              description: "Real-time feedback using speech and context",
               benefit: "→ Faster progress and fewer regressions",
               gradient: "from-calm-navy to-calm-lavender",
               delay: "0.2s",
             },
+            // {
+            //   icon: "🧠",
+            //   title: "Real-Time AI Feedback",
+            //   description: "Instant corrections on technique",
+            //   benefit: "→ Better retention, less therapist rework",
+            //   gradient: "from-calm-lavender to-calm-charcoal",
+            //   delay: "0.4s",
+            // },
             {
-              icon: "🧠",
-              title: "Real-Time AI Feedback",
-              description: "Instant corrections on technique",
-              benefit: "→ Better retention, less therapist rework",
-              gradient: "from-calm-lavender to-calm-charcoal",
+              icon: "📈",
+              title: "Therapist-Ready Reports",
+              description: "Access AI-generated reports after each session",
+              benefit: "→ No manual work, more time for patients",
+              gradient: "from-calm-charcoal to-calm-lavender",
               delay: "0.4s",
+            },
+            {
+              icon: "💬",
+              title: "Built-in Emotional Tools",
+              description: "Coping strategies for frustration and setbacks",
+              benefit: "→ Keep patients engaged and motivated",
+              gradient: "from-calm-lavender to-calm-navy",
+              delay: "0.6s",
             },
             {
               icon: "📊",
               title: "Progress Tracking Dashboards",
-              description: "See how patients are engaging",
-              benefit: "→ Keep them accountable and motivated",
+              description: "Smart dashboards to track progress and consistency",
+              benefit: "→ Identify patterns and adjust plans",
               gradient: "from-calm-charcoal to-calm-navy",
               delay: "0.6s",
             },
@@ -81,7 +95,6 @@ const SolutionSection = () => {
             </div>
           ))}
         </div>
-
         <div className="animate-fade-in-up bg-gradient-to-r from-calm-lavender/20 to-calm-navy/10 rounded-2xl p-8 border border-calm-light backdrop-blur-sm shadow-lg relative overflow-hidden hover:shadow-xl transition-all duration-300">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side content */}
