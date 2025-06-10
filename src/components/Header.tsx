@@ -39,19 +39,19 @@ const Header = () => {
           >
             <button
               onClick={() => scrollToSection("about")}
-              className="font-nunito text-calm-charcoal hover:text-calm-navy transition-all duration-200 hover:-translate-y-0.5 transform px-3 py-2 rounded-md hover:bg-calm-light/30"
+              className="font-nunito text-calm-charcoal transition-all duration-200 hover:text-calm-lavender transform px-3 py-2 rounded-md hover:bg-calm-light/30"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection("features")}
-              className="font-nunito text-calm-charcoal hover:text-calm-navy transition-all duration-200 hover:-translate-y-0.5 transform px-3 py-2 rounded-md hover:bg-calm-light/30"
+              className="font-nunito text-calm-charcoal transition-all duration-200 hover:text-calm-lavender transform px-3 py-2 rounded-md hover:bg-calm-light/30"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection("differentiation")}
-              className="font-nunito text-calm-charcoal hover:text-calm-navy transition-all duration-200 hover:-translate-y-0.5 transform px-3 py-2 rounded-md hover:bg-calm-light/30"
+              className="font-nunito text-calm-charcoal transition-all duration-200 hover:text-calm-lavender transform px-3 py-2 rounded-md hover:bg-calm-light/30"
             >
               Why Us
             </button>

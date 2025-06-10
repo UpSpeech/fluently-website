@@ -10,8 +10,8 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-center animate-fade-in-up">
-          <div className="mb-6 md:mb-0">
+        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center animate-fade-in-up">
+          <div className="mb-6 md:mb-0 flex flex-col items-center md:items-start space-y-2">
             <img
               src="/images/logo.png"
               alt="Fluently"
@@ -25,7 +25,7 @@ const Footer = () => {
           <div className="flex space-x-8">
             <a
               href="mailto:geral@fluently.pt"
-              className="font-nunito text-sm text-white/80 hover:text-white transition-all duration-200 hover:-translate-y-0.5"
+              className="hover:underline font-nunito text-sm text-white/80 hover:text-white transition-all duration-200"
             >
               Contact us
             </a>
