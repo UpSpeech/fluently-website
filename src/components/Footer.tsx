@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React from "react";
 
 const Footer = () => {
   return (
@@ -13,38 +12,38 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <img 
-              src="/lovable-uploads/d4d25aaf-89e1-4703-99a5-d7a40346cd18.png" 
-              alt="Fluently" 
-              className="h-8 w-auto mb-2 brightness-0 invert"
+            <img
+              src="/images/logo.png"
+              alt="Fluently"
+              className="h-6 w-auto mb-2 brightness-0 invert"
             />
             <p className="font-nunito text-sm text-white/80">
               Helping therapy stick—one session at a time.
             </p>
           </div>
-          
+
           <div className="flex space-x-8">
-            <a 
-              href="#privacy" 
+            <a
+              href="#privacy"
               className="font-nunito text-sm text-white/80 hover:text-white transition-colors duration-200"
             >
               Privacy Policy
             </a>
-            <a 
-              href="#terms" 
+            <a
+              href="#terms"
               className="font-nunito text-sm text-white/80 hover:text-white transition-colors duration-200"
             >
               Terms
             </a>
-            <a 
-              href="mailto:hello@fluently.app" 
+            <a
+              href="mailto:hello@fluently.app"
               className="font-nunito text-sm text-white/80 hover:text-white transition-colors duration-200"
             >
               Contact
             </a>
           </div>
         </div>
-        
+
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="font-nunito text-sm text-white/60">
             © 2025 Fluently. All rights reserved.

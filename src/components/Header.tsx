@@ -1,11 +1,11 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import React from "react";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -14,30 +14,26 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <img 
-              src="/lovable-uploads/d4d25aaf-89e1-4703-99a5-d7a40346cd18.png" 
-              alt="Fluently" 
-              className="h-8 w-auto"
-            />
+            <img src="/images/logo.png" alt="Fluently" className="h-6 w-auto" />
           </div>
-          
+
           <nav className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection('about')}
+            <button
+              onClick={() => scrollToSection("about")}
               className="font-nunito text-calm-charcoal hover:text-calm-navy transition-colors duration-200"
             >
               About
             </button>
-            <button 
-              onClick={() => scrollToSection('features')}
+            <button
+              onClick={() => scrollToSection("features")}
               className="font-nunito text-calm-charcoal hover:text-calm-navy transition-colors duration-200"
             >
               Features
             </button>
           </nav>
 
-          <Button 
-            onClick={() => scrollToSection('cta')}
+          <Button
+            onClick={() => scrollToSection("cta")}
             className="bg-gradient-to-r from-calm-navy to-calm-lavender hover:from-calm-navy/90 hover:to-calm-lavender/90 text-white font-nunito font-bold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
           >
             Join the Waitlist
