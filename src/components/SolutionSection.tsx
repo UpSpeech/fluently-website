@@ -200,7 +200,7 @@ const SolutionSection = () => {
                               <div className="flex items-center space-x-2">
                                 <span className="text-lg">👋</span>
                                 <p className="text-xs text-gray-700">
-                                  Hey, this is your accountability buddy! Let's
+                                  Hey, this is your Fluently buddy! Let's
                                   practice!
                                 </p>
                               </div>

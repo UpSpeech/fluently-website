@@ -19,7 +19,7 @@ const Index = () => {
       <SolutionSection />
       <DifferentiationSection />
       <CTASection />
-      <FAQSection />
+      {/* <FAQSection /> */}
       <Footer />
     </div>
   );

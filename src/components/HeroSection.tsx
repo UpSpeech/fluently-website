@@ -113,15 +113,14 @@ const HeroSection = () => {
           </div>
 
           <div className="relative animate-fade-in mt-8 lg:mt-0">
-            {/* Online Status Card */}
-            <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 z-20 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-calm-light p-2 sm:p-3 flex items-center space-x-2">
-              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="font-nunito text-xs sm:text-sm font-semibold text-calm-charcoal">
-                Online
-              </span>
-            </div>
-
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8 border border-calm-light relative overflow-hidden mx-auto max-w-md lg:max-w-none">
+            <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8 border border-calm-light relative mx-auto max-w-md lg:max-w-none">
+              {/* Online Status Card */}
+              <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 z-20 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-calm-light p-2 sm:p-3 flex items-center space-x-2">
+                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="font-nunito text-xs sm:text-sm font-semibold text-calm-charcoal">
+                  Online
+                </span>
+              </div>
               {/* Gradient overlay on card */}
               <div className="absolute inset-0 bg-gradient-to-br from-calm-lavender/5 via-transparent to-calm-navy/5 rounded-3xl"></div>
 
@@ -178,7 +177,7 @@ const HeroSection = () => {
                   </div>
                   <div className="flex items-center justify-between p-3 bg-gradient-to-r from-calm-light/80 to-calm-charcoal/5 rounded-2xl border border-calm-charcoal/10">
                     <span className="font-nunito text-sm font-medium text-calm-charcoal/70">
-                      Cognitive Training
+                      Stabilization
                     </span>
                     <div className="w-6 h-6 bg-calm-charcoal/30 rounded-full"></div>
                   </div>

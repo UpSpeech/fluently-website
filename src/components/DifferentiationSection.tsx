@@ -3,53 +3,54 @@ import React from "react";
 const DifferentiationSection = () => {
   const features = [
     {
-      feature: "Speech Practice Tools",
+      feature: "Session Monitoring",
       traditional: true,
       fluently: true,
-      description: "Basic speech exercises and techniques",
-      fluentlyExtra: "AI-powered real-time feedback",
+      traditionalExtra: "No visibility into what happens between sessions",
+      fluentlyExtra: "Real-time insights into practice consistency and quality",
+    },
+    {
+      feature: "Patient Communication",
+      traditional: true,
+      fluently: true,
+      traditionalExtra:
+        "Follow-ups through scattered WhatsApp messages or emails",
+      fluentlyExtra: "Centralized feedback loop with tracked patient progress",
     },
     {
       feature: "Progress Tracking",
       traditional: true,
       fluently: true,
-      description: "Track client progress over time",
-      fluentlyExtra: "ML-driven insights and predictions",
+      traditionalExtra:
+        "Hours spent writing reports and tracking progress manually",
+      fluentlyExtra:
+        "Auto-generated reports, trend tracking, and data dashboards",
     },
     {
-      feature: "Between-Session Support",
-      traditional: true,
-      fluently: true,
-      description: "Phone & email assistance",
-      fluentlyExtra: "24/7 AI coach & coping tools",
-    },
-    {
-      feature: "Exercise Customization",
+      feature: "Personalized Guidance",
       traditional: false,
       fluently: true,
-      description: "Personalized difficulty levels",
-      fluentlyExtra: "Dynamic adjustment based on performance",
+      traditionalExtra:
+        "Limited capacity to personalize outside-session guidance",
+      fluentlyExtra:
+        "Adaptive practice plans based on patient performance and variability",
     },
     {
-      feature: "Daily Engagement",
+      feature: "Patient Engagement",
       traditional: false,
       fluently: true,
-      description: "Continuous practice reminders",
-      fluentlyExtra: "Gamified micro-progress tracking",
+      traditionalExtra:
+        "Low engagement and high patient frustration between sessions",
+      fluentlyExtra:
+        "Higher motivation through gamification and emotional nudges",
     },
     {
-      feature: "Data Analytics",
+      feature: "Accessibility",
       traditional: false,
       fluently: true,
-      description: "Comprehensive progress analytics",
-      fluentlyExtra: "Predictive success patterns",
-    },
-    {
-      feature: "Client Reporting",
-      traditional: true,
-      fluently: true,
-      description: "Basic progress reports",
-      fluentlyExtra: "Automated detailed insights",
+      traditionalExtra:
+        "Therapy only accessible in large cities or expensive private clinics",
+      fluentlyExtra: "Extend care beyond geographic and economic limits",
     },
   ];
 
@@ -99,7 +100,7 @@ const DifferentiationSection = () => {
             <div className="p-6 font-nunito font-bold text-lg text-calm-charcoal border-l border-calm-light">
               Traditional Approach
             </div>
-            <div className="p-6 font-nunito font-bold text-lg text-calm-navy border-l border-calm-light bg-calm-navy/5">
+            <div className="p-6 font-nunito font-bold text-lg text-white border-l border-calm-light bg-calm-lavender">
               Fluently Platform
             </div>
           </div>
@@ -114,50 +115,52 @@ const DifferentiationSection = () => {
                   <h3 className="font-nunito font-bold text-calm-charcoal mb-2">
                     {item.feature}
                   </h3>
-                  <p className="text-sm text-calm-charcoal/70">
-                    {item.description}
-                  </p>
                 </div>
 
                 {/* Traditional Check */}
-                <div className="p-6 border-l border-calm-light flex items-center justify-center">
-                  {item.traditional ? (
-                    <div className="w-8 h-8 rounded-full bg-calm-lavender flex items-center justify-center">
-                      <svg
-                        className="w-5 h-5 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                  ) : (
-                    <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
-                      <svg
-                        className="w-5 h-5 text-gray-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </div>
-                  )}
+                <div className="p-6 border-l border-calm-light">
+                  <div className="flex items-center mb-2">
+                    {item.traditional ? (
+                      <div className="w-8 h-8 overflow-hidden shrink-0 rounded-full bg-calm-lavender flex items-center justify-center">
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                    ) : (
+                      <div className="w-8 h-8 overflow-hidden shrink-0 rounded-full bg-gray-100 flex items-center justify-center">
+                        <svg
+                          className="w-5 h-5 text-gray-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </div>
+                    )}
+                    <span className="ml-3 text-sm text-calm-charcoal/70">
+                      {item.traditionalExtra}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Fluently Check + Extra Feature */}
-                <div className="p-6 border-l border-calm-light">
+                <div className="p-6 border-l border-calm-light bg-calm-lavender/10">
                   <div className="flex items-center mb-2">
                     <div className="w-8 h-8 overflow-hidden shrink-0 rounded-full bg-calm-lavender flex items-center justify-center">
                       <svg
@@ -195,9 +198,6 @@ const DifferentiationSection = () => {
                 <h3 className="font-nunito font-bold text-lg text-calm-charcoal mb-2">
                   {item.feature}
                 </h3>
-                <p className="text-sm text-calm-charcoal/70">
-                  {item.description}
-                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-calm-light/30">
@@ -206,9 +206,56 @@ const DifferentiationSection = () => {
                   <div className="text-xs font-medium text-calm-charcoal/70">
                     Traditional Approach
                   </div>
-                  <div className="flex items-center space-x-2">
-                    {item.traditional ? (
-                      <div className="w-6 h-6 rounded-full bg-calm-lavender flex items-center justify-center">
+                  <div className="flex flex-col space-y-2">
+                    <div className="flex items-center space-x-2">
+                      {item.traditional ? (
+                        <div className="w-6 h-6 rounded-full bg-calm-lavender flex items-center justify-center">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
+                      ) : (
+                        <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
+                          <svg
+                            className="w-4 h-4 text-gray-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <span className="text-xs leading-tight text-calm-charcoal/70">
+                      {item.traditionalExtra}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Fluently */}
+                <div className="space-y-2">
+                  <div className="text-xs font-medium text-calm-navy">
+                    Fluently Platform
+                  </div>
+                  <div className="flex flex-col space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-6 h-6 shrink-0 rounded-full bg-calm-lavender flex items-center justify-center">
                         <svg
                           className="w-4 h-4 text-white"
                           fill="none"
@@ -223,48 +270,8 @@ const DifferentiationSection = () => {
                           />
                         </svg>
                       </div>
-                    ) : (
-                      <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
-                        <svg
-                          className="w-4 h-4 text-gray-300"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Fluently */}
-                <div className="space-y-2">
-                  <div className="text-xs font-medium text-calm-navy">
-                    Fluently Platform
-                  </div>
-                  <div className="flex items-start space-x-2">
-                    <div className="w-6 h-6 shrink-0 rounded-full bg-calm-lavender flex items-center justify-center">
-                      <svg
-                        className="w-4 h-4 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
                     </div>
-                    <span className="text-xs leading-tight text-calm-navy flex-1">
+                    <span className="text-xs leading-tight text-calm-navy">
                       {item.fluentlyExtra}
                     </span>
                   </div>

@@ -19,7 +19,7 @@ const CTASection = () => {
     clinicSize: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.role) {
@@ -30,21 +30,38 @@ const CTASection = () => {
       return;
     }
 
-    // Simulate form submission
-    console.log("Form submitted:", formData);
+    try {
+      const response = await fetch("https://formspree.io/f/mpwrpely", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    toast({
-      title: "Welcome to the Fluently waitlist!",
-      description: "We'll contact you soon with early access details.",
-    });
+      if (response.ok) {
+        toast({
+          title: "Welcome to the Fluently waitlist!",
+          description: "We'll contact you soon with early access details.",
+        });
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      role: "",
-      clinicSize: "",
-    });
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          role: "",
+          clinicSize: "",
+        });
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -70,14 +87,14 @@ const CTASection = () => {
           className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 animate-fade-in"
           style={{ animationDelay: "0.2s" }}
         >
-          Start Offering Continuous Support Between Sessions—Without Extra Work
+          Join us before we launch!
         </h2>
         <p
           className="font-nunito text-xl text-calm-charcoal/80 mb-12 max-w-3xl mx-auto animate-fade-in"
           style={{ animationDelay: "0.4s" }}
         >
-          Join our waitlist of pioneering clinics and therapists reimagining
-          what happens between sessions.
+          Join forward-thinking speech therapy clinics already revolutionizing
+          their practice with AI-powered continuous care solutions.
         </p>
 
         <div
@@ -103,8 +120,8 @@ const CTASection = () => {
                 onChange={e =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="mt-1 font-nunito rounded-2xl border-calm-charcoal/20 focus:border-calm-navy"
-                placeholder="Dr. Sarah Johnson"
+                className="mt-1 font-nunito rounded-2xl border-calm-charcoal/10 hover:border-calm-charcoal/20 focus:border-calm-lavender placeholder:text-calm-charcoal/30 transition-colors duration-200"
+                placeholder="Enter your name"
                 required
               />
             </div>
@@ -123,8 +140,8 @@ const CTASection = () => {
                 onChange={e =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="mt-1 font-nunito rounded-2xl border-calm-charcoal/20 focus:border-calm-navy"
-                placeholder="sarah@speechclinic.com"
+                className="mt-1 font-nunito rounded-2xl border-calm-charcoal/10 hover:border-calm-charcoal/20 focus:border-calm-lavender placeholder:text-calm-charcoal/30 transition-colors duration-200"
+                placeholder="your@email.com"
                 required
               />
             </div>
@@ -141,18 +158,31 @@ const CTASection = () => {
                   setFormData({ ...formData, role: value })
                 }
               >
-                <SelectTrigger className="mt-1 font-nunito rounded-2xl border-calm-charcoal/20">
-                  <SelectValue placeholder="Select your role" />
+                <SelectTrigger className="mt-1 font-nunito rounded-2xl border-calm-charcoal/10 hover:border-calm-charcoal/20 focus:border-calm-lavender data-[placeholder]:text-calm-charcoal/30 transition-colors duration-200">
+                  <SelectValue placeholder="Choose your role" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="speech-therapist">
+                <SelectContent className="border-calm-charcoal/10 bg-white/90 backdrop-blur-sm">
+                  <SelectItem
+                    value="speech-therapist"
+                    className="focus:bg-calm-navy/5"
+                  >
                     Speech Therapist
                   </SelectItem>
-                  <SelectItem value="clinic-director">
+                  <SelectItem
+                    value="clinic-director"
+                    className="focus:bg-calm-navy/5"
+                  >
                     Clinic Director
                   </SelectItem>
-                  <SelectItem value="practice-owner">Practice Owner</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem
+                    value="practice-owner"
+                    className="focus:bg-calm-navy/5"
+                  >
+                    Practice Owner
+                  </SelectItem>
+                  <SelectItem value="other" className="focus:bg-calm-navy/5">
+                    Other
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -169,14 +199,22 @@ const CTASection = () => {
                   setFormData({ ...formData, clinicSize: value })
                 }
               >
-                <SelectTrigger className="mt-1 font-nunito rounded-2xl border-calm-charcoal/20">
-                  <SelectValue placeholder="Select clinic size" />
+                <SelectTrigger className="mt-1 font-nunito rounded-2xl border-calm-charcoal/10 hover:border-calm-charcoal/20 focus:border-calm-lavender data-[placeholder]:text-calm-charcoal/30 transition-colors duration-200">
+                  <SelectValue placeholder="Choose clinic size" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="solo">Solo Practice</SelectItem>
-                  <SelectItem value="small">2-5 Therapists</SelectItem>
-                  <SelectItem value="medium">6-15 Therapists</SelectItem>
-                  <SelectItem value="large">15+ Therapists</SelectItem>
+                <SelectContent className="border-calm-charcoal/10 bg-white/90 backdrop-blur-sm">
+                  <SelectItem value="solo" className="focus:bg-calm-navy/5">
+                    Solo Practice
+                  </SelectItem>
+                  <SelectItem value="small" className="focus:bg-calm-navy/5">
+                    2-5 Therapists
+                  </SelectItem>
+                  <SelectItem value="medium" className="focus:bg-calm-navy/5">
+                    6-15 Therapists
+                  </SelectItem>
+                  <SelectItem value="large" className="focus:bg-calm-navy/5">
+                    15+ Therapists
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -185,13 +223,9 @@ const CTASection = () => {
               type="submit"
               className="w-full bg-gradient-to-r from-calm-navy to-calm-lavender hover:from-calm-navy/90 hover:to-calm-lavender/90 text-white font-nunito font-bold py-3 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 mt-6"
             >
-              Request Early Access
+              Join the Waitlist
             </Button>
           </form>
-
-          <p className="font-nunito text-sm text-calm-charcoal/60 mt-4">
-            🚀 Demos open July 2025 — only 30 early access slots available.
-          </p>
         </div>
       </div>
     </section>
