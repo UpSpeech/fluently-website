@@ -102,13 +102,13 @@ const SolutionSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side content */}
             <div className="animate-fade-in" style={{ animationDelay: "1s" }}>
-              <h3 className="font-nunito font-bold text-2xl text-calm-charcoal mb-4">
+              <h3 className="font-nunito font-bold text-2xl text-calm-charcoal mb-6">
                 Designed with Therapists. Built for Real Life.
               </h3>
-              <p className="font-nunito text-calm-charcoal/80 mb-6">
+              <p className="font-nunito text-lg text-calm-charcoal/80 mb-8">
                 We work alongside therapists to provide structured plans,
                 real-time feedback, and motivational support — tailored to each
-                user’s progress.
+                user's progress.
               </p>
               <div className="space-y-4">
                 {[
@@ -117,9 +117,9 @@ const SolutionSection = () => {
                   "Reports compliant with ICD-11 and DSM-5-TR",
                   "Motivate patients with daily micro-successes",
                 ].map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-calm-navy to-calm-lavender rounded-full"></div>
-                    <span className="font-nunito text-sm text-calm-charcoal">
+                  <div key={index} className="flex items-center space-x-4">
+                    <div className="w-3 h-3 bg-calm-navy rounded-full"></div>
+                    <span className="font-nunito text-base text-calm-charcoal">
                       {feature}
                     </span>
                   </div>
@@ -141,24 +141,49 @@ const SolutionSection = () => {
                       <div className="flex justify-between items-center px-6 py-2 bg-white">
                         <span className="text-sm font-semibold">9:41</span>
                         <div className="flex space-x-1">
-                          <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
-                          <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
-                          <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
+                          <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                          <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                         </div>
                       </div>
 
                       {/* Content */}
                       <div className="px-6 py-4">
-                        <h4 className="text-2xl font-bold text-gray-800 mb-2">
-                          Good Morning, Sarah!
-                        </h4>
-                        <p className="text-gray-600 mb-6">
-                          How is your stuttering today?
-                        </p>
+                        <div className="flex items-center space-x-3 mb-4">
+                          <div>
+                            <h4 className="text-xl font-bold text-gray-800">
+                              Session Overview
+                            </h4>
+                            <p className="text-sm text-gray-600">
+                              John Smith - Week 12
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Progress Card */}
+                        <div className="mb-4">
+                          <div className="flex justify-between items-center mb-2">
+                            <h5 className="font-semibold text-gray-800 text-sm">
+                              Weekly Progress
+                            </h5>
+                            <span className="text-calm-navy font-bold text-xs">
+                              87%
+                            </span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                            <div
+                              className="bg-calm-navy rounded-full h-2"
+                              style={{ width: "87%" }}
+                            ></div>
+                          </div>
+                        </div>
 
                         {/* Mood Selection */}
                         <div className="bg-calm-lavender/20 rounded-2xl p-4 mb-4">
-                          <div className="flex justify-between items-center mb-3">
+                          <p className="text-xs text-gray-600 text-center mb-1">
+                            How is your stuttering today?
+                          </p>
+                          <div className="flex justify-between items-center">
                             <span className="text-xs">😢</span>
                             <span className="text-xs">😐</span>
                             <span className="text-xs">😊</span>
@@ -167,9 +192,6 @@ const SolutionSection = () => {
                             </div>
                             <span className="text-xs">😄</span>
                           </div>
-                          <p className="text-xs text-gray-600 text-center">
-                            Feeling pretty good today!
-                          </p>
                         </div>
 
                         {/* Today's Session Card */}
@@ -182,14 +204,14 @@ const SolutionSection = () => {
                           </p>
                         </div>
 
-                        {/* Action Cards */}
+                        {/* Quick Actions */}
                         <div className="grid grid-cols-2 gap-3">
                           <div className="bg-calm-lavender/30 rounded-xl p-3 text-center">
-                            <div className="w-8 h-8 bg-calm-lavender rounded-full mx-auto mb-2 flex items-center justify-center">
-                              <span className="text-white text-xs">📊</span>
+                            <div className="w-8 h-8 bg-calm-lavender rounded-full mx-auto mb-2 flex items-center justify-center overflow-hidden shrink-0">
+                              <span className="text-white text-[10px]">📊</span>
                             </div>
                             <p className="text-xs font-semibold text-gray-700">
-                              Track Mood
+                              View Analytics
                             </p>
                           </div>
                           <div className="bg-calm-navy/20 rounded-xl p-3 text-center">
@@ -209,16 +231,16 @@ const SolutionSection = () => {
                 {/* Floating Cards */}
                 <div className="absolute -top-4 -right-8 transform rotate-12">
                   <div className="bg-white rounded-xl p-4 shadow-lg border border-calm-light w-48">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <div className="w-8 h-8 bg-calm-lavender/20 rounded-full flex items-center justify-center">
-                        <span className="text-sm">📈</span>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-calm-navy rounded-full flex items-center justify-center overflow-hidden shrink-0">
+                        <span className="text-white text-[10px]">📈</span>
                       </div>
                       <div>
                         <h6 className="font-semibold text-sm text-gray-800">
-                          Mood Trends
+                          Progress Report
                         </h6>
                         <p className="text-xs text-gray-600">
-                          Weekly emotional patterns
+                          +23% improvement this month
                         </p>
                       </div>
                     </div>
@@ -227,16 +249,16 @@ const SolutionSection = () => {
 
                 <div className="absolute -bottom-8 -left-8 transform -rotate-12">
                   <div className="bg-white rounded-xl p-4 shadow-lg border border-calm-light w-44">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <div className="w-8 h-8 bg-calm-navy/20 rounded-full flex items-center justify-center">
-                        <span className="text-sm">🧘</span>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-calm-lavender rounded-full flex items-center justify-center overflow-hidden shrink-0">
+                        <span className="text-white text-[10px]">📋</span>
                       </div>
                       <div>
                         <h6 className="font-semibold text-sm text-gray-800">
-                          Coping Tools
+                          Next Session
                         </h6>
                         <p className="text-xs text-gray-600">
-                          Personalized strategies
+                          Thursday, 2:00 PM
                         </p>
                       </div>
                     </div>
