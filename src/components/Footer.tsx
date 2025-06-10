@@ -5,17 +5,17 @@ const Footer = () => {
     <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-charcoal to-calm-navy text-white relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 right-10 w-20 h-20 bg-calm-lavender/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-10 left-10 w-16 h-16 bg-calm-light/10 rounded-full blur-lg"></div>
+        <div className="absolute top-10 right-10 w-20 h-20 bg-calm-lavender/10 rounded-full blur-xl animate-float-slow"></div>
+        <div className="absolute bottom-10 left-10 w-16 h-16 bg-calm-light/10 rounded-full blur-lg animate-float-delayed"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center animate-fade-in-up">
           <div className="mb-6 md:mb-0">
             <img
               src="/images/logo.png"
               alt="Fluently"
-              className="h-6 w-auto mb-2 brightness-0 invert"
+              className="h-6 w-auto mb-2 brightness-0 invert transition-transform duration-300 hover:scale-105"
             />
             <p className="font-nunito text-sm text-white/80">
               Helping therapy stick—one session at a time.
@@ -25,26 +25,29 @@ const Footer = () => {
           <div className="flex space-x-8">
             <a
               href="#privacy"
-              className="font-nunito text-sm text-white/80 hover:text-white transition-colors duration-200"
+              className="font-nunito text-sm text-white/80 hover:text-white transition-all duration-200 hover:-translate-y-0.5"
             >
               Privacy Policy
             </a>
             <a
               href="#terms"
-              className="font-nunito text-sm text-white/80 hover:text-white transition-colors duration-200"
+              className="font-nunito text-sm text-white/80 hover:text-white transition-all duration-200 hover:-translate-y-0.5"
             >
               Terms
             </a>
             <a
               href="mailto:hello@fluently.app"
-              className="font-nunito text-sm text-white/80 hover:text-white transition-colors duration-200"
+              className="font-nunito text-sm text-white/80 hover:text-white transition-all duration-200 hover:-translate-y-0.5"
             >
               Contact
             </a>
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-8 pt-8 text-center">
+        <div
+          className="border-t border-white/20 mt-8 pt-8 text-center animate-fade-in"
+          style={{ animationDelay: "0.4s" }}
+        >
           <p className="font-nunito text-sm text-white/60">
             © 2025 Fluently. All rights reserved.
           </p>

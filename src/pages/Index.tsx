@@ -1,12 +1,12 @@
-
-import React from 'react';
-import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
-import ProblemSection from '@/components/ProblemSection';
-import SolutionSection from '@/components/SolutionSection';
-import DifferentiationSection from '@/components/DifferentiationSection';
-import CTASection from '@/components/CTASection';
-import Footer from '@/components/Footer';
+import React from "react";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import ProblemSection from "@/components/ProblemSection";
+import SolutionSection from "@/components/SolutionSection";
+import DifferentiationSection from "@/components/DifferentiationSection";
+import CTASection from "@/components/CTASection";
+import Footer from "@/components/Footer";
+import FAQSection from "@/components/FAQSection";
 
 const Index = () => {
   return (
@@ -16,6 +16,7 @@ const Index = () => {
       <ProblemSection />
       <SolutionSection />
       <DifferentiationSection />
+      <FAQSection />
       <CTASection />
       <Footer />
     </div>

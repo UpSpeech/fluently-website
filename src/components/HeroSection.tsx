@@ -31,34 +31,28 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="top-10 relative h-screen px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-light via-white via-calm-lavender/10 to-calm-navy/5 overflow-hidden flex items-center">
+    <section className="top-10 lg:top-0 relative h-screen px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-light via-white via-calm-lavender/10 to-calm-navy/5 overflow-hidden flex items-center">
       {/* Enhanced Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-calm-lavender/20 via-transparent to-calm-navy/15"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-calm-charcoal/5 via-transparent to-calm-lavender/10"></div>
-      <div className="absolute inset-0 bg-gradient-to-bl from-calm-navy/10 via-transparent to-calm-lavender/20"></div>
-      <div className="absolute inset-0 bg-gradient-to-tr from-calm-charcoal/5 via-calm-lavender/5 to-calm-navy/10"></div>
 
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-4 h-4 bg-calm-lavender/40 rounded-full animate-float blur-sm"></div>
         <div
-          className="absolute top-40 right-20 w-6 h-6 bg-calm-navy/30 rounded-full animate-float blur-sm"
+          className="absolute top-40 right-20 w-6 h-6 bg-calm-navy/30 rounded-full animate-float-delayed blur-sm"
           style={{ animationDelay: "1s" }}
         ></div>
         <div
-          className="absolute bottom-20 left-20 w-5 h-5 bg-calm-charcoal/20 rounded-full animate-float blur-sm"
+          className="absolute bottom-20 left-20 w-5 h-5 bg-calm-charcoal/20 rounded-full animate-float-slow"
           style={{ animationDelay: "2s" }}
-        ></div>
-        <div
-          className="absolute top-60 right-40 w-3 h-3 bg-calm-lavender/50 rounded-full animate-float blur-sm"
-          style={{ animationDelay: "3s" }}
         ></div>
         <div
           className="absolute top-32 left-1/3 w-8 h-8 bg-gradient-to-br from-calm-navy/20 to-calm-lavender/30 rounded-full animate-float blur-lg"
           style={{ animationDelay: "1.5s" }}
         ></div>
         <div
-          className="absolute bottom-40 right-1/4 w-12 h-12 bg-gradient-to-tl from-calm-charcoal/10 to-calm-lavender/20 rounded-full animate-float blur-xl"
+          className="absolute bottom-40 right-1/4 w-12 h-12 bg-gradient-to-tl from-calm-charcoal/10 to-calm-lavender/20 rounded-full animate-float-delayed blur-xl"
           style={{ animationDelay: "2.5s" }}
         ></div>
       </div>
