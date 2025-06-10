@@ -24,22 +24,10 @@ const Footer = () => {
 
           <div className="flex space-x-8">
             <a
-              href="#privacy"
+              href="mailto:geral@fluently.pt"
               className="font-nunito text-sm text-white/80 hover:text-white transition-all duration-200 hover:-translate-y-0.5"
             >
-              Privacy Policy
-            </a>
-            <a
-              href="#terms"
-              className="font-nunito text-sm text-white/80 hover:text-white transition-all duration-200 hover:-translate-y-0.5"
-            >
-              Terms
-            </a>
-            <a
-              href="mailto:hello@fluently.app"
-              className="font-nunito text-sm text-white/80 hover:text-white transition-all duration-200 hover:-translate-y-0.5"
-            >
-              Contact
+              Contact us
             </a>
           </div>
         </div>
