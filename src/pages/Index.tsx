@@ -18,8 +18,8 @@ const Index = () => {
       <InterstitialCTA />
       <SolutionSection />
       <DifferentiationSection />
-      <FAQSection />
       <CTASection />
+      <FAQSection />
       <Footer />
     </div>
   );

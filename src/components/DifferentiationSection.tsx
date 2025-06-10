@@ -3,28 +3,53 @@ import React from "react";
 const DifferentiationSection = () => {
   const features = [
     {
-      icon: "🎯",
-      title: "Goal-Based Training",
-      description: "Custom weekly plans by severity and age group",
-      benefit: "More relevant and engaging practice",
+      feature: "Speech Practice Tools",
+      traditional: true,
+      fluently: true,
+      description: "Basic speech exercises and techniques",
+      fluentlyExtra: "AI-powered real-time feedback",
     },
     {
-      icon: "🔁",
-      title: "Therapist-Defined Hierarchies",
-      description: "Structured task difficulty levels",
-      benefit: "Supports generalization over time",
+      feature: "Progress Tracking",
+      traditional: true,
+      fluently: true,
+      description: "Track client progress over time",
+      fluentlyExtra: "ML-driven insights and predictions",
     },
     {
-      icon: "👥",
-      title: "Clinic Dashboards",
-      description: "Aggregated view of all patients",
-      benefit: "Easier management, better outcomes",
+      feature: "Between-Session Support",
+      traditional: true,
+      fluently: true,
+      description: "Phone & email assistance",
+      fluentlyExtra: "24/7 AI coach & coping tools",
     },
     {
-      icon: "🔐",
-      title: "Fully Secure",
-      description: "HIPAA/GDPR-compliant cloud infrastructure",
-      benefit: "Safe for professionals & patients",
+      feature: "Exercise Customization",
+      traditional: false,
+      fluently: true,
+      description: "Personalized difficulty levels",
+      fluentlyExtra: "Dynamic adjustment based on performance",
+    },
+    {
+      feature: "Daily Engagement",
+      traditional: false,
+      fluently: true,
+      description: "Continuous practice reminders",
+      fluentlyExtra: "Gamified micro-progress tracking",
+    },
+    {
+      feature: "Data Analytics",
+      traditional: false,
+      fluently: true,
+      description: "Comprehensive progress analytics",
+      fluentlyExtra: "Predictive success patterns",
+    },
+    {
+      feature: "Client Reporting",
+      traditional: true,
+      fluently: true,
+      description: "Basic progress reports",
+      fluentlyExtra: "Automated detailed insights",
     },
   ];
 
@@ -44,14 +69,15 @@ const DifferentiationSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 animate-fade-in">
-              Why Clinics Choose Fluently Over Worksheets and Apps
+              Give a voice to 80 million people who stutter
             </h2>
             <p className="font-nunito text-xl text-calm-charcoal/80 mb-8">
-              Transform your practice with tools that enhance engagement and
-              improve outcomes.
+              By making speech therapy more efficient, scalable, and impactful
+              for the professionals who deliver it.
             </p>
           </div>
           <div className="relative">
@@ -64,36 +90,183 @@ const DifferentiationSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-calm-light shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-fade-in-up relative overflow-hidden"
-              style={{ animationDelay: `${0.2 + index * 0.2}s` }}
-            >
-              {/* Background gradient blob */}
-              <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-gradient-to-br from-calm-lavender/10 to-calm-navy/5 rounded-full blur-xl transform transition-transform duration-500 group-hover:scale-150"></div>
+        {/* Desktop Layout - Hidden on mobile */}
+        <div className="hidden md:block bg-white/90 backdrop-blur-sm rounded-2xl border border-calm-light shadow-lg overflow-hidden">
+          <div className="grid grid-cols-[2fr,1fr,1fr] border-b border-calm-light">
+            <div className="p-6 font-nunito font-bold text-lg text-calm-charcoal">
+              Features
+            </div>
+            <div className="p-6 font-nunito font-bold text-lg text-calm-charcoal border-l border-calm-light">
+              Traditional Approach
+            </div>
+            <div className="p-6 font-nunito font-bold text-lg text-calm-navy border-l border-calm-light bg-calm-navy/5">
+              Fluently Platform
+            </div>
+          </div>
 
-              <div className="relative z-10">
-                <div className="flex items-center space-x-4 mb-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-calm-lavender/30 to-calm-navy/20 rounded-2xl flex items-center justify-center border border-calm-lavender/40 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                    <span className="text-2xl">{feature.icon}</span>
-                  </div>
-                  <h3 className="font-nunito font-bold text-xl text-calm-charcoal group-hover:text-calm-navy transition-colors duration-300">
-                    {feature.title}
+          <div className="divide-y divide-calm-light">
+            {features.map((item, index) => (
+              <div
+                key={`desktop-${index}`}
+                className="grid grid-cols-[2fr,1fr,1fr] items-center group hover:bg-calm-navy/5 transition-all duration-300"
+              >
+                <div className="p-6">
+                  <h3 className="font-nunito font-bold text-calm-charcoal mb-2">
+                    {item.feature}
                   </h3>
+                  <p className="text-sm text-calm-charcoal/70">
+                    {item.description}
+                  </p>
                 </div>
 
-                <div className="space-y-3">
-                  <p className="font-nunito text-calm-charcoal/80 text-lg">
-                    {feature.description}
-                  </p>
-                  <div className="pt-2">
-                    <div className="inline-flex items-center px-4 py-2 bg-calm-navy/5 rounded-full">
-                      <span className="font-nunito font-semibold text-calm-navy">
-                        {feature.benefit}
-                      </span>
+                {/* Traditional Check */}
+                <div className="p-6 border-l border-calm-light flex items-center justify-center">
+                  {item.traditional ? (
+                    <div className="w-8 h-8 rounded-full bg-calm-lavender flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
                     </div>
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+
+                {/* Fluently Check + Extra Feature */}
+                <div className="p-6 border-l border-calm-light">
+                  <div className="flex items-center mb-2">
+                    <div className="w-8 h-8 overflow-hidden shrink-0 rounded-full bg-calm-lavender flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <span className="ml-3 text-sm text-calm-navy font-medium">
+                      {item.fluentlyExtra}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Layout - Hidden on desktop */}
+        <div className="md:hidden space-y-4">
+          {features.map((item, index) => (
+            <div
+              key={`mobile-${index}`}
+              className="bg-white/90 backdrop-blur-sm rounded-xl border border-calm-light p-5 hover:border-calm-navy/30 transition-all duration-300"
+            >
+              <div className="mb-4">
+                <h3 className="font-nunito font-bold text-lg text-calm-charcoal mb-2">
+                  {item.feature}
+                </h3>
+                <p className="text-sm text-calm-charcoal/70">
+                  {item.description}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-calm-light/30">
+                {/* Traditional */}
+                <div className="space-y-2">
+                  <div className="text-xs font-medium text-calm-charcoal/70">
+                    Traditional Approach
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    {item.traditional ? (
+                      <div className="w-6 h-6 rounded-full bg-calm-lavender flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                    ) : (
+                      <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4 text-gray-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Fluently */}
+                <div className="space-y-2">
+                  <div className="text-xs font-medium text-calm-navy">
+                    Fluently Platform
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <div className="w-6 h-6 shrink-0 rounded-full bg-calm-lavender flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-xs leading-tight text-calm-navy flex-1">
+                      {item.fluentlyExtra}
+                    </span>
                   </div>
                 </div>
               </div>

@@ -19,11 +19,6 @@ const FAQSection = () => {
         "Never. Fluently enhances your impact by reinforcing your work—not replacing it. You remain in complete control of treatment plans and goals while Fluently provides structured practice between sessions.",
     },
     {
-      question: "Is it suitable for both kids and adults?",
-      answer:
-        "Yes. Exercises are tailored by age, condition, and therapy goals. Our platform adapts to different learning styles and communication needs across all age groups.",
-    },
-    {
       question: "How do I know if patients are actually using it?",
       answer:
         "You'll get weekly reports on engagement, completion rates, and improvement markers. Real-time dashboards show exactly when and how your patients are practicing.",
