@@ -11,7 +11,7 @@ const FAQSection = () => {
     {
       question: "Is it hard to set up?",
       answer:
-        "Not at all. You'll be up and running in under 15 minutes—with or without IT support. Our onboarding team provides personalized setup assistance for every clinic.",
+        "Not at all. Our setup process is quick and straightforward, with dedicated support to help you get started in no time.",
     },
     {
       question: "Will Fluently replace my role as a therapist?",
@@ -24,14 +24,19 @@ const FAQSection = () => {
         "You'll get weekly reports on engagement, completion rates, and improvement markers. Real-time dashboards show exactly when and how your patients are practicing.",
     },
     {
-      question: "What about patient privacy and data security?",
-      answer:
-        "We're fully HIPAA and GDPR compliant with enterprise-grade security. All patient data is encrypted and stored securely, with you maintaining complete control over access permissions.",
-    },
-    {
       question: "Can I customize the exercises for my patients?",
       answer:
         "Absolutely. You can create custom exercise plans, adjust difficulty levels, and set specific goals for each patient. Fluently works with your existing therapy methods and protocols.",
+    },
+    {
+      question: "How much does it cost?",
+      answer:
+        "We offer flexible pricing based on your clinic's size and needs. Reach out to get a personalized quote.",
+    },
+    {
+      question: "Is it easy for my patients to use?",
+      answer:
+        "Absolutely. Fluently is designed with simplicity in mind. Patients can access it easily on any device, with a user-friendly interface suitable for all tech levels. We also provide clear guidance and support to help patients get started quickly.",
     },
   ];
 

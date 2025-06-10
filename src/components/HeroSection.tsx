@@ -31,28 +31,28 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="top-10 lg:top-0 relative h-screen px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-light via-white via-calm-lavender/10 to-calm-navy/5 overflow-hidden flex items-center">
+    <section className="relative min-h-[100svh] px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-calm-light via-white via-calm-lavender/10 to-calm-navy/5 overflow-hidden flex items-center py-20 sm:py-32">
       {/* Enhanced Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-calm-lavender/20 via-transparent to-calm-navy/15"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-calm-charcoal/5 via-transparent to-calm-lavender/10"></div>
 
       {/* Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-4 h-4 bg-calm-lavender/40 rounded-full animate-float blur-sm"></div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[10%] left-[5%] w-3 h-3 sm:w-4 sm:h-4 bg-calm-lavender/40 rounded-full animate-float blur-sm"></div>
         <div
-          className="absolute top-40 right-20 w-6 h-6 bg-calm-navy/30 rounded-full animate-float-delayed blur-sm"
+          className="absolute top-[20%] right-[10%] w-4 h-4 sm:w-6 sm:h-6 bg-calm-navy/30 rounded-full animate-float-delayed blur-sm"
           style={{ animationDelay: "1s" }}
         ></div>
         <div
-          className="absolute bottom-20 left-20 w-5 h-5 bg-calm-navy/20 rounded-full animate-float-slow blur-sm"
+          className="absolute bottom-[15%] left-[10%] w-4 h-4 sm:w-5 sm:h-5 bg-calm-navy/20 rounded-full animate-float-slow blur-sm"
           style={{ animationDelay: "2s" }}
         ></div>
         <div
-          className="absolute top-32 left-1/3 w-8 h-8 bg-gradient-to-br from-calm-navy/20 to-calm-lavender/30 rounded-full animate-float blur-lg"
+          className="absolute top-[15%] left-1/3 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-calm-navy/20 to-calm-lavender/30 rounded-full animate-float blur-lg"
           style={{ animationDelay: "1.5s" }}
         ></div>
         <div
-          className="absolute bottom-40 right-1/4 w-12 h-12 bg-gradient-to-tl from-calm-charcoal/10 to-calm-lavender/20 rounded-full animate-float-delayed blur-xl"
+          className="absolute bottom-[20%] right-1/4 w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-tl from-calm-charcoal/10 to-calm-lavender/20 rounded-full animate-float-delayed blur-xl"
           style={{ animationDelay: "2.5s" }}
         ></div>
       </div>
@@ -86,9 +86,9 @@ const HeroSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in">
-            <h1 className="font-nunito font-bold text-4xl sm:text-5xl lg:text-6xl text-calm-charcoal leading-tight mb-6">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+          <div className="animate-fade-in text-center lg:text-left">
+            <h1 className="font-nunito font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-calm-charcoal leading-tight mb-4 sm:mb-6">
               Therapy happens once a week.{" "}
               <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">
                 Practice happens every day{" "}
@@ -96,7 +96,7 @@ const HeroSection = () => {
               — with Fluently.
             </h1>
 
-            <p className="font-nunito text-lg sm:text-xl text-calm-charcoal/70 mb-8 leading-relaxed">
+            <p className="font-nunito text-base sm:text-lg md:text-xl text-calm-charcoal/70 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               With Fluently, clinics empower people who stutter to practice
               smarter, stay engaged, and accelerate real-life improvements.
             </p>
@@ -105,28 +105,28 @@ const HeroSection = () => {
               <Button
                 onClick={scrollToCTA}
                 size="lg"
-                className="bg-calm-lavender hover:from-calm-navy/90 hover:via-calm-lavender/90 hover:to-calm-navy/90 text-white font-nunito font-bold px-8 py-4 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 shadow-md"
+                className="w-full sm:w-auto bg-calm-lavender hover:from-calm-navy/90 hover:via-calm-lavender/90 hover:to-calm-navy/90 text-white font-nunito font-bold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 shadow-md"
               >
                 Join the Waitlist for Early Access
               </Button>
             </div>
           </div>
 
-          <div className="relative animate-fade-in">
+          <div className="relative animate-fade-in mt-8 lg:mt-0">
             {/* Online Status Card */}
-            <div className="absolute -top-4 -right-4 z-20 bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-calm-light p-3 flex items-center space-x-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="font-nunito text-sm font-semibold text-calm-charcoal">
+            <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 z-20 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-calm-light p-2 sm:p-3 flex items-center space-x-2">
+              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="font-nunito text-xs sm:text-sm font-semibold text-calm-charcoal">
                 Online
               </span>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl p-8 border border-calm-light relative overflow-hidden">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8 border border-calm-light relative overflow-hidden mx-auto max-w-md lg:max-w-none">
               {/* Gradient overlay on card */}
               <div className="absolute inset-0 bg-gradient-to-br from-calm-lavender/5 via-transparent to-calm-navy/5 rounded-3xl"></div>
 
               <div className="relative z-10">
-                <div className="bg-gradient-to-br from-calm-lavender/20 to-calm-navy/10 rounded-2xl p-6 mb-6">
+                <div className="bg-gradient-to-br from-calm-lavender/20 to-calm-navy/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-3 h-3 bg-calm-navy rounded-full animate-glow"></div>
                     <div
@@ -159,7 +159,7 @@ const HeroSection = () => {
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   <div className="flex items-center justify-between p-3 bg-gradient-to-r from-calm-lavender/20 to-calm-lavender/10 rounded-2xl border border-calm-lavender/30">
                     <span className="font-nunito text-sm font-medium text-calm-charcoal">
                       Stuttering Modification
@@ -190,7 +190,7 @@ const HeroSection = () => {
       </div>
 
       {/* Vocal Cord Wave Animation at Bottom */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+      <div className="absolute -bottom-1 left-0 w-full overflow-hidden">
         <svg
           className="w-full h-24"
           viewBox="0 0 1200 100"
