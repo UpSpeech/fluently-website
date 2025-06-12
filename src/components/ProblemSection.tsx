@@ -6,16 +6,16 @@ const ProblemSection = () => {
       icon: "🧠", // spinning stars representing confusion/forgetfulness
       title: "Patients forget techniques",
       description:
-        "<strong>Real-life practice is hard</strong> — Without support, structure, or feedback between sessions, clients lose confidence, get emotionally drained and isolated",
+        "<strong>Real-life practice is hard</strong> — Without support, structure, or feedback between sessions, patients lose confidence, get emotionally drained and isolated",
       gradient: "from-calm-navy/20 via-calm-lavender/15 to-calm-navy/5",
       accentColor:
         "border-calm-navy/20 bg-gradient-to-br from-calm-navy/10 to-calm-lavender/10",
     },
     {
       icon: "🔍", // magnifying glass representing limited visibility/insight
-      title: "Limited visibility into what clients do between sessions",
+      title: "Limited visibility into what patients do between sessions",
       description:
-        "Therapists often don't know if or how clients practice, making it hard to adjust treatment",
+        "Therapists often don't know if or how patients practice, making it hard to adjust treatment",
       gradient: "from-calm-lavender/20 via-calm-navy/10 to-calm-lavender/5",
       accentColor:
         "border-calm-lavender/20 bg-gradient-to-br from-calm-lavender/10 to-calm-navy/10",
