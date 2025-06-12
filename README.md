@@ -1,73 +1,107 @@
-# Welcome to your Lovable project
+# Fluently Website
 
-## Project info
+A modern, responsive landing page for Fluently - an AI-powered continuous care solution that helps people who stutter build fluency and confidence, one day at a time.
 
-**URL**: https://lovable.dev/projects/1b2fcacf-f146-4336-bd06-2f3437475992
+## About Fluently
 
-## How can I edit this code?
+Fluently is a revolutionary platform designed to bridge the gap between speech therapy sessions. It provides:
 
-There are several ways of editing your application.
+- **Continuous Support**: Smart, daily training companion that helps patients maintain consistency in their practice
+- **Progress Tracking**: Automated reports and data dashboards for therapists to track patient progress
+- **Real-time Insights**: Visibility into practice consistency and quality between sessions
+- **Personalized Care**: Adaptive practice plans based on patient performance and variability
+- **Enhanced Engagement**: Higher patient motivation through gamification and emotional nudges
+- **Improved Accessibility**: Extending care beyond geographic and economic limits
 
-**Use Lovable**
+## Project Overview
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1b2fcacf-f146-4336-bd06-2f3437475992) and start prompting.
+This landing page was initially developed using Lovable and has been enhanced with custom improvements. It's built with:
 
-Changes made via Lovable will be committed automatically to this repo.
+- React + TypeScript
+- Vite for bundling and development
+- TailwindCSS for styling
+- Shadcn/ui for UI components
+- Bun as the JavaScript runtime
 
-**Use your preferred IDE**
+## Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js (v18 or higher)
+- Bun (latest version)
 
-Follow these steps:
+### Local Development
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. Clone the repository:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+git clone <repository-url>
+cd fluently-website
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+bun install
+```
 
-**Use GitHub Codespaces**
+3. Start the development server:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+bun dev
+```
 
-## What technologies are used for this project?
+The site will be available at `http://localhost:5173`
 
-This project is built with:
+### Building for Production
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+To create a production build:
 
-## How can I deploy this project?
+```bash
+bun run build
+```
 
-Simply open [Lovable](https://lovable.dev/projects/1b2fcacf-f146-4336-bd06-2f3437475992) and click on Share -> Publish.
+The built files will be in the `dist` directory.
 
-## Can I connect a custom domain to my Lovable project?
+To preview the production build locally:
 
-Yes, you can!
+```bash
+bun run preview
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Project Structure
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```
+src/
+├── components/     # React components
+│   ├── ui/        # Shadcn/ui components
+│   └── ...        # Page sections
+├── hooks/         # Custom React hooks
+├── lib/          # Utility functions
+└── pages/        # Page components
+```
+
+### Key Components
+
+- `HeroSection`: Main landing section with interactive elements
+- `ProblemSection`: Highlights key challenges in speech therapy
+- `SolutionSection`: Showcases Fluently's features and benefits
+- `CTASection`: Call-to-action for waitlist registration
+- `DifferentiationSection`: Competitive advantages
+- `FAQSection`: Frequently asked questions
+- `TestimonialsSection`: Social proof and trust indicators
+
+## Compliance and Security
+
+The platform is built with healthcare compliance in mind:
+
+- HIPAA Compliant
+- GDPR Compliant
+- ISO 27001 Certified
+
+## Development Notes
+
+- Use consistent styling with the defined color palette (calm-navy, calm-lavender, calm-charcoal, calm-light)
+- Maintain responsive design across all breakpoints
+- Follow the established component patterns for new additions
+- Ensure accessibility standards are met
