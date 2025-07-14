@@ -15,7 +15,7 @@ const Footer = () => {
             <img
               src="/images/logo.png"
               alt="UpSpeech"
-              className="h-6 w-auto mb-2 brightness-0 invert transition-transform duration-300 hover:scale-105"
+              className="h-12 w-auto mb-2 brightness-0 invert transition-transform duration-300 hover:scale-105"
             />
             <p className="font-nunito text-sm text-white/80">
               Give a voice to 80 million people who stutter

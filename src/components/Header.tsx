@@ -29,7 +29,7 @@ const Header = () => {
             <img
               src="/images/logo.png"
               alt="UpSpeech"
-              className="h-8 w-auto transition-transform duration-300 hover:scale-105"
+              className="h-14 w-auto transition-transform duration-300 hover:scale-105"
             />
           </div>
 
