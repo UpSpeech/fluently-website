@@ -46,10 +46,10 @@ const SolutionSection = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 animate-fade-in">
-            Meet Fluently: Your Smart, Daily Training Companion
+            Meet UpSpeech: Your Smart, Daily Training Companion
           </h2>
           <p className="font-nunito text-xl text-calm-charcoal/80 max-w-4xl mx-auto animate-fade-in">
-            Fluently helps people who stutter build fluency and confidence — one
+            UpSpeech helps people who stutter build fluency and confidence — one
             day at a time.
           </p>
         </div>
@@ -200,7 +200,7 @@ const SolutionSection = () => {
                               <div className="flex items-center space-x-2">
                                 <span className="text-lg">👋</span>
                                 <p className="text-xs text-gray-700">
-                                  Hey, this is your Fluently buddy! Let's
+                                  Hey, this is your UpSpeech buddy! Let's
                                   practice!
                                 </p>
                               </div>

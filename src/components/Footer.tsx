@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="mb-6 md:mb-0 flex flex-col items-center md:items-start space-y-2">
             <img
               src="/images/logo.png"
-              alt="Fluently"
+              alt="UpSpeech"
               className="h-6 w-auto mb-2 brightness-0 invert transition-transform duration-300 hover:scale-105"
             />
             <p className="font-nunito text-sm text-white/80">
@@ -24,7 +24,7 @@ const Footer = () => {
 
           <div className="flex space-x-8">
             <a
-              href="mailto:geral@fluently.pt"
+              href="mailto:geral@upspeech.pt"
               className="hover:underline font-nunito text-sm text-white/80 hover:text-white transition-all duration-200"
             >
               Contact us
@@ -37,7 +37,7 @@ const Footer = () => {
           style={{ animationDelay: "0.4s" }}
         >
           <p className="font-nunito text-sm text-white/60">
-            © 2025 Fluently. All rights reserved.
+            © 2025 UpSpeech. All rights reserved.
           </p>
         </div>
       </div>

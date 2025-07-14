@@ -41,7 +41,7 @@ const CTASection = () => {
 
       if (response.ok) {
         toast({
-          title: "Welcome to the Fluently waitlist!",
+          title: "Welcome to the UpSpeech waitlist!",
           description: "We'll contact you soon with early access details.",
         });
 
@@ -102,7 +102,7 @@ const CTASection = () => {
           style={{ animationDelay: "0.6s" }}
         >
           <h3 className="font-nunito font-bold text-xl text-calm-charcoal mb-6">
-            Request Early Access to Fluently
+            Request Early Access to UpSpeech
           </h3>
 
           <form onSubmit={handleSubmit} className="space-y-4">

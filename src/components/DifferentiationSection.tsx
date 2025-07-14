@@ -5,52 +5,52 @@ const DifferentiationSection = () => {
     {
       feature: "Session Monitoring",
       traditional: true,
-      fluently: true,
+      upspeech: true,
       traditionalExtra: "No visibility into what happens between sessions",
-      fluentlyExtra: "Real-time insights into practice consistency and quality",
+      upspeechExtra: "Real-time insights into practice consistency and quality",
     },
     {
       feature: "Patient Communication",
       traditional: true,
-      fluently: true,
+      upspeech: true,
       traditionalExtra:
         "Follow-ups through scattered WhatsApp messages or emails",
-      fluentlyExtra: "Centralized feedback loop with tracked patient progress",
+      upspeechExtra: "Centralized feedback loop with tracked patient progress",
     },
     {
       feature: "Progress Tracking",
       traditional: true,
-      fluently: true,
+      upspeech: true,
       traditionalExtra:
         "Hours spent writing reports and tracking progress manually",
-      fluentlyExtra:
+      upspeechExtra:
         "Auto-generated reports, trend tracking, and data dashboards",
     },
     {
       feature: "Personalized Guidance",
       traditional: false,
-      fluently: true,
+      upspeech: true,
       traditionalExtra:
         "Limited capacity to personalize outside-session guidance",
-      fluentlyExtra:
+      upspeechExtra:
         "Adaptive practice plans based on patient performance and variability",
     },
     {
       feature: "Patient Engagement",
       traditional: false,
-      fluently: true,
+      upspeech: true,
       traditionalExtra:
         "Low engagement and high patient frustration between sessions",
-      fluentlyExtra:
+      upspeechExtra:
         "Higher motivation through gamification and emotional nudges",
     },
     {
       feature: "Accessibility",
       traditional: false,
-      fluently: true,
+      upspeech: true,
       traditionalExtra:
         "Therapy only accessible in large cities or expensive private clinics",
-      fluentlyExtra: "Extend care beyond geographic and economic limits",
+      upspeechExtra: "Extend care beyond geographic and economic limits",
     },
   ];
 
@@ -104,7 +104,7 @@ const DifferentiationSection = () => {
               Traditional Approach
             </div>
             <div className="p-6 font-nunito font-bold text-lg text-white border-l border-calm-light bg-calm-lavender">
-              Fluently Platform
+              UpSpeech Platform
             </div>
           </div>
 
@@ -162,7 +162,7 @@ const DifferentiationSection = () => {
                   </div>
                 </div>
 
-                {/* Fluently Check + Extra Feature */}
+                {/* UpSpeech Check + Extra Feature */}
                 <div className="p-6 border-l border-calm-light bg-calm-lavender/10">
                   <div className="flex items-center mb-2">
                     <div className="w-8 h-8 overflow-hidden shrink-0 rounded-full bg-calm-lavender flex items-center justify-center">
@@ -181,7 +181,7 @@ const DifferentiationSection = () => {
                       </svg>
                     </div>
                     <span className="ml-3 text-sm text-calm-navy font-medium">
-                      {item.fluentlyExtra}
+                      {item.upspeechExtra}
                     </span>
                   </div>
                 </div>
@@ -251,10 +251,10 @@ const DifferentiationSection = () => {
                   </div>
                 </div>
 
-                {/* Fluently */}
+                {/* UpSpeech */}
                 <div className="space-y-2">
                   <div className="text-xs font-medium text-calm-navy">
-                    Fluently Platform
+                    UpSpeech Platform
                   </div>
                   <div className="flex flex-col space-y-2">
                     <div className="flex items-center space-x-2">
@@ -275,7 +275,7 @@ const DifferentiationSection = () => {
                       </div>
                     </div>
                     <span className="text-xs leading-tight text-calm-navy">
-                      {item.fluentlyExtra}
+                      {item.upspeechExtra}
                     </span>
                   </div>
                 </div>

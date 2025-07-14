@@ -1,6 +1,6 @@
 {
-  "name": "Fluently - AI Speech Therapy",
-  "short_name": "Fluently",
+  "name": "UpSpeech - AI Speech Therapy",
+  "short_name": "UpSpeech",
   "description": "AI-powered speech therapy platform for personalized practice and real-time feedback",
   "start_url": "/",
   "display": "standalone",

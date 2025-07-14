@@ -1,10 +1,10 @@
-# Fluently Website
+# UpSpeech Website
 
-A modern, responsive landing page for Fluently - an AI-powered continuous care solution that helps people who stutter build fluency and confidence, one day at a time.
+A modern, responsive landing page for UpSpeech - an AI-powered continuous care solution that helps people who stutter build fluency and confidence, one day at a time.
 
-## About Fluently
+## About UpSpeech
 
-Fluently is a revolutionary platform designed to bridge the gap between speech therapy sessions. It provides:
+UpSpeech is a revolutionary platform designed to bridge the gap between speech therapy sessions. It provides:
 
 - **Continuous Support**: Smart, daily training companion that helps patients maintain consistency in their practice
 - **Progress Tracking**: Automated reports and data dashboards for therapists to track patient progress
@@ -36,7 +36,7 @@ This landing page was initially developed using Lovable and has been enhanced wi
 
 ```bash
 git clone <repository-url>
-cd fluently-website
+cd upspeech-website
 ```
 
 2. Install dependencies:
@@ -85,7 +85,7 @@ src/
 
 - `HeroSection`: Main landing section with interactive elements
 - `ProblemSection`: Highlights key challenges in speech therapy
-- `SolutionSection`: Showcases Fluently's features and benefits
+- `SolutionSection`: Showcases UpSpeech's features and benefits
 - `CTASection`: Call-to-action for waitlist registration
 - `DifferentiationSection`: Competitive advantages
 - `FAQSection`: Frequently asked questions

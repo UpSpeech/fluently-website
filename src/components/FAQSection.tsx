@@ -14,9 +14,9 @@ const FAQSection = () => {
         "Not at all. Our setup process is quick and straightforward, with dedicated support to help you get started in no time.",
     },
     {
-      question: "Will Fluently replace my role as a therapist?",
+      question: "Will UpSpeech replace my role as a therapist?",
       answer:
-        "Never. Fluently enhances your impact by reinforcing your work—not replacing it. You remain in complete control of treatment plans and goals while Fluently provides structured practice between sessions.",
+        "Never. UpSpeech enhances your impact by reinforcing your work—not replacing it. You remain in complete control of treatment plans and goals while UpSpeech provides structured practice between sessions.",
     },
     {
       question: "How do I know if patients are actually using it?",
@@ -26,7 +26,7 @@ const FAQSection = () => {
     {
       question: "Can I customize the exercises for my patients?",
       answer:
-        "Absolutely. You can create custom exercise plans, adjust difficulty levels, and set specific goals for each patient. Fluently works with your existing therapy methods and protocols.",
+        "Absolutely. You can create custom exercise plans, adjust difficulty levels, and set specific goals for each patient. UpSpeech works with your existing therapy methods and protocols.",
     },
     {
       question: "How much does it cost?",
@@ -36,7 +36,7 @@ const FAQSection = () => {
     {
       question: "Is it easy for my patients to use?",
       answer:
-        "Absolutely. Fluently is designed with simplicity in mind. Patients can access it easily on any device, with a user-friendly interface suitable for all tech levels. We also provide clear guidance and support to help patients get started quickly.",
+        "Absolutely. UpSpeech is designed with simplicity in mind. Patients can access it easily on any device, with a user-friendly interface suitable for all tech levels. We also provide clear guidance and support to help patients get started quickly.",
     },
   ];
 

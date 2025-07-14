@@ -93,11 +93,11 @@ const HeroSection = () => {
               <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">
                 Practice happens every day{" "}
               </span>
-              — with Fluently.
+              — with UpSpeech.
             </h1>
 
             <p className="font-nunito text-base sm:text-lg md:text-xl text-calm-charcoal/70 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              With Fluently, clinics empower people who stutter to practice
+              With UpSpeech, clinics empower people who stutter to practice
               smarter, stay engaged, and accelerate real-life improvements.
             </p>
 

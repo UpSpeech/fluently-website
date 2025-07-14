@@ -23,7 +23,7 @@ const TestimonialsSection = () => {
               </div>
               <div>
                 <blockquote className="font-nunito text-lg text-secondary mb-4 italic">
-                  "Fluently keeps my adult patients engaged between sessions.
+                  "UpSpeech keeps my adult patients engaged between sessions.
                   It's like having a co-therapist."
                 </blockquote>
                 <div>
@@ -51,7 +51,7 @@ const TestimonialsSection = () => {
               <div>
                 <blockquote className="font-nunito text-lg text-secondary mb-4 italic">
                   "We saw higher carry-over and less regression within 2 weeks
-                  of trying Fluently."
+                  of trying UpSpeech."
                 </blockquote>
                 <div>
                   <div className="font-nunito font-semibold text-secondary">
