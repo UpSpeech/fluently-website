@@ -10,6 +10,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
+import { EMAILJS_CONFIG, EmailTemplateParams } from "@/lib/emailjs";
 
 const CTASection = () => {
   const [formData, setFormData] = useState({
@@ -18,20 +20,48 @@ const CTASection = () => {
     role: "",
     clinicSize: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const sendAutoReplyEmail = async (userData: typeof formData) => {
+    try {
+      const templateParams: EmailTemplateParams = {
+        to_name: userData.name,
+        to_email: userData.email,
+        user_role: userData.role,
+        clinic_size: userData.clinicSize || "Not specified",
+        reply_to: "hello@upspeech.com", // Replace with your email
+      };
+
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      console.log("Auto-reply email sent successfully");
+    } catch (error) {
+      console.error("Failed to send auto-reply email:", error);
+      // Don't throw error here - we don't want to fail the whole submission if email fails
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     if (!formData.name || !formData.email || !formData.role) {
       toast({
         title: "Please fill in all required fields",
         variant: "destructive",
       });
+      setIsSubmitting(false);
       return;
     }
 
     try {
-      const response = await fetch("https://formspree.io/f/mpwrpely", {
+      // Submit to Formspree for your records
+      const formspreeResponse = await fetch("https://formspree.io/f/mpwrpely", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,10 +69,13 @@ const CTASection = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+      if (formspreeResponse.ok) {
+        // Send auto-reply email via EmailJS
+        await sendAutoReplyEmail(formData);
+
         toast({
           title: "Welcome to the UpSpeech waitlist!",
-          description: "We'll contact you soon with early access details.",
+          description: "Check your email for a confirmation message.",
         });
 
         // Reset form
@@ -56,11 +89,14 @@ const CTASection = () => {
         throw new Error("Form submission failed");
       }
     } catch (error) {
+      console.error("Submission error:", error);
       toast({
         title: "Something went wrong",
         description: "Please try again later.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -221,9 +257,10 @@ const CTASection = () => {
 
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-calm-navy to-calm-lavender hover:from-calm-navy/90 hover:to-calm-lavender/90 text-white font-nunito font-bold py-3 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 mt-6"
+              disabled={isSubmitting}
+              className="w-full bg-gradient-to-r from-calm-navy to-calm-lavender hover:from-calm-navy/90 hover:to-calm-lavender/90 text-white font-nunito font-bold py-3 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 mt-6 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
-              Join the Waitlist
+              {isSubmitting ? "Joining Waitlist..." : "Join the Waitlist"}
             </Button>
           </form>
         </div>
