@@ -8,6 +8,7 @@ import DifferentiationSection from "@/components/DifferentiationSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
+import GuidingVoicesBanner from "@/components/GuidingVoicesBanner";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       <ProblemSection />
       <InterstitialCTA />
       <SolutionSection />
+      <GuidingVoicesBanner />
       <DifferentiationSection />
       <CTASection />
       {/* <FAQSection /> */}
