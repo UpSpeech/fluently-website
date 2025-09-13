@@ -77,7 +77,9 @@ const DifferentiationSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 animate-fade-in">
-              Give a voice to 80 million people who stutter
+              We're not replacing therapy.
+              <br />
+              We're supercharging it.
             </h2>
             <p className="font-nunito text-xl text-calm-charcoal/80 mb-8">
               By making speech therapy more efficient, scalable, and impactful

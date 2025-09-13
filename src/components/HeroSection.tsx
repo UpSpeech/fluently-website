@@ -89,7 +89,7 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div className="animate-fade-in text-center lg:text-left">
             <h1 className="font-nunito font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-calm-charcoal leading-tight mb-4 sm:mb-6">
-              Therapy happens once a week.{" "}
+              Speech Therapy happens once a week.{" "}
               <span className="text-transparent bg-gradient-to-r from-calm-navy via-calm-lavender to-calm-navy bg-clip-text">
                 Practice happens every day{" "}
               </span>

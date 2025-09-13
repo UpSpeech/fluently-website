@@ -1,10 +1,27 @@
 // EmailJS Configuration
 // Replace these with your actual EmailJS credentials
 
+// NOTE:
+// In a Vite (browser) environment you must use import.meta.env, not process.env.
+// process is undefined in the client bundle unless you polyfill it, which causes
+// the runtime error you observed.
+
+// Augment the existing Vite env type without redefining core fields
+interface ExtendedImportMetaEnv extends ImportMetaEnv {
+  VITE_EMAILJS_SERVICE_ID?: string;
+  VITE_EMAILJS_TEMPLATE_ID?: string;
+  VITE_EMAILJS_PUBLIC_KEY?: string;
+}
+interface ExtendedImportMeta extends ImportMeta {
+  readonly env: ExtendedImportMetaEnv;
+}
+
+const env = (import.meta as ExtendedImportMeta).env;
+
 export const EMAILJS_CONFIG = {
-  SERVICE_ID: process.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
-  TEMPLATE_ID: process.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
-  PUBLIC_KEY: process.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
+  SERVICE_ID: env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
+  TEMPLATE_ID: env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
+  PUBLIC_KEY: env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
 };
 
 // Email template parameters interface

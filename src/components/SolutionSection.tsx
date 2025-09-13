@@ -48,10 +48,6 @@ const SolutionSection = () => {
           <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 animate-fade-in">
             Meet UpSpeech: Your Smart, Daily Training Companion
           </h2>
-          <p className="font-nunito text-xl text-calm-charcoal/80 max-w-4xl mx-auto animate-fade-in">
-            UpSpeech helps people who stutter build fluency and confidence — one
-            day at a time.
-          </p>
         </div>
 
         {/* Features Grid */}
@@ -84,7 +80,7 @@ const SolutionSection = () => {
             {
               icon: "💬",
               title: "Built-in Emotional Tools",
-              description: "Coping strategies for frustration and setbacks",
+              description: "Coping strategies for anxiety and setbacks",
               benefit: "→ Keep patients engaged and motivated",
               gradient: "from-calm-lavender to-calm-navy",
               delay: "0.6s",
@@ -127,7 +123,9 @@ const SolutionSection = () => {
             {/* Left side content */}
             <div className="animate-fade-in" style={{ animationDelay: "1s" }}>
               <h3 className="font-nunito font-bold text-2xl text-calm-charcoal mb-6">
-                Designed with Therapists. Built for Real Life.
+                Designed with Therapists,
+                <br />
+                Built for Clinics, Loved by Patients.
               </h3>
               <p className="font-nunito text-lg text-calm-charcoal/80 mb-8">
                 We work alongside therapists to provide structured plans,
@@ -138,7 +136,7 @@ const SolutionSection = () => {
                 {[
                   "Assign custom plans in minutes",
                   "Track practice consistency and difficulty",
-                  "Reports compliant with ICD-11 and DSM-5-TR",
+                  "HIPAA-compliant reports after every session",
                   "Motivate patients with daily micro-successes",
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-4">

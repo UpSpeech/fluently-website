@@ -4,9 +4,9 @@ const ProblemSection = () => {
   const problems = [
     {
       icon: "🧠", // spinning stars representing confusion/forgetfulness
-      title: "Patients forget techniques",
+      title: "Real-life practice is hard",
       description:
-        "<strong>Real-life practice is hard</strong> — Without support, structure, or feedback between sessions, patients lose confidence, get emotionally drained and isolated",
+        "Without support, structure, or feedback between sessions, patients lose confidence, get emotionally drained and isolated",
       gradient: "from-calm-navy/20 via-calm-lavender/15 to-calm-navy/5",
       accentColor:
         "border-calm-navy/20 bg-gradient-to-br from-calm-navy/10 to-calm-lavender/10",

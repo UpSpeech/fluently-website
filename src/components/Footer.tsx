@@ -13,18 +13,26 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-center md:justify-between items-center animate-fade-in-up">
           <div className="mb-6 md:mb-0 flex flex-col items-center md:items-start space-y-2">
             <img
-              src="/images/logo.png"
+              src="/images/logo-invert.svg"
               alt="UpSpeech"
-              className="h-12 w-auto mb-2 brightness-0 invert transition-transform duration-300 hover:scale-105"
+              className="h-12 w-auto mb-2 transition-transform duration-300 hover:scale-105"
             />
             <p className="font-nunito text-sm text-white/80">
-              Give a voice to 80 million people who stutter
+              Guiding voices with care and tech
             </p>
           </div>
 
           <div className="flex space-x-8">
             <a
-              href="mailto:geral@upspeech.pt"
+              href="https://linkedin.com/company/upspeech" // TODO: Update with actual URL
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline font-nunito text-sm text-white/80 hover:text-white transition-all duration-200"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:upspeechapp@gmail.com"
               className="hover:underline font-nunito text-sm text-white/80 hover:text-white transition-all duration-200"
             >
               Contact us
