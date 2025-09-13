@@ -22,8 +22,43 @@ const CTASection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Initialize EmailJS
+  React.useEffect(() => {
+    // Initialize EmailJS with public key
+    if (
+      EMAILJS_CONFIG.PUBLIC_KEY &&
+      EMAILJS_CONFIG.PUBLIC_KEY !== "YOUR_PUBLIC_KEY"
+    ) {
+      emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+    } else {
+      console.warn(
+        "EmailJS public key not configured or using default placeholder"
+      );
+    }
+  }, []);
+
   const sendAutoReplyEmail = async (userData: typeof formData) => {
     try {
+      // Validate EmailJS configuration
+      if (
+        !EMAILJS_CONFIG.SERVICE_ID ||
+        EMAILJS_CONFIG.SERVICE_ID === "YOUR_SERVICE_ID"
+      ) {
+        throw new Error("EmailJS Service ID not configured");
+      }
+      if (
+        !EMAILJS_CONFIG.TEMPLATE_ID ||
+        EMAILJS_CONFIG.TEMPLATE_ID === "YOUR_TEMPLATE_ID"
+      ) {
+        throw new Error("EmailJS Template ID not configured");
+      }
+      if (
+        !EMAILJS_CONFIG.PUBLIC_KEY ||
+        EMAILJS_CONFIG.PUBLIC_KEY === "YOUR_PUBLIC_KEY"
+      ) {
+        throw new Error("EmailJS Public Key not configured");
+      }
+
       const templateParams: EmailTemplateParams = {
         to_name: userData.name,
         to_email: userData.email,
@@ -35,17 +70,14 @@ const CTASection = () => {
         reply_to: "upspeechapp@gmail.com",
       };
 
-      await emailjs.send(
+      const response = await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
         templateParams,
         EMAILJS_CONFIG.PUBLIC_KEY
       );
-
-      console.log("Auto-reply email sent successfully");
     } catch (error) {
       console.error("Failed to send auto-reply email:", error);
-      // Don't throw error here - we don't want to fail the whole submission if email fails
     }
   };
 
@@ -73,29 +105,45 @@ const CTASection = () => {
       });
 
       if (formspreeResponse.ok) {
-        // Send auto-reply email via EmailJS
-        await sendAutoReplyEmail(formData);
-
-        toast({
-          title: "Welcome to the UpSpeech waitlist!",
-          description: "Check your email for a confirmation message.",
-        });
-
-        // Reset form
+        // Reset form first (so user knows submission was successful)
         setFormData({
           name: "",
           email: "",
           role: "",
           clinicSize: "",
         });
+
+        // Try to send auto-reply email via EmailJS
+        // This is non-blocking, so if it fails, the user still gets registered
+        await sendAutoReplyEmail(formData);
+
+        toast({
+          title: "Welcome to the UpSpeech waitlist!",
+          description:
+            "You've been successfully registered. Check your email for a confirmation message.",
+        });
       } else {
-        throw new Error("Form submission failed");
+        const errorText = await formspreeResponse.text();
+        console.error("Formspree error:", errorText);
+        throw new Error(`Form submission failed: ${formspreeResponse.status}`);
       }
     } catch (error) {
       console.error("Submission error:", error);
+
+      let errorMessage = "Please try again later.";
+      if (error instanceof Error) {
+        if (error.message.includes("fetch")) {
+          errorMessage =
+            "Network error. Please check your connection and try again.";
+        } else if (error.message.includes("Form submission failed")) {
+          errorMessage =
+            "There was an issue with the form submission. Please try again.";
+        }
+      }
+
       toast({
         title: "Something went wrong",
-        description: "Please try again later.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {

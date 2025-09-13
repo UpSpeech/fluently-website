@@ -30,5 +30,8 @@ export interface EmailTemplateParams extends Record<string, unknown> {
   to_email: string;
   user_role: string;
   clinic_size: string;
+  linkedin_url?: string;
+  logo_url?: string;
+  referral_link?: string;
   reply_to: string;
 }
