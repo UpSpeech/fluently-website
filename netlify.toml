@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Configure secrets scanning to ignore EmailJS environment variables
+  # These are public keys meant to be exposed in the client-side bundle
+  # The actual values are set in Netlify UI under Environment Variables
+  SECRETS_SCAN_OMIT_KEYS = "VITE_EMAILJS_SERVICE_ID,VITE_EMAILJS_TEMPLATE_ID,VITE_EMAILJS_PUBLIC_KEY"
