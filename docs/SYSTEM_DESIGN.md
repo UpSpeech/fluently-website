@@ -1,4 +1,4 @@
-# Fluently System Design
+# UpSpeech System Design
 
 Version: 0.3 (Consolidated)  
 Last Updated: 2025-09-12
@@ -22,7 +22,7 @@ flowchart LR
     QUEUE[Solid Queue Jobs]
   end
 
-  subgraph PythonService[Fluently-AI Service]
+  subgraph PythonService[UpSpeech-AI Service]
     FASTAPI[FastAPI Endpoint]
     GROQ[Groq/Azure OpenAI]
   end
@@ -49,7 +49,7 @@ flowchart LR
 | --------------------------------- | ------------------------------------------ | ------------------------------------------------------------------ |
 | Web Frontend (Vite/React)         | User interaction layer                     | Deployed as static assets + edge CDN (Railway static or similar).  |
 | Rails API (API-only)              | Web app orchestration, auth, multi-tenancy | Handles uploads, job queuing, data persistence, user management.   |
-| Fluently-AI Service (FastAPI)     | Audio processing & AI transcription        | Python service with Groq integration, audio chunking, report gen.  |
+| UpSpeech-AI Service (FastAPI)     | Audio processing & AI transcription        | Python service with Groq integration, audio chunking, report gen.  |
 | Postgres                          | Primary relational store + job queue       | Single shared DB; `tenant_id` column on multi-tenant tables.       |
 | Solid Queue                       | Background job processing (Rails 8 native) | Orchestrates calls to FastAPI service, handles retries & failures. |
 | Object Storage (Optional Phase 2) | Audio blobs, reports, datasets             | Start with local disk in dev; add S3/MinIO later.                  |
@@ -66,7 +66,7 @@ sequenceDiagram
   participant A as Rails API
   participant Q as Job Queue (Solid Queue)
   participant W as Rails Worker
-  participant AI as FastAPI (Fluently-AI)
+  participant AI as FastAPI (UpSpeech-AI)
   participant G as Groq/Azure OpenAI
   participant P as Postgres
 
@@ -114,7 +114,7 @@ See `MULTI_TENANCY.md` for detail.
 ## 6. Background Processing
 
 **Rails Orchestrator**: Solid Queue manages job lifecycle, retries, and failure handling.  
-**Python Worker**: FastAPI service (`fluently-ai`) handles CPU-intensive AI processing.  
+**Python Worker**: FastAPI service (`upspeech-ai`) handles CPU-intensive AI processing.  
 **Integration**: Rails jobs make HTTP requests to FastAPI `/generate-report/` endpoint.  
 **Queues**: `critical`, `default`, `low` - dashboard at `/admin/solid_queue`.  
 **Fault Tolerance**: Rails handles retries, timeouts, and fallback behavior.
@@ -151,7 +151,7 @@ Abstraction: `StorageProvider` interface -> `LocalDiskStorage` then S3/MinIO.
 | ---------------------- | -------------------------------------------------------- |
 | JWT_SECRET             | HMAC signing key (rotate via versioning)                 |
 | DATABASE_URL           | Postgres connection                                      |
-| FLUENTLY_AI_URL        | FastAPI service endpoint (e.g., http://fluently-ai:8081) |
+| UPSPEECH_AI_URL        | FastAPI service endpoint (e.g., http://upspeech-ai:8081) |
 | GROQ_API_KEY           | Groq API key for transcription service                   |
 | AZURE_OPENAI_KEY       | Azure OpenAI key (alternative to Groq)                   |
 | ACTIVE_STORAGE_SERVICE | local (dev) / s3 (later)                                 |
