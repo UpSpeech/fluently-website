@@ -1,7 +1,7 @@
 # Jobs & Processing Decision
 
-Status: Draft v0.1  
-Decision: Use Sidekiq (with Redis) for background processing in Phase 1.
+Status: Draft v0.2  
+Decision: Use Solid Queue (Rails 8 native) for background processing in Phase 1.
 
 ## 1. Requirements
 
@@ -47,24 +47,27 @@ Cons:
 
 ## 3. Decision Rationale
 
-Chose Sidekiq because:
+Chose Solid Queue because:
 
-- We already plan to use Redis for caching / rate limiting.
-- Anticipated audio + AI workloads benefit from high concurrency & thread efficiency.
-- Better ecosystem for uniqueness, throttling, distributed execution.
-- Migration path (if ever needed) still feasible; job interface simple (`perform_async`).
+- Rails 8 native solution (no Redis dependency for MVP).
+- Simpler operations: one database instead of DB + Redis.
+- Railway deployment easier with fewer add-ons.
+- Built-in dashboard and monitoring.
+- Can migrate to Sidekiq later if high-concurrency needs arise.
+- Good performance for initial audio processing workloads.
 
 ## 4. Implementation Outline
 
-1. Add `sidekiq` gem + initializer.
-2. Configure queues: `critical`, `default`, `low`.
-3. Mount Sidekiq Web UI at `/admin/sidekiq` (protected).
+1. Use Rails 8's built-in Solid Queue (already installed via `rails new`).
+2. Configure queues in `config/queue.yml`: `critical`, `default`, `low`.
+3. Access dashboard at `/admin/solid_queue` (protected).
 4. Worker pattern:
 
 ```ruby
-class TranscriptionJob
-  include Sidekiq::Job
-  sidekiq_options queue: :default, retry: 5
+class TranscriptionJob < ApplicationJob
+  queue_as :default
+  retry_on StandardError, wait: :exponentially_longer, attempts: 5
+
   def perform(audio_recording_id)
     TenantContext.with(audio_recording_id) do
       # fetch, process, store results
@@ -73,8 +76,8 @@ class TranscriptionJob
 end
 ```
 
-5. Idempotency: store fingerprint (audio_recording_id + version) to skip duplicates.
-6. Add middleware to inject `tenant_id` into logs + metrics.
+5. Idempotency: use `perform_unique_by` or job argument deduplication.
+6. Add `tenant_id` to job metadata for filtering and metrics.
 
 ## 5. Future Enhancements
 
@@ -86,10 +89,12 @@ end
 | Distributed tracing        | OpenTelemetry instrumentation.                 |
 | Priority routing           | Separate concurrency settings per queue.       |
 
-## 6. Migration Considerations (If Switching Later)
+## 6. Migration Considerations (If Switching to Sidekiq Later)
 
-- Keep workers thin; domain services perform logic.
-- Abstract enqueueing behind `JobBus.enqueue(job_class, *args)` → adapter (Sidekiq now, alternate later).
+- Keep jobs thin; domain services perform logic.
+- Job interface similar: `SomeJob.perform_later(id)` works with both.
+- If switching: add Redis, change `queue_adapter` config, update retry syntax.
+- Abstract complex enqueueing behind service objects if needed.
 
 ## 7. Metrics (Planned)
 
@@ -105,4 +110,4 @@ end
 
 ## 9. Summary
 
-Sidekiq aligns with performance + ecosystem needs; Redis cost is justified. Adapter pattern keeps door open for future alternatives.
+Solid Queue provides Rails-native background processing with minimal operational complexity. Perfect for MVP; migration path to Sidekiq available when high-performance needs arise.

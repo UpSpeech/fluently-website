@@ -33,17 +33,16 @@ flowchart LR
 
 ### Components
 
-| Component                         | Purpose                                          | Notes                                                                |
-| --------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------- |
-| Web Frontend (Vite/React)         | User interaction layer                           | Deployed as static assets + edge CDN (Railway static or similar).    |
-| Rails API (API-only)              | Core business logic & data access                | Provides REST+JSON (GraphQL optional later).                         |
-| Postgres                          | Primary relational store                         | Single shared DB; `tenant_id` column on multi-tenant tables.         |
-| Redis                             | Caching + background job queue backend (Sidekiq) | Session store not required if pure JWT; optional rate limiting.      |
-| Sidekiq Workers                   | Async processing                                 | Long-running tasks: transcription, report generation, notifications. |
-| Object Storage (Optional Phase 2) | Audio blobs, reports, datasets                   | Start with local disk in dev; add S3/MinIO later.                    |
-| Mail (SMTP / Mailer Service)      | Transactional email                              | Mailcatcher in dev.                                                  |
-| Observability Stack               | Logging, metrics, tracing                        | Phase 1: Rails + structured logs; Phase 2: OpenTelemetry exporter.   |
-| Feature Flags (Future)            | Progressive delivery                             | LaunchDarkly / Flipper optional.                                     |
+| Component                         | Purpose                                    | Notes                                                                      |
+| --------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------- |
+| Web Frontend (Vite/React)         | User interaction layer                     | Deployed as static assets + edge CDN (Railway static or similar).          |
+| Rails API (API-only)              | Core business logic & data access          | Provides REST+JSON (GraphQL optional later).                               |
+| Postgres                          | Primary relational store + job queue       | Single shared DB; `tenant_id` column on multi-tenant tables.               |
+| Solid Queue                       | Background job processing (Rails 8 native) | Uses Postgres; queues for transcription, report generation, notifications. |
+| Object Storage (Optional Phase 2) | Audio blobs, reports, datasets             | Start with local disk in dev; add S3/MinIO later.                          |
+| Mail (SMTP / Mailer Service)      | Transactional email                        | Mailcatcher in dev.                                                        |
+| Observability Stack               | Logging, metrics, tracing                  | Phase 1: Rails + structured logs; Phase 2: OpenTelemetry exporter.         |
+| Feature Flags (Future)            | Progressive delivery                       | LaunchDarkly / Flipper optional.                                           |
 
 ## 3. Audio Processing Sequence (Current Feature Focus)
 
@@ -104,14 +103,14 @@ See `MULTI_TENANCY.md` for detail.
 
 ## 6. Background Processing
 
-Sidekiq (see `JOBS_AND_PROCESSING.md`). Queues: `critical`, `default`, `low`.
-Use exponential retry w/ jitter; dead letter inspection via Sidekiq Web UI.
-Idempotency key pattern: ULID tied to logical operation (e.g., audio_recording_id + pipeline version).
+Solid Queue (Rails 8 native, see `JOBS_AND_PROCESSING.md`). Queues: `critical`, `default`, `low`.
+Use built-in exponential retry; dashboard at `/admin/solid_queue`.
+Idempotency via job arguments or `perform_unique_by` (audio_recording_id + pipeline version).
 
 ## 7. Caching & Performance
 
 - HTTP: ETag + Last-Modified where safe.
-- Redis: transient aggregates, rate limits, job dedupe keys.
+- Rails cache: use Solid Cache (Postgres-backed) for transient aggregates.
 - DB: Use composite indexes `(tenant_id, created_at)` on high-volume tables.
 - Future: Add read replica before sharding.
 
