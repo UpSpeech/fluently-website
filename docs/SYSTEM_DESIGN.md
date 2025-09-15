@@ -17,12 +17,24 @@ flowchart LR
     UI[React/Vite SPA]
   end
 
-  UI -->|HTTPS JSON (JWT)| API[Rails API]
+  subgraph RailsApp[Rails Backend]
+    API[Rails API]
+    QUEUE[Solid Queue Jobs]
+  end
+
+  subgraph PythonService[Fluently-AI Service]
+    FASTAPI[FastAPI Endpoint]
+    GROQ[Groq/Azure OpenAI]
+  end
+
+  UI -->|HTTPS JSON (JWT)| API
   API --> DB[(Postgres)]
-  API --> CACHE[(Redis)]
-  API --> QUEUE[[Sidekiq Jobs]]
-  QUEUE --> CACHE
-  QUEUE --> DB
+  API -->|Enqueue Job| QUEUE
+  QUEUE -->|HTTP + Audio File| FASTAPI
+  FASTAPI -->|Chunks & Transcribes| GROQ
+  FASTAPI -->|Returns Report JSON| QUEUE
+  QUEUE -->|Updates DB| DB
+
   subgraph OptionalPhase2
     STORE[(Object Storage S3/MinIO)]
   end
@@ -33,16 +45,17 @@ flowchart LR
 
 ### Components
 
-| Component                         | Purpose                                    | Notes                                                                      |
-| --------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------- |
-| Web Frontend (Vite/React)         | User interaction layer                     | Deployed as static assets + edge CDN (Railway static or similar).          |
-| Rails API (API-only)              | Core business logic & data access          | Provides REST+JSON (GraphQL optional later).                               |
-| Postgres                          | Primary relational store + job queue       | Single shared DB; `tenant_id` column on multi-tenant tables.               |
-| Solid Queue                       | Background job processing (Rails 8 native) | Uses Postgres; queues for transcription, report generation, notifications. |
-| Object Storage (Optional Phase 2) | Audio blobs, reports, datasets             | Start with local disk in dev; add S3/MinIO later.                          |
-| Mail (SMTP / Mailer Service)      | Transactional email                        | Mailcatcher in dev.                                                        |
-| Observability Stack               | Logging, metrics, tracing                  | Phase 1: Rails + structured logs; Phase 2: OpenTelemetry exporter.         |
-| Feature Flags (Future)            | Progressive delivery                       | LaunchDarkly / Flipper optional.                                           |
+| Component                         | Purpose                                    | Notes                                                              |
+| --------------------------------- | ------------------------------------------ | ------------------------------------------------------------------ |
+| Web Frontend (Vite/React)         | User interaction layer                     | Deployed as static assets + edge CDN (Railway static or similar).  |
+| Rails API (API-only)              | Web app orchestration, auth, multi-tenancy | Handles uploads, job queuing, data persistence, user management.   |
+| Fluently-AI Service (FastAPI)     | Audio processing & AI transcription        | Python service with Groq integration, audio chunking, report gen.  |
+| Postgres                          | Primary relational store + job queue       | Single shared DB; `tenant_id` column on multi-tenant tables.       |
+| Solid Queue                       | Background job processing (Rails 8 native) | Orchestrates calls to FastAPI service, handles retries & failures. |
+| Object Storage (Optional Phase 2) | Audio blobs, reports, datasets             | Start with local disk in dev; add S3/MinIO later.                  |
+| Mail (SMTP / Mailer Service)      | Transactional email                        | Mailcatcher in dev.                                                |
+| Observability Stack               | Logging, metrics, tracing                  | Phase 1: Rails + structured logs; Phase 2: OpenTelemetry exporter. |
+| Feature Flags (Future)            | Progressive delivery                       | LaunchDarkly / Flipper optional.                                   |
 
 ## 3. Audio Processing Sequence (Current Feature Focus)
 
@@ -51,35 +64,32 @@ sequenceDiagram
   participant U as User Browser
   participant F as Frontend (SPA)
   participant A as Rails API
-  participant Q as Job Queue
-  participant W as Worker (Sidekiq)
+  participant Q as Job Queue (Solid Queue)
+  participant W as Rails Worker
+  participant AI as FastAPI (Fluently-AI)
+  participant G as Groq/Azure OpenAI
   participant P as Postgres
-  participant O as Optional Storage
 
   U->>F: Record / select audio
-  F->>A: POST /audio_recordings (metadata, presign request?)
-  alt Direct Upload (Phase 2)
-    A-->>F: Pre-signed URL (S3/MinIO)
-    F->>O: PUT audio file
-    F->>A: POST /audio_recordings/complete {object_key}
-  else Simple Multipart (Phase 1)
-    F->>A: POST /audio_recordings (multipart form)
-  end
+  F->>A: POST /audio_recordings (multipart form)
   A->>P: Insert AudioRecording(status=pending)
-  A->>Q: Enqueue TranscriptionJob(id)
-  A-->>F: 202 Accepted {recording_id}
-  loop Async
+  A->>Q: Enqueue TranscriptionProcessorJob(id)
+  A-->>F: 202 Accepted {recording_id, status: pending}
+
+  loop Async Processing
     W->>P: Load AudioRecording
-    W->>W: Normalize / chunk audio
-    W->>W: Call AI transcription (fluently-ai / external)
-    W->>P: Store Transcription(rows)
+    W->>A: Update status=processing
+    W->>AI: POST /generate-report/ (audio file + API key)
+    AI->>AI: Split audio into chunks
+    AI->>G: Transcribe chunks via Whisper
+    AI->>G: Generate report via GPT
+    AI-->>W: JSON {transcript: "...", report: "..."}
+    W->>P: Store Transcription + Report
     W->>P: Update AudioRecording(status=processed)
-    W->>Q: Enqueue ReportGenerationJob(audio_recording_id)
-    W->>P: Insert Report (draft)
-    W->>P: Finalize Report(status=ready)
   end
-  F->>A: GET /audio_recordings/:id (poll or SSE)
-  A-->>F: JSON { status: processed, report: {...} }
+
+  F->>A: GET /audio_recordings/:id (poll)
+  A-->>F: JSON { status: processed, transcript: "...", report: "..." }
 ```
 
 Polling initially; upgrade to Server-Sent Events or WebSockets for push notifications later.
@@ -103,9 +113,11 @@ See `MULTI_TENANCY.md` for detail.
 
 ## 6. Background Processing
 
-Solid Queue (Rails 8 native, see `JOBS_AND_PROCESSING.md`). Queues: `critical`, `default`, `low`.
-Use built-in exponential retry; dashboard at `/admin/solid_queue`.
-Idempotency via job arguments or `perform_unique_by` (audio_recording_id + pipeline version).
+**Rails Orchestrator**: Solid Queue manages job lifecycle, retries, and failure handling.  
+**Python Worker**: FastAPI service (`fluently-ai`) handles CPU-intensive AI processing.  
+**Integration**: Rails jobs make HTTP requests to FastAPI `/generate-report/` endpoint.  
+**Queues**: `critical`, `default`, `low` - dashboard at `/admin/solid_queue`.  
+**Fault Tolerance**: Rails handles retries, timeouts, and fallback behavior.
 
 ## 7. Caching & Performance
 
@@ -133,7 +145,18 @@ Abstraction: `StorageProvider` interface -> `LocalDiskStorage` then S3/MinIO.
 - Audit log (Phase 2) for auth + exports.
 - Secret management: Railway variables; no secrets in repo.
 
-## 10. Observability & Ops
+## 10. Environment Variables
+
+| Variable               | Purpose                                                  |
+| ---------------------- | -------------------------------------------------------- |
+| JWT_SECRET             | HMAC signing key (rotate via versioning)                 |
+| DATABASE_URL           | Postgres connection                                      |
+| FLUENTLY_AI_URL        | FastAPI service endpoint (e.g., http://fluently-ai:8081) |
+| GROQ_API_KEY           | Groq API key for transcription service                   |
+| AZURE_OPENAI_KEY       | Azure OpenAI key (alternative to Groq)                   |
+| ACTIVE_STORAGE_SERVICE | local (dev) / s3 (later)                                 |
+
+## 11. Observability & Ops
 
 Phase 1: structured JSON logs, request timing, error monitoring (Sentry).  
 Phase 2: OpenTelemetry traces, metrics (RED + custom domain counts).  
@@ -156,13 +179,14 @@ Container image reused between web & worker with different commands.
 | 3 Enterprise      | Isolation request  | Migrate tenant to dedicated schema/DB |
 | 4 Observability   | Debug difficulty   | Add tracing + dashboards              |
 
-## 13. Tech Choices Rationale
+## 14. Tech Choices Rationale
 
 - Rails 8 API-only: mature, productive, multi-tenancy patterns well-known.
-- Sidekiq: performance + ecosystem.
-- Redis: shared infra for queue + caching + rate limit.
+- FastAPI (Python): optimal for AI/ML workloads, async processing, Groq integration.
+- Solid Queue: Rails-native background processing, simple ops.
 - React/Vite: fast iteration, static deploy.
 - JWT + refresh: stateless horizontal scale.
+- Microservice pattern: Rails for web concerns, Python for AI processing.
 
 ## 14. Risks & Mitigations
 
