@@ -64,7 +64,7 @@ const CTASection = () => {
         to_email: userData.email,
         user_role: userData.role,
         clinic_size: userData.clinicSize || "Not specified",
-        linkedin_url: "www.linkedin.com/in/your-profile", // TODO: Update with actual URL
+        linkedin_url: "https://www.linkedin.com/company/upspeech/",
         logo_url: "https://upspeech.app/images/logo.svg",
         referral_link: "https://upspeech.app",
         reply_to: "upspeechapp@gmail.com",

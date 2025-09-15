@@ -24,7 +24,7 @@ const Footer = () => {
 
           <div className="flex space-x-8">
             <a
-              href="https://linkedin.com/company/upspeech" // TODO: Update with actual URL
+              href="https://www.linkedin.com/company/upspeech/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline font-nunito text-sm text-white/80 hover:text-white transition-all duration-200"
