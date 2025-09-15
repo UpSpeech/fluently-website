@@ -1,0 +1,116 @@
+version: "3.8"
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: upspeech_postgres_dev
+    environment:
+      POSTGRES_DB: upspeech_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - upspeech-network
+
+  # Redis (for caching and background jobs)
+  redis:
+    image: redis:7-alpine
+    container_name: upspeech_redis_dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - upspeech-network
+
+  # Rails Backend API
+  backend:
+    build:
+      context: ../fluently-backend
+      dockerfile: Dockerfile.dev
+    container_name: upspeech_backend_dev
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/upspeech_development
+      - REDIS_URL=redis://redis:6379/0
+      - UPSPEECH_AI_URL=http://ai-service:8081
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY:-}
+    volumes:
+      - ../fluently-backend:/app
+      - /app/tmp
+      - /app/log
+      - bundle_cache:/usr/local/bundle
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    networks:
+      - upspeech-network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ../fluently-frontend
+      dockerfile: Dockerfile.dev
+    container_name: upspeech_frontend_dev
+    ports:
+      - "3001:3001"
+    environment:
+      - VITE_API_URL=http://localhost:3000/api/v1
+      - VITE_APP_NAME=UpSpeech
+      - VITE_NODE_ENV=development
+    volumes:
+      - ../fluently-frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    networks:
+      - upspeech-network
+
+  # Python AI Service (placeholder for now)
+  ai-service:
+    image: python:3.11-slim
+    container_name: upspeech_ai_dev
+    working_dir: /app
+    ports:
+      - "8081:8081"
+    volumes:
+      - ../fluently-ai:/app
+    command: >
+      sh -c "
+        pip install -r requirements.txt 2>/dev/null || echo 'No requirements.txt found' &&
+        echo 'AI Service placeholder - implement FastAPI server here' &&
+        sleep infinity
+      "
+    networks:
+      - upspeech-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  bundle_cache:
+  node_modules:
+
+networks:
+  upspeech-network:
+    driver: bridge

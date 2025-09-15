@@ -1,0 +1,83 @@
+version: "3.8"
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: upspeech_postgres_prod
+    environment:
+      POSTGRES_DB: upspeech_production
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - upspeech-network
+    restart: unless-stopped
+
+  # Redis (for caching and background jobs)
+  redis:
+    image: redis:7-alpine
+    container_name: upspeech_redis_prod
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - upspeech-network
+    restart: unless-stopped
+
+  # Rails Backend API
+  backend:
+    build:
+      context: ./fluently-backend
+      dockerfile: Dockerfile
+    container_name: upspeech_backend_prod
+    environment:
+      - RAILS_ENV=production
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/upspeech_production
+      - REDIS_URL=redis://redis:6379/0
+      - UPSPEECH_AI_URL=http://ai-service:8081
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - upspeech-network
+    restart: unless-stopped
+
+  # React Frontend (Nginx)
+  frontend:
+    build:
+      context: ./fluently-frontend
+      dockerfile: Dockerfile
+    container_name: upspeech_frontend_prod
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    networks:
+      - upspeech-network
+    restart: unless-stopped
+
+  # Python AI Service
+  ai-service:
+    build:
+      context: ./fluently-ai
+      dockerfile: Dockerfile
+    container_name: upspeech_ai_prod
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    networks:
+      - upspeech-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  upspeech-network:
+    driver: bridge
