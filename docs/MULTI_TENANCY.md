@@ -1,7 +1,7 @@
 # Multi-Tenancy Strategy
 
-Status: Draft v0.1  
-Last Updated: 2025-09-11
+Status: **Current Implementation v1.0** (Session-based tenant resolution)
+Last Updated: 2025-09-15
 
 ## 1. Goals
 
@@ -19,11 +19,12 @@ Last Updated: 2025-09-11
 | 3 (Selective) | Separate schemas per enterprise tenant               | Premium isolation | Migrate subset of tenants.                 |
 | 4 (Advanced)  | Separate databases (cluster or serverless instances) | Large enterprise  | Only if data volume or compliance demands. |
 
-## 3. Tenant Identification
+## 3. Tenant Identification (Current Implementation)
 
-- Each request includes Access JWT with `tid` claim (tenant UUID).
-- `current_tenant` resolved by joining user + claim.
-- Websocket / SSE channels include tenant context in auth handshake.
+- **Session-based**: Tenant resolved via `current_user.tenant` association.
+- `current_tenant` set in ApplicationController from authenticated user session.
+- All requests use session authentication to determine tenant context.
+- **Future**: JWT with `tid` claim for stateless tenant resolution.
 
 ## 4. Data Modeling Conventions
 
@@ -39,15 +40,30 @@ class AudioRecording < ApplicationRecord
 end
 ```
 
-## 5. Rails Enforcement Layer
+## 5. Rails Enforcement Layer (Current Implementation)
 
-`TenantScoped` concern:
+ApplicationController pattern:
 
+```ruby
+class ApplicationController < ActionController::API
+  before_action :set_current_tenant
+
+  protected
+
+  def current_tenant
+    @current_tenant ||= current_user&.tenant
+  end
+
+  def set_current_tenant
+    Current.tenant = current_user.tenant if current_user
+  end
+end
+```
+
+`TenantScoped` concern (planned):
 - Validates presence of `tenant_id`.
-- Default scope or (preferred) a `for_current_tenant` scope invoked centrally.
-- Add a controller concern: `before_action :enforce_tenant_scope` that sets `ActsAsTenant.current_tenant` or custom context object.
-
-Prefer explicit scoping helper to avoid global default scope pitfalls (pagination/count issues).
+- `for_current_tenant` scope invoked in controllers.
+- Explicit scoping to avoid global default scope pitfalls.
 
 ## 6. Query Safety
 
@@ -107,11 +123,32 @@ Include `tenant_id` explicitly in job args. Load tenant context at job start. Fa
 - Shared examples ensuring each model enforces tenant scope.
 - Cross-tenant access attempt spec (should raise / 404).
 
-## 13. Open Questions
+## 13. Current Implementation Notes
 
-- Do we need per-tenant rate limits? (Could add Redis buckets keyed by tenant.)
-- Billing alignment with isolation level?
+- **Session-based tenant resolution**: Simple, reliable for MVP
+- **Database queries**: Each request loads tenant via user association
+- **Performance**: Acceptable for single-server deployment
+- **Scaling limitation**: Session state prevents horizontal scaling
 
-## 14. Summary
+## 14. Future Improvements
 
-Start lean with row-level logical isolation; layer in RLS + routing only when justified. Guard rails (lint + tests + logging) prevent accidental leaks.
+### JWT Migration (Priority 1)
+- **Stateless tenant resolution**: Embed `tid` in JWT claims
+- **Performance**: Eliminate per-request tenant database lookups
+- **Scaling**: Enable horizontal scaling across multiple servers
+- **Microservices**: Allow other services to validate tenant context
+
+### Additional Enhancements
+- Per-tenant rate limits (Redis buckets keyed by tenant)
+- Billing integration aligned with isolation levels
+- Enhanced audit logging with tenant context
+
+## 15. Open Questions
+
+- JWT migration timeline based on scaling requirements
+- Per-tenant feature flags and customization needs
+- Billing provider integration strategy
+
+## 16. Summary
+
+Current session-based implementation provides secure tenant isolation for MVP. Clear migration path to JWT-based stateless tenant resolution when horizontal scaling becomes necessary.

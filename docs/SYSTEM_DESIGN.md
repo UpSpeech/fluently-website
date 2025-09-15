@@ -139,9 +139,9 @@ Abstraction: `StorageProvider` interface -> `LocalDiskStorage` then S3/MinIO.
 ## 9. Security & Compliance (MVP)
 
 - TLS via platform.
-- JWT access (15m) + refresh HttpOnly cookie (30d, rotation).
+- **Current**: Session-based authentication with HttpOnly cookies.
 - Password hashing: Argon2id preferred; bcrypt fallback.
-- Rate limiting on auth endpoints (Redis sliding window).
+- Rate limiting on auth endpoints.
 - Audit log (Phase 2) for auth + exports.
 - Secret management: Railway variables; no secrets in repo.
 
@@ -149,7 +149,7 @@ Abstraction: `StorageProvider` interface -> `LocalDiskStorage` then S3/MinIO.
 
 | Variable               | Purpose                                                  |
 | ---------------------- | -------------------------------------------------------- |
-| JWT_SECRET             | HMAC signing key (rotate via versioning)                 |
+| SECRET_KEY_BASE        | Rails session signing key                                |
 | DATABASE_URL           | Postgres connection                                      |
 | UPSPEECH_AI_URL        | FastAPI service endpoint (e.g., http://upspeech-ai:8081) |
 | GROQ_API_KEY           | Groq API key for transcription service                   |
@@ -171,13 +171,14 @@ Container image reused between web & worker with different commands.
 
 ## 12. Scaling Path
 
-| Stage             | Trigger            | Action                                |
-| ----------------- | ------------------ | ------------------------------------- |
-| 0 Prototype       | <100 users         | Single API container + DB + Redis     |
-| 1 Early Growth    | p95 > 400ms        | Scale API horizontally; CDN static    |
-| 2 Intensive Media | Storage >5GB local | Introduce S3/MinIO + async upload     |
-| 3 Enterprise      | Isolation request  | Migrate tenant to dedicated schema/DB |
-| 4 Observability   | Debug difficulty   | Add tracing + dashboards              |
+| Stage               | Trigger                    | Action                                |
+| ------------------- | -------------------------- | ------------------------------------- |
+| 0 Prototype (MVP)   | <100 users                 | Single API container + DB (sessions) |
+| 1 Early Growth      | p95 > 400ms                | Scale API horizontally; CDN static   |
+| **1.5 Auth Migration** | **Multi-server scaling** | **Migrate to JWT authentication**  |
+| 2 Intensive Media   | Storage >5GB local         | Introduce S3/MinIO + async upload    |
+| 3 Enterprise        | Isolation request          | Migrate tenant to dedicated schema/DB |
+| 4 Observability     | Debug difficulty           | Add tracing + dashboards             |
 
 ## 14. Tech Choices Rationale
 
@@ -185,31 +186,50 @@ Container image reused between web & worker with different commands.
 - FastAPI (Python): optimal for AI/ML workloads, async processing, Groq integration.
 - Solid Queue: Rails-native background processing, simple ops.
 - React/Vite: fast iteration, static deploy.
-- JWT + refresh: stateless horizontal scale.
+- **Current**: Session-based auth for fast MVP delivery; JWT planned for scaling.
 - Microservice pattern: Rails for web concerns, Python for AI processing.
 
 ## 14. Risks & Mitigations
 
-| Risk                 | Impact             | Mitigation                                 |
-| -------------------- | ------------------ | ------------------------------------------ |
-| Token leakage        | Account compromise | HttpOnly refresh, rotate, minimal scopes   |
-| N+1 queries          | Latency            | Bullet gem dev, add eager loads + indexes  |
-| Missing tenant scope | Data leak          | TenantScoped concern + tests + (later) RLS |
-| Cost creep           | Burn               | Phase gating, infra right-sizing           |
-| Vendor lock-in       | Medium             | Portable Docker + standard libs            |
+| Risk                    | Impact             | Mitigation                                 |
+| ----------------------- | ------------------ | ------------------------------------------ |
+| Session scaling limits  | Horizontal scaling | JWT migration planned for multi-server    |
+| N+1 queries             | Latency            | Bullet gem dev, add eager loads + indexes  |
+| Missing tenant scope    | Data leak          | TenantScoped concern + tests + (later) RLS |
+| Cost creep              | Burn               | Phase gating, infra right-sizing           |
+| Vendor lock-in          | Medium             | Portable Docker + standard libs            |
 
-## 15. Open Questions
+## 15. Future Improvements & Technical Debt
+
+### Priority 1: Authentication Migration
+- **JWT Implementation**: Migrate from session-based to JWT authentication
+- **Stateless Scaling**: Enable horizontal scaling across multiple servers
+- **Tenant Claims**: Embed `tid` (tenant_id) in JWT for microservice compatibility
+- **Dual Support**: Implement gradual migration strategy supporting both auth methods
+
+### Priority 2: Performance & Scale
+- **Object Storage**: Migrate from local disk to S3/MinIO for audio files
+- **Read Replicas**: Add database read replicas for query performance
+- **CDN Integration**: Implement CDN for static assets and cached responses
+
+### Priority 3: Observability
+- **Structured Logging**: Enhanced logging with tenant_id and request tracing
+- **Metrics Dashboard**: Application performance monitoring
+- **Alerting**: Error rate and performance threshold alerts
+
+## 16. Open Questions
 
 - Billing provider selection & timeline.
 - LLM provider redundancy (OpenAI + fallback?).
 - Data retention & anonymization policies.
+- JWT migration timeline based on scaling needs.
 
-## 16. Next Steps
+## 17. Next Steps
 
-- Scaffold backend (Rails 8) with foundational models.
-- Implement audio upload endpoint (multipart) + enqueue job.
-- Add polling endpoint & status updates.
-- Introduce SSE for real-time status (Phase 2).
+- ✅ Backend scaffold with session-based auth (Complete)
+- ✅ Audio upload endpoint + background processing (Complete)
+- Add polling endpoint & status updates improvements
+- Plan JWT migration strategy when scaling requirements emerge
 
 ---
 

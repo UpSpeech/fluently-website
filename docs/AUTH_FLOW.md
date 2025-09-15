@@ -1,123 +1,127 @@
 # Authentication & Authorization Flow
 
-Status: Draft v0.1  
-Last Updated: 2025-09-11
+Status: **Current Implementation v1.0** (Session-based)
+Last Updated: 2025-09-15
 
 ## 1. Goals
 
-- Secure, stateless API access (JWT) with refresh capability.
-- Multi-tenant aware: every auth artifact encodes tenant context.
-- Minimal round trips; easy to extend (SSO, magic links).
+- Secure API access with session-based authentication.
+- Multi-tenant aware: tenant context resolved via user associations.
+- Fast implementation for MVP; easy to extend (SSO, magic links).
 
-## 2. Actors
+## 2. Current Implementation (Session-Based)
+
+**Note**: This differs from the original JWT design for faster MVP delivery. See [Future Improvements](#future-improvements) for JWT migration plan.
+
+## 3. Actors
 
 - End-user (browser SPA).
-- Rails API (auth controller + token service).
-- Token Store (DB table for refresh tokens if using revocation) or purely stateless if using rotation & jti blacklist in Redis.
+- Rails API (Devise controllers).
+- Session Store (Rails built-in session management).
 
-## 3. Token Model
+## 4. Authentication Model
 
-| Token                               | Storage                                | Lifetime      | Purpose                   |
+| Component                           | Storage                                | Lifetime      | Purpose                   |
 | ----------------------------------- | -------------------------------------- | ------------- | ------------------------- |
-| Access JWT                          | In-memory (React state)                | 15m           | Authorize API requests.   |
-| Refresh Token                       | HttpOnly Secure SameSite=Strict cookie | 30d (rotated) | Obtain new access tokens. |
+| Session Cookie                      | HttpOnly Secure SameSite=Strict cookie | Rails default | Maintain user session.    |
+| User Profile                        | localStorage (frontend)                | Session       | Cache user data locally.  |
 | (Optional) Email Verification Token | DB or signed token                     | 24h           | Activate user.            |
 | (Optional) Password Reset Token     | DB or signed token                     | 1h            | Credential recovery.      |
 
-Claims (Access): `sub` (user id), `tid` (tenant id), `iat`, `exp`, `jti`, `roles` (array), `ver` (token schema version).
+Session Context: User ID, tenant association via `current_user.tenant`.
 
-## 4. Login Flow
+## 5. Login Flow
 
-1. POST `/auth/login` with email + password.
-2. Validate user; ensure belongs to active tenant.
-3. Issue Access JWT + set Refresh cookie.
-4. Return user profile + tenant meta (name, plan flags).
+1. POST `/auth/sign_in` with `{user: {email, password}}`.
+2. Devise validates credentials; ensure user belongs to active tenant.
+3. Rails creates session and sets session cookie.
+4. Return `{status: {code: 200, message: "..."}, data: user_profile}`.
+5. Frontend stores user profile in localStorage (no tokens).
 
-## 5. Refresh Flow
+## 6. Session Management
 
-1. Browser detects (401) or proactive refresh (timer).
-2. POST `/auth/refresh` (cookie automatically sent).
-3. Server validates refresh (rotation):
-   - If using DB: mark previous token as used & issue new; revoke chain on replay.
-   - If stateless: store `jti` of used refresh tokens in Redis with TTL.
-4. Returns new Access JWT (never expose refresh in body).
+- **Server-side**: Rails manages session state automatically.
+- **Client-side**: Session cookie sent automatically with requests.
+- **Tenant Context**: Resolved via `current_user.tenant` in ApplicationController.
+- **CORS**: Configured to allow credentials for cross-origin requests.
 
-## 6. Logout
+## 7. Logout
 
-- POST `/auth/logout`: invalidate refresh (DB delete / blacklist).
-- Clear cookie.
+- DELETE `/auth/sign_out`: Devise destroys session.
+- Frontend clears localStorage user data.
 
-## 7. Password Reset
+## 8. Password Reset
 
 1. Request: POST `/auth/password/reset/request` with email.
 2. Send signed token link `https://app/reset?token=...`.
-3. Validate, allow new password set; rotate all tokens.
+3. Validate, allow new password set; invalidate existing sessions.
 
-## 8. Registration
+## 9. Registration
 
-- POST `/auth/register`: creates Tenant + User (owner role).
+- POST `/auth` (Devise registration): creates Tenant + User (owner role).
 - Optionally require email verification before enabling login.
 - Seed default settings rows.
 
-## 9. Roles & Authorization
+## 10. Roles & Authorization
 
 Initial roles: `owner`, `admin`, `member`.
 
-- Policy layer: Pundit or Cancancan with tenant scoping.
-- Access JWT includes `roles`; server re-checks DB on sensitive operations (defense in depth).
+- Policy layer: Pundit with tenant scoping.
+- Server validates roles on each request via `current_user` session data.
 
-## 10. Rate Limiting
+## 11. Rate Limiting
 
-- `/auth/login`: 5 attempts / 10 min / IP + email combo.
-- `/auth/refresh`: moderate limit (e.g., 60 / 10 min / user).
+- `/auth/sign_in`: 5 attempts / 10 min / IP + email combo.
+- Standard Rails rate limiting on auth endpoints.
 
-## 11. CSRF Considerations
+## 12. CSRF Considerations
 
-- Access token never stored in cookie; refresh cookie is HttpOnly.
-- Refresh endpoint can additionally require `X-CSRF-Token` derived from refresh token hash if desired (Phase 2).
+- Sessions use Rails built-in CSRF protection.
+- API requests include CSRF token for state-changing operations.
 
-## 12. Implementation Gems
+## 13. Implementation Gems
 
-- `devise` (email/password, recoverable, confirmable).
-- `devise-jwt` or custom Warden strategy for access tokens.
+- `devise` (email/password, recoverable, confirmable, sessions).
 - `argon2` or `bcrypt` for password hashing.
-- `pundit` for policies.
-
-## 13. Example Access JWT Payload
-
-```json
-{
-  "sub": "user_1234",
-  "tid": "tenant_abcd",
-  "roles": ["owner"],
-  "iat": 1710000000,
-  "exp": 1710000900,
-  "jti": "01HV....ULID",
-  "ver": 1
-}
-```
+- `pundit` for authorization policies.
 
 ## 14. Frontend Handling
 
-- Store access token only in memory; on full reload call `/auth/session` which validates refresh cookie and rehydrates session (issues new access token).
-- Silent refresh timer at 60% of TTL.
-- Global Axios interceptor for 401 → attempt refresh once → retry original request.
+- Store user profile in localStorage (no sensitive tokens).
+- Session cookie automatically sent with requests.
+- Global Axios interceptor for 401 → redirect to login.
 
-## 15. Auditing (Phase 2)
+## 15. Current Session Context
 
-Log events: login success/failure, password reset request, role change, token revocation.
+```ruby
+# ApplicationController
+def current_tenant
+  @current_tenant ||= current_user&.tenant
+end
 
-## 16. Future Extensions
+def set_current_tenant
+  Current.tenant = current_user.tenant if current_user
+end
+```
 
+## 16. Auditing (Phase 2)
+
+Log events: login success/failure, password reset request, role change.
+
+## 17. Future Improvements
+
+### JWT Migration (Phase 2)
+- **Goal**: Implement stateless JWT authentication for horizontal scaling
+- **Access Tokens**: 15-minute JWT with `tid` (tenant) claims
+- **Refresh Tokens**: 30-day rotating HttpOnly cookies
+- **Benefits**: Stateless scaling, embedded tenant context, microservice-ready
+- **Migration Path**: Dual authentication support during transition
+
+### Additional Enhancements
 - SSO (SAML / OIDC) maps external identity to tenant role.
 - Magic links (email-based sign-in).
 - WebAuthn for phishing-resistant MFA.
 
-## 17. Open Questions
-
-- Do we need MFA in first 6 months?
-- Which error format standard (JSON:API vs custom)?
-
 ## 18. Summary
 
-Stateless access + rotating refresh cookie gives scalability and revocation control; layered policies ensure safe tenant separation.
+Session-based authentication provides secure, simple MVP implementation. Tenant context resolved via user associations. Clear migration path to JWT when horizontal scaling is needed.
