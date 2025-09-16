@@ -29,7 +29,7 @@ services:
   # Rails Backend API
   backend:
     build:
-      context: ./fluently-backend
+      context: ../fluently-backend
       dockerfile: Dockerfile
     container_name: upspeech_backend_prod
     environment:
@@ -50,7 +50,7 @@ services:
   # React Frontend (Nginx)
   frontend:
     build:
-      context: ./fluently-frontend
+      context: ../fluently-frontend
       dockerfile: Dockerfile
     container_name: upspeech_frontend_prod
     ports:
@@ -65,8 +65,8 @@ services:
   # Python AI Service
   ai-service:
     build:
-      context: ./fluently-ai
-      dockerfile: Dockerfile
+      context: ../fluently-ai
+      dockerfile: dockerfile
     container_name: upspeech_ai_prod
     environment:
       - GROQ_API_KEY=${GROQ_API_KEY}
