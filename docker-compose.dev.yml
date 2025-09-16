@@ -88,21 +88,17 @@ services:
     networks:
       - upspeech-network
 
-  # Python AI Service (placeholder for now)
+  # Python AI Service
   ai-service:
-    image: python:3.11-slim
+    build:
+      context: ../fluently-ai
+      dockerfile: dockerfile
     container_name: upspeech_ai_dev
-    working_dir: /app
     ports:
       - "8081:8081"
-    volumes:
-      - ../fluently-ai:/app
-    command: >
-      sh -c "
-        pip install -r requirements.txt 2>/dev/null || echo 'No requirements.txt found' &&
-        echo 'AI Service placeholder - implement FastAPI server here' &&
-        sleep infinity
-      "
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+    restart: unless-stopped
     networks:
       - upspeech-network
 
