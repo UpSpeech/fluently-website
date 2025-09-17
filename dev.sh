@@ -21,20 +21,20 @@ case "$1" in
     echo ""
     echo "📝 Run 'docker-compose -f $COMPOSE_FILE logs -f' to view logs"
     ;;
-  
+
   "stop"|"down")
     echo "🛑 Stopping UpSpeech development environment..."
     docker-compose -f $COMPOSE_FILE down
     echo "✅ Services stopped!"
     ;;
-  
+
   "restart")
     echo "🔄 Restarting UpSpeech development environment..."
     docker-compose -f $COMPOSE_FILE down
     docker-compose -f $COMPOSE_FILE up -d
     echo "✅ Services restarted!"
     ;;
-  
+
   "logs")
     SERVICE=${2:-}
     if [ -n "$SERVICE" ]; then
@@ -43,37 +43,37 @@ case "$1" in
       docker-compose -f $COMPOSE_FILE logs -f
     fi
     ;;
-  
+
   "build")
     echo "🔨 Building UpSpeech development images..."
     docker-compose -f $COMPOSE_FILE build --no-cache
     echo "✅ Images built!"
     ;;
-  
+
   "clean")
     echo "🧹 Cleaning up Docker resources..."
     docker-compose -f $COMPOSE_FILE down -v
     docker system prune -f
     echo "✅ Cleanup complete!"
     ;;
-  
+
   "status")
     echo "📊 UpSpeech development environment status:"
     docker-compose -f $COMPOSE_FILE ps
     ;;
-  
+
   "shell")
     SERVICE=${2:-backend}
     echo "🐚 Opening shell in $SERVICE container..."
     docker-compose -f $COMPOSE_FILE exec $SERVICE bash
     ;;
-  
+
   "migrate")
     echo "🗄️  Running database migrations..."
     docker-compose -f $COMPOSE_FILE exec backend rails db:migrate
     echo "✅ Migrations complete!"
     ;;
-  
+
   "seed")
     echo "🌱 Seeding database..."
     docker-compose -f $COMPOSE_FILE exec backend rails db:seed
@@ -85,7 +85,7 @@ case "$1" in
     docker-compose -f $COMPOSE_FILE exec backend rails runner "load('db/queue_schema.rb')"
     echo "✅ Solid Queue tables created!"
     ;;
-  
+
   "setup")
     echo "⚙️  Setting up UpSpeech development environment..."
     docker-compose -f $COMPOSE_FILE build
@@ -98,7 +98,7 @@ case "$1" in
     docker-compose -f $COMPOSE_FILE up -d
     echo "✅ Development environment ready!"
     ;;
-  
+
   *)
     echo "UpSpeech Development Environment Manager"
     echo ""
