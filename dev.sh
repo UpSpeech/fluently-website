@@ -79,6 +79,12 @@ case "$1" in
     docker-compose -f $COMPOSE_FILE exec backend rails db:seed
     echo "✅ Database seeded!"
     ;;
+
+  "queue-setup")
+    echo "🔧 Setting up Solid Queue tables..."
+    docker-compose -f $COMPOSE_FILE exec backend rails runner "load('db/queue_schema.rb')"
+    echo "✅ Solid Queue tables created!"
+    ;;
   
   "setup")
     echo "⚙️  Setting up UpSpeech development environment..."
@@ -87,6 +93,8 @@ case "$1" in
     echo "⏳ Waiting for database to be ready..."
     sleep 10
     docker-compose -f $COMPOSE_FILE exec backend rails db:create db:migrate db:seed
+    echo "🔧 Setting up Solid Queue..."
+    docker-compose -f $COMPOSE_FILE exec backend rails runner "load('db/queue_schema.rb')"
     docker-compose -f $COMPOSE_FILE up -d
     echo "✅ Development environment ready!"
     ;;
@@ -97,17 +105,18 @@ case "$1" in
     echo "Usage: $0 {command}"
     echo ""
     echo "Commands:"
-    echo "  start    - Start all services"
-    echo "  stop     - Stop all services"
-    echo "  restart  - Restart all services"
-    echo "  logs     - View logs (optionally specify service)"
-    echo "  build    - Build all images"
-    echo "  clean    - Stop services and clean up"
-    echo "  status   - Show service status"
-    echo "  shell    - Open shell in service (default: backend)"
-    echo "  migrate  - Run database migrations"
-    echo "  seed     - Seed database"
-    echo "  setup    - Complete setup (build, migrate, seed)"
+    echo "  start      - Start all services"
+    echo "  stop       - Stop all services"
+    echo "  restart    - Restart all services"
+    echo "  logs       - View logs (optionally specify service)"
+    echo "  build      - Build all images"
+    echo "  clean      - Stop services and clean up"
+    echo "  status     - Show service status"
+    echo "  shell      - Open shell in service (default: backend)"
+    echo "  migrate    - Run database migrations"
+    echo "  seed       - Seed database"
+    echo "  queue-setup- Set up Solid Queue tables"
+    echo "  setup      - Complete setup (build, migrate, seed, queue)"
     echo ""
     echo "Examples:"
     echo "  $0 start"
