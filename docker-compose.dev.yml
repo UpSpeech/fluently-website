@@ -124,7 +124,7 @@ services:
   ai-service:
     build:
       context: ../fluently-ai
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     container_name: upspeech_ai_dev
     ports:
       - "8081:8081"
