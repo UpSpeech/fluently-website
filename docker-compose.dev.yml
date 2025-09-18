@@ -36,7 +36,7 @@ services:
   # Rails Backend API (Web Server)
   backend:
     build:
-      context: ../fluently-backend
+      context: ../app-backend
       dockerfile: Dockerfile.dev
     container_name: upspeech_backend_dev
     ports:
@@ -50,7 +50,7 @@ services:
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY:-}
       - SOLID_QUEUE_SUPERVISOR=false
     volumes:
-      - ../fluently-backend:/app
+      - ../app-backend:/app
       - bundle_cache:/usr/local/bundle
       - upload_files:/app/tmp/uploads
     depends_on:
@@ -67,7 +67,7 @@ services:
   # Rails Background Job Worker
   worker:
     build:
-      context: ../fluently-backend
+      context: ../app-backend
       dockerfile: Dockerfile.dev
     container_name: upspeech_worker_dev
     command: sh -c "sleep 10 && bin/worker"
@@ -82,7 +82,7 @@ services:
       - RAILS_LOG_LEVEL=debug
       - SOLID_QUEUE_LOG_LEVEL=debug
     volumes:
-      - ../fluently-backend:/app
+      - ../app-backend:/app
       - bundle_cache:/usr/local/bundle
       - upload_files:/app/tmp/uploads
     depends_on:
@@ -99,7 +99,7 @@ services:
   # React Frontend
   frontend:
     build:
-      context: ../fluently-frontend
+      context: ../app-frontend
       dockerfile: Dockerfile.dev
     container_name: upspeech_frontend_dev
     ports:
@@ -110,7 +110,7 @@ services:
       - VITE_APP_NAME=UpSpeech
       - VITE_NODE_ENV=development
     volumes:
-      - ../fluently-frontend:/app
+      - ../app-frontend:/app
       - /app/node_modules
     depends_on:
       - backend

@@ -200,10 +200,10 @@ docker exec -it upspeech_redis_dev redis-cli ping
 ├── dev.sh                      # Development management script
 ├── .env.docker.example         # Environment template
 └── services/
-    ├── fluently-backend/
+    ├── app-backend/
     │   ├── Dockerfile.dev      # Rails development image
     │   └── Dockerfile          # Rails production image
-    ├── fluently-frontend/
+    ├── app-frontend/
     │   ├── Dockerfile.dev      # React development image
     │   ├── Dockerfile          # React production image
     │   └── nginx.conf          # Production nginx config

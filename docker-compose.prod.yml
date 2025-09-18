@@ -29,7 +29,7 @@ services:
   # Rails Backend API (Web Server)
   backend:
     build:
-      context: ../fluently-backend
+      context: ../app-backend
       dockerfile: Dockerfile
     container_name: upspeech_backend_prod
     environment:
@@ -52,7 +52,7 @@ services:
   # Rails Background Job Worker
   worker:
     build:
-      context: ../fluently-backend
+      context: ../app-backend
       dockerfile: Dockerfile
     container_name: upspeech_worker_prod
     command: sh -c "sleep 10 && bundle exec rails solid_queue:start"
@@ -77,7 +77,7 @@ services:
   # React Frontend (Nginx)
   frontend:
     build:
-      context: ../fluently-frontend
+      context: ../app-frontend
       dockerfile: Dockerfile
     container_name: upspeech_frontend_prod
     ports:
