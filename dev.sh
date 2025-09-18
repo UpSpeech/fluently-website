@@ -99,6 +99,12 @@ case "$1" in
     echo "✅ Development environment ready!"
     ;;
 
+  "bundle")
+    echo "💎 Installing gems in backend container..."
+    docker-compose -f $COMPOSE_FILE run --rm backend bundle install
+    echo "✅ Gems installed!"
+    ;;
+
   *)
     echo "UpSpeech Development Environment Manager"
     echo ""
@@ -117,6 +123,7 @@ case "$1" in
     echo "  seed       - Seed database"
     echo "  queue-setup- Set up Solid Queue tables"
     echo "  setup      - Complete setup (build, migrate, seed, queue)"
+    echo "  bundle     - Install gems in backend container"
     echo ""
     echo "Examples:"
     echo "  $0 start"
