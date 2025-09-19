@@ -7,6 +7,7 @@ Index of architecture & design references.
 - [System Design](SYSTEM_DESIGN.md)
 - [Multi-Tenancy](MULTI_TENANCY.md)
 - [Authentication Flow](AUTH_FLOW.md)
+- [Permissions & Authorization](PERMISSIONS.md)
 - [Jobs & Processing (Queue Decision)](JOBS_AND_PROCESSING.md)
 
 ## Upcoming / Planned
