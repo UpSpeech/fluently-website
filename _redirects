@@ -1,0 +1,9 @@
+# Redirect upspeechapp.com to upspeech.app for SEO consolidation
+https://upspeechapp.com/* https://upspeech.app/:splat 301!
+http://upspeechapp.com/* https://upspeech.app/:splat 301!
+
+# Redirect www subdomain to apex domain
+https://www.upspeech.app/* https://upspeech.app/:splat 301!
+http://www.upspeech.app/* https://upspeech.app/:splat 301!
+https://www.upspeechapp.com/* https://upspeech.app/:splat 301!
+http://www.upspeechapp.com/* https://upspeech.app/:splat 301!
