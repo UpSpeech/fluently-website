@@ -2,6 +2,30 @@
   command = "npm run build"
   publish = "dist"
 
+[[redirects]]
+  from = "https://upspeechapp.com/*"
+  to = "https://upspeech.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://upspeechapp.com/*"
+  to = "https://upspeech.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.upspeechapp.com/*"
+  to = "https://upspeech.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.upspeechapp.com/*"
+  to = "https://upspeech.app/:splat"
+  status = 301
+  force = true
+
 [build.environment]
   # Configure secrets scanning to ignore EmailJS environment variables
   # These are public keys meant to be exposed in the client-side bundle
