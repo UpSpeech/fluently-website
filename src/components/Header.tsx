@@ -27,7 +27,7 @@ const Header = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <img
-              src="/images/logo.svg"
+              src="/images/logo.png"
               alt="UpSpeech"
               className="h-14 w-auto transition-transform duration-300 hover:scale-105"
             />
