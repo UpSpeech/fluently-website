@@ -130,6 +130,8 @@ services:
       - "8081:8081"
     environment:
       - GROQ_API_KEY=${GROQ_API_KEY:-}
+    volumes:
+      - ai_uploads:/app/uploads
     restart: unless-stopped
     networks:
       - upspeech-network
@@ -140,6 +142,7 @@ volumes:
   bundle_cache:
   node_modules:
   upload_files:
+  ai_uploads:
 
 networks:
   upspeech-network:

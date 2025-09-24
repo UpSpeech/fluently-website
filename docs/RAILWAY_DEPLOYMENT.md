@@ -65,6 +65,17 @@ railway up --service ai-service
 #### B. Add environment variables:
 - `GROQ_API_KEY`: Your Groq API key
 
+#### C. Add volume for file storage:
+In Railway dashboard for AI service:
+1. Go to Settings → Volumes
+2. Click "Add Volume"
+3. Set volume name: `ai-file-storage`
+4. Set mount path: `/app/uploads`
+5. Set size: 5GB (adjust based on usage)
+6. Click "Create Volume"
+
+**⚠️ Important:** AI service requires persistent storage for file management between backend and worker containers.
+
 ### 5. Deploy Frontend Service
 
 #### A. Navigate to frontend directory
@@ -115,9 +126,10 @@ After deployment, you'll have:
 
 ### Backend Configuration
 - **Queue System**: Solid Queue (database-backed, no Redis needed)
-- **File Storage**: `tmp/uploads` (consider using cloud storage for production)
+- **File Storage**: AI service handles all file storage (no backend volumes needed)
 - **Health Check**: `/up`
 - **Worker Process**: Runs in the same container as the web server
+- **Memory Efficient**: Jobs only contain file_id references, not file content
 
 ### Frontend Configuration
 - **Build Tool**: Vite with React
@@ -129,7 +141,8 @@ After deployment, you'll have:
 - **Framework**: FastAPI for audio transcription
 - **Dependencies**: Groq API for transcription, ffmpeg for audio processing
 - **Health Check**: `/health`
-- **Endpoints**: `/generate-report/` for audio processing
+- **Endpoints**: `/upload`, `/process/{file_id}`, `/files/{file_id}`, `/generate-report/`
+- **Storage**: Requires volume mount for persistent file storage
 
 ## Monitoring
 - Use Railway's built-in monitoring dashboard
@@ -146,9 +159,11 @@ After deployment, you'll have:
 ### Common Issues
 1. **CORS errors**: Check CSP configuration - it's automatically configured based on environment
 2. **Database connection**: Check DATABASE_URL environment variable in backend service
-3. **File upload issues**: Ensure tmp/uploads directory permissions in Docker container
+3. **File upload issues**: Ensure AI service volume is properly mounted at `/app/uploads`
 4. **Job processing**: Check Solid Queue logs (database-backed, no Redis involved)
 5. **Service communication**: Ensure `UPSPEECH_AI_URL` points to the correct AI service URL
+6. **Large file uploads**: Ensure AI service volume has sufficient space (monitor via `/health` endpoint)
+7. **Memory issues**: With file_id approach, worker memory usage should be minimal
 
 ### Useful Commands
 ```bash
