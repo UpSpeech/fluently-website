@@ -79,7 +79,9 @@ const DifferentiationSection = () => {
             <h2 className="font-nunito font-bold text-3xl sm:text-4xl text-calm-charcoal mb-6 animate-fade-in">
               We're not replacing therapy.
               <br />
-              We're supercharging it.
+              <span className="text-calm-lavender text-4xl sm:text-5xl line-height-tight">
+                We're supercharging it.
+              </span>
             </h2>
             <p className="font-nunito text-xl text-calm-charcoal/80 mb-8">
               By making speech therapy more efficient, scalable, and impactful
